@@ -24,8 +24,9 @@
       background:
         linear-gradient(135deg, #0b5cab 0%, #1976d2 60%, #42a5f5 100%);
       color: white;
-      padding: 70px 20px 60px;
+      padding: 60px 20px 70px;
       text-align: center;
+      overflow: hidden;
     }
 
     .hero-content {
@@ -41,15 +42,24 @@
     }
 
     .hero .tagline {
-      margin: 0 auto 22px;
+      margin: 0 auto 18px;
       max-width: 720px;
       font-size: 1.18rem;
-      opacity: 0.95;
+      opacity: 0.96;
     }
 
     .author {
       font-size: 1rem;
       opacity: 0.9;
+    }
+
+    #globeViz {
+      width: 320px;
+      height: 320px;
+      margin: 28px auto 0;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.28);
     }
 
     .container {
@@ -194,8 +204,13 @@
 
     @media (max-width: 600px) {
       .hero {
-        padding-top: 48px;
-        padding-bottom: 50px;
+        padding-top: 45px;
+        padding-bottom: 55px;
+      }
+
+      #globeViz {
+        width: 240px;
+        height: 240px;
       }
 
       .container {
@@ -215,6 +230,7 @@
 
   <header class="hero">
     <div class="hero-content">
+
       <h1>Measuring the Earth's Rotation</h1>
 
       <p class="tagline">
@@ -226,6 +242,9 @@
         Gary Cahill<br>
         South East Technological University, Ireland
       </div>
+
+      <div id="globeViz"></div>
+
     </div>
   </header>
 
@@ -233,17 +252,25 @@
   <main class="container">
 
     <section class="intro">
+
       <strong>The Earth rotates at only about 0.00418° per second.</strong>
-      <br>
+
+      <br><br>
+
       Can a smartphone gyroscope detect it?
+
+      <br>
+
       These experiments use an ABBA reversal sequence to separate
       the Earth-rotation signal from sensor bias and drift.
+
     </section>
 
 
     <div class="grid">
 
       <section class="card">
+
         <div class="badge">ANDROID</div>
 
         <h2>Earth Rotation Challenge</h2>
@@ -267,10 +294,12 @@
         <p class="note">
           Uses the Android uncalibrated gyroscope stream.
         </p>
+
       </section>
 
 
       <section class="card">
+
         <div class="badge">IPHONE</div>
 
         <h2>Earth Rotation Challenge</h2>
@@ -293,10 +322,12 @@
         <p class="note">
           Uses the gyroscope stream currently available to phyphox on iOS.
         </p>
+
       </section>
 
 
       <section class="card">
+
         <div class="badge reference">REFERENCE SENSOR</div>
 
         <h2>Murata SCH16T + ESP32</h2>
@@ -320,6 +351,7 @@
         <p class="note">
           Hardware: Murata SCH16T-K01-PCB + ESP32.
         </p>
+
       </section>
 
     </div>
@@ -336,13 +368,21 @@
       </p>
 
       <div class="abba">
+
         <span class="step">A1</span>
+
         <span class="arrow">→</span>
+
         <span class="step">B1</span>
+
         <span class="arrow">→</span>
+
         <span class="step">B2</span>
+
         <span class="arrow">→</span>
+
         <span class="step">A2</span>
+
       </div>
 
       <p>
@@ -366,6 +406,62 @@
   <footer>
     Measuring the Earth's Rotation with phyphox · 2026
   </footer>
+
+
+  <!-- Rotating globe -->
+  <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+
+  <script>
+    const globeContainer =
+      document.getElementById('globeViz');
+
+    const globeSize =
+      globeContainer.clientWidth;
+
+    const globe =
+      Globe()(globeContainer)
+        .width(globeSize)
+        .height(globeSize)
+        .backgroundColor('rgba(0,0,0,0)')
+        .globeImageUrl(
+          'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
+        )
+        .bumpImageUrl(
+          'https://unpkg.com/three-globe/example/img/earth-topology.png'
+        )
+        .showAtmosphere(true)
+        .atmosphereColor('lightskyblue')
+        .atmosphereAltitude(0.18);
+
+    globe.pointOfView({
+      lat: 25,
+      lng: -10,
+      altitude: 2.2
+    });
+
+    const controls =
+      globe.controls();
+
+    controls.autoRotate = true;
+
+    controls.autoRotateSpeed = 0.6;
+
+    controls.enableZoom = false;
+
+    controls.enablePan = false;
+
+
+    window.addEventListener('resize', () => {
+
+      const newSize =
+        globeContainer.clientWidth;
+
+      globe
+        .width(newSize)
+        .height(newSize);
+
+    });
+  </script>
 
 </body>
 </html>
