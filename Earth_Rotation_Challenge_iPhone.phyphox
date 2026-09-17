@@ -1,0 +1,404 @@
+<phyphox version="1.19" locale="en">
+<title>Earth Rotation Challenge - iPhone</title>
+<category>Gyroscope</category>
+<description>Classroom Earth-rotation challenge for iPhone. First measure Earth's rotation with a 15 s ABBA reversal using the iOS gyroscope stream available to phyphox. Then, if desired, leave the iPhone untouched for a 3-minute Allan-deviation quality check of the iPhone plus its support surface.</description>
+
+<data-containers>
+  <container size="100000">ux</container>
+  <container size="100000">uy</container>
+  <container size="100000">uz</container>
+  <container size="100000">ut</container>
+
+  <container size="1" init="5">settleTime</container>
+  <container size="1" init="7">turnTime</container>
+  <container size="1" init="15">measureTime</container>
+  <container size="1" init="180">qualityTime</container>
+  <container size="1" init="52.84">latitude</container>
+
+  <container size="1">now</container>
+  <container size="1">expected</container>
+  <container size="1">A1s</container>
+  <container size="1">A1e</container>
+  <container size="1">rot1End</container>
+  <container size="1">B1s</container>
+  <container size="1">B1e</container>
+  <container size="1">B2s</container>
+  <container size="1">B2e</container>
+  <container size="1">rot2End</container>
+  <container size="1">A2s</container>
+  <container size="1">A2e</container>
+  <container size="1">abbaEnd</container>
+  <container size="1">qualityStart</container>
+  <container size="1">qualityEnd</container>
+  <container size="1">totalTime</container>
+  <container size="1">stage</container>
+
+  <container size="100000">ut_A1</container>
+  <container size="100000">ux_A1</container>
+  <container size="100000">uy_A1</container>
+  <container size="100000">uz_A1</container>
+  <container size="1">mux_A1</container>
+  <container size="1">muy_A1</container>
+  <container size="1">muz_A1</container>
+
+  <container size="100000">ut_B1</container>
+  <container size="100000">ux_B1</container>
+  <container size="100000">uy_B1</container>
+  <container size="100000">uz_B1</container>
+  <container size="1">mux_B1</container>
+  <container size="1">muy_B1</container>
+  <container size="1">muz_B1</container>
+
+  <container size="100000">ut_B2</container>
+  <container size="100000">ux_B2</container>
+  <container size="100000">uy_B2</container>
+  <container size="100000">uz_B2</container>
+  <container size="1">mux_B2</container>
+  <container size="1">muy_B2</container>
+  <container size="1">muz_B2</container>
+
+  <container size="100000">ut_A2</container>
+  <container size="100000">ux_A2</container>
+  <container size="100000">uy_A2</container>
+  <container size="100000">uz_A2</container>
+  <container size="1">mux_A2</container>
+  <container size="1">muy_A2</container>
+  <container size="1">muz_A2</container>
+
+  <container size="1">dX</container>
+  <container size="1">dY</container>
+  <container size="1">dZ</container>
+  <container size="1">percentError</container>
+  <container size="1">omegaEarth</container>
+  <container size="1">signStatus</container>
+
+  <container size="100000">qut</container>
+  <container size="100000">qx</container>
+  <container size="100000">qy</container>
+  <container size="1">nq</container>
+  <container size="1">tminq</container>
+  <container size="1">tmaxq</container>
+  <container size="1">fs</container>
+  <container size="1">f15</container>
+
+  <container size="100000">tx15</container>
+  <container size="100000">xavg15</container>
+  <container size="100000">xdiff15</container>
+  <container size="100000">xsq15</container>
+  <container size="1">xms15</container>
+  <container size="1">allanX15</container>
+  <container size="1">ratioX15</container>
+
+  <container size="100000">ty15</container>
+  <container size="100000">yavg15</container>
+  <container size="100000">ydiff15</container>
+  <container size="100000">ysq15</container>
+  <container size="1">yms15</container>
+  <container size="1">allanY15</container>
+  <container size="1">ratioY15</container>
+
+  <container size="1">qualityDone</container>
+  <container size="1">qualityRankRaw</container>
+  <container size="1">qualityStatus</container>
+  <container size="1">qualityElapsed</container>
+  <container size="1">bestAxisCode</container>
+</data-containers>
+
+<input>
+  <sensor type="gyroscope" rate="100" rateStrategy="request">
+    <output component="x">ux</output>
+    <output component="y">uy</output>
+    <output component="z">uz</output>
+    <output component="t">ut</output>
+  </sensor>
+</input>
+
+<views>
+
+  <view label="1. Earth Rotation ABBA">
+    <info label="EARTH ROTATION CHALLENGE"/>
+    <info label="BEFORE START: Place the iPhone FLAT, SCREEN UP, with the TOP EDGE (+Y) pointing NORTH. Press Start and keep the iPhone still until told to rotate it."/>
+
+    <edit label="Latitude" unit="deg" default="52.84" min="-89" max="89">
+      <output>latitude</output>
+    </edit>
+
+    <value label="CURRENT INSTRUCTION" size="3">
+      <input>stage</input>
+      <map min="0" max="0">SETTLE: +Y NORTH - HANDS OFF</map>
+      <map min="1" max="1">MEASURE A1: +Y NORTH - DO NOT TOUCH</map>
+      <map min="2" max="2">ROTATE IPHONE GENTLY THROUGH 180 DEGREES</map>
+      <map min="3" max="3">SETTLE: +Y NOW SOUTH - HANDS OFF</map>
+      <map min="4" max="4">MEASURE B1: STAY COMPLETELY STILL</map>
+      <map min="5" max="5">MEASURE B2: STAY COMPLETELY STILL</map>
+      <map min="6" max="6">ROTATE IPHONE GENTLY BACK 180 DEGREES</map>
+      <map min="7" max="7">SETTLE: +Y NORTH AGAIN - HANDS OFF</map>
+      <map min="8" max="8">MEASURE A2: +Y NORTH - DO NOT TOUCH</map>
+      <map min="9" max="9">ABBA COMPLETE - RESULT READY. LEAVE IPHONE UNTOUCHED FOR QUALITY CHECK</map>
+      <map min="10" max="10">ALL COMPLETE - TAKE A SCREENSHOT</map>
+    </value>
+
+    <value label="Elapsed time" size="1" precision="1" unit="s"><input>now</input></value>
+    <value label="ABBA result ready at" size="1" precision="0" unit="s"><input>abbaEnd</input></value>
+
+    <separator height="1"/>
+    <info label="EARTH ROTATION RESULT"/>
+    <value label="Measured reversal (+Y North vs +Y South)" size="3" precision="6" unit="deg/s"><input>dY</input></value>
+    <value label="Expected at this latitude" size="2" precision="6" unit="deg/s"><input>expected</input></value>
+    <value label="Difference from expected" size="2" precision="1" unit="%"><input>percentError</input></value>
+    <value label="Expected sign" size="2">
+      <input>signStatus</input>
+      <map min="0" max="0">WAIT FOR COMPLETE ABBA</map>
+      <map min="1" max="1">YES - POSITIVE AS EXPECTED</map>
+      <map min="-1" max="-1">NO - NEGATIVE RESULT</map>
+    </value>
+
+    <separator height="1"/>
+    <info label="CONTROL AXES - ideally much smaller than the Y result"/>
+    <value label="X-axis reversal" size="1" precision="6" unit="deg/s"><input>dX</input></value>
+    <value label="Z-axis reversal" size="1" precision="6" unit="deg/s"><input>dZ</input></value>
+
+    <separator height="1"/>
+    <info label="OPTIONAL QUALITY CHECK: After the ABBA result appears (about 89 s), DO NOT TOUCH the iPhone. Keep this experiment running for another 3 minutes. The next tab will assess the stability of the iPhone AND the surface it is sitting on. This quality check does not invalidate or block the ABBA result."/>
+    <value label="Quality check" size="2">
+      <input>qualityStatus</input>
+      <map min="9" max="9">NOT COMPLETE YET</map>
+      <map min="1" max="1">NOISY - REPEAT ON A QUIETER/RIGID SURFACE</map>
+      <map min="2" max="2">MARGINAL - INTERPRET WITH CAUTION</map>
+      <map min="3" max="3">GOOD - SUITABLE STABILITY</map>
+      <map min="4" max="4">VERY GOOD - STRONG STABILITY</map>
+    </value>
+    <info label="ABBA calculation: (A1 + A2)/2 - (B1 + B2)/2. The symmetric order suppresses constant and approximately linear gyro bias drift."/>
+  </view>
+
+  <view label="2. Quality Check">
+    <info label="OPTIONAL 3-MINUTE IPHONE + SURFACE QUALITY CHECK"/>
+    <info label="This starts automatically AFTER the ABBA measurement. Leave the iPhone completely untouched from the moment the ABBA result appears. Do not switch tabs until the 3 minutes have finished."/>
+
+    <value label="Quality data collected" size="2" precision="0" unit="s / 180 s"><input>qualityElapsed</input></value>
+
+    <value label="Y-AXIS QUALITY FOR THIS EARTH-ROTATION MEASUREMENT" size="3">
+      <input>qualityStatus</input>
+      <map min="9" max="9">WAIT - KEEP IPHONE COMPLETELY STILL</map>
+      <map min="1" max="1">NOISY - REPEAT ON A QUIETER/RIGID SURFACE</map>
+      <map min="2" max="2">MARGINAL - RESULT MAY BE NOISY</map>
+      <map min="3" max="3">GOOD - SUITABLE</map>
+      <map min="4" max="4">VERY GOOD - STRONG SUITABILITY</map>
+    </value>
+
+    <separator height="1"/>
+    <info label="15 s ALLAN-DEVIATION CHECK"/>
+    <value label="Y-axis Allan deviation" size="2" precision="6" unit="deg/s"><input>allanY15</input></value>
+    <value label="Y Earth/Allan ratio" size="2" precision="2"><input>ratioY15</input></value>
+    <value label="X-axis Allan deviation" size="1" precision="6" unit="deg/s"><input>allanX15</input></value>
+    <value label="X Earth/Allan ratio" size="1" precision="2"><input>ratioX15</input></value>
+
+    <value label="Quieter horizontal axis during quality test" size="2">
+      <input>bestAxisCode</input>
+      <map min="1" max="1">X AXIS</map>
+      <map min="2" max="2">Y AXIS</map>
+    </value>
+
+    <info label="Guide only: Earth/Allan ratio >= 5 = very good; 3 to 5 = good; 2 to 3 = marginal; below 2 = noisy. These are practical screening bands, not formal confidence levels."/>
+    <info label="IMPORTANT: A noisy result can be caused by the desk, floor, vibration or someone touching the iPhone. It does NOT automatically mean the iPhone itself is unsuitable."/>
+      <separator height="1"/>
+</view>
+
+</views>
+
+<analysis sleep="0.25">
+  <timer><output clear="false">now</output></timer>
+
+  <formula formula="2*0.0041780746*cos([1]*3.141592653589793/180)">
+    <input clear="false">latitude</input><output>expected</output>
+  </formula>
+
+  <!-- ABBA timeline: 5 s settle, 15 s A1, 7 s turn, 5 s settle, 15 s B1, 15 s B2, 7 s turn, 5 s settle, 15 s A2. -->
+  <formula formula="[1]"><input clear="false">settleTime</input><output>A1s</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">A1s</input><input clear="false">measureTime</input><output>A1e</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">A1e</input><input clear="false">turnTime</input><output>rot1End</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">rot1End</input><input clear="false">settleTime</input><output>B1s</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">B1s</input><input clear="false">measureTime</input><output>B1e</output></formula>
+  <formula formula="[1]"><input clear="false">B1e</input><output>B2s</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">B2s</input><input clear="false">measureTime</input><output>B2e</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">B2e</input><input clear="false">turnTime</input><output>rot2End</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">rot2End</input><input clear="false">settleTime</input><output>A2s</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">A2s</input><input clear="false">measureTime</input><output>A2e</output></formula>
+  <formula formula="[1]"><input clear="false">A2e</input><output>abbaEnd</output></formula>
+  <formula formula="[1]"><input clear="false">abbaEnd</input><output>qualityStart</output></formula>
+  <formula formula="[1]+[2]"><input clear="false">qualityStart</input><input clear="false">qualityTime</input><output>qualityEnd</output></formula>
+  <formula formula="[1]"><input clear="false">qualityEnd</input><output>totalTime</output></formula>
+  <formula formula="min(max([1]-[2],0),[3])"><input clear="false">now</input><input clear="false">qualityStart</input><input clear="false">qualityTime</input><output>qualityElapsed</output></formula>
+
+  <!-- Guided stage. -->
+  <formula formula="0"><output>stage</output></formula>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">A1s</input><input as="true" type="value">1</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">A1e</input><input as="true" type="value">2</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">rot1End</input><input as="true" type="value">3</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">B1s</input><input as="true" type="value">4</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">B1e</input><input as="true" type="value">5</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">B2e</input><input as="true" type="value">6</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">rot2End</input><input as="true" type="value">7</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">A2s</input><input as="true" type="value">8</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">abbaEnd</input><input as="true" type="value">9</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">qualityEnd</input><input as="true" type="value">10</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
+
+  <!-- ABBA measurement windows. -->
+  <rangefilter>
+    <input clear="false">ut</input><input as="min" clear="false">A1s</input><input as="max" clear="false">A1e</input>
+    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
+    <output>ut_A1</output><output>ux_A1</output><output>uy_A1</output><output>uz_A1</output>
+  </rangefilter>
+  <average><input clear="false">ux_A1</input><output as="average">mux_A1</output></average>
+  <average><input clear="false">uy_A1</input><output as="average">muy_A1</output></average>
+  <average><input clear="false">uz_A1</input><output as="average">muz_A1</output></average>
+
+  <rangefilter>
+    <input clear="false">ut</input><input as="min" clear="false">B1s</input><input as="max" clear="false">B1e</input>
+    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
+    <output>ut_B1</output><output>ux_B1</output><output>uy_B1</output><output>uz_B1</output>
+  </rangefilter>
+  <average><input clear="false">ux_B1</input><output as="average">mux_B1</output></average>
+  <average><input clear="false">uy_B1</input><output as="average">muy_B1</output></average>
+  <average><input clear="false">uz_B1</input><output as="average">muz_B1</output></average>
+
+  <rangefilter>
+    <input clear="false">ut</input><input as="min" clear="false">B2s</input><input as="max" clear="false">B2e</input>
+    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
+    <output>ut_B2</output><output>ux_B2</output><output>uy_B2</output><output>uz_B2</output>
+  </rangefilter>
+  <average><input clear="false">ux_B2</input><output as="average">mux_B2</output></average>
+  <average><input clear="false">uy_B2</input><output as="average">muy_B2</output></average>
+  <average><input clear="false">uz_B2</input><output as="average">muz_B2</output></average>
+
+  <rangefilter>
+    <input clear="false">ut</input><input as="min" clear="false">A2s</input><input as="max" clear="false">A2e</input>
+    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
+    <output>ut_A2</output><output>ux_A2</output><output>uy_A2</output><output>uz_A2</output>
+  </rangefilter>
+  <average><input clear="false">ux_A2</input><output as="average">mux_A2</output></average>
+  <average><input clear="false">uy_A2</input><output as="average">muy_A2</output></average>
+  <average><input clear="false">uz_A2</input><output as="average">muz_A2</output></average>
+
+  <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+    <input clear="false">mux_A1</input><input clear="false">mux_A2</input><input clear="false">mux_B1</input><input clear="false">mux_B2</input><output>dX</output>
+  </formula>
+  <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+    <input clear="false">muy_A1</input><input clear="false">muy_A2</input><input clear="false">muy_B1</input><input clear="false">muy_B2</input><output>dY</output>
+  </formula>
+  <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+    <input clear="false">muz_A1</input><input clear="false">muz_A2</input><input clear="false">muz_B1</input><input clear="false">muz_B2</input><output>dZ</output>
+  </formula>
+
+  <formula formula="100*([1]-[2])/[2]"><input clear="false">dY</input><input clear="false">expected</input><output>percentError</output></formula>
+  <formula formula="([1]*3.141592653589793/180)/(2*cos([2]*3.141592653589793/180))"><input clear="false">dY</input><input clear="false">latitude</input><output>omegaEarth</output></formula>
+
+  <formula formula="0"><output>signStatus</output></formula>
+  <if greater="true">
+    <input as="a" clear="false">dY</input><input as="b" type="value">0</input>
+    <input as="true" type="value">1</input><input as="false" type="value">-1</input>
+    <output as="result">signStatus</output>
+  </if>
+  <if greater="true" equal="true">
+    <input as="a" clear="false">now</input><input as="b" clear="false">abbaEnd</input>
+    <input as="true" clear="false">signStatus</input><input as="false" type="value">0</input>
+    <output as="result">signStatus</output>
+  </if>
+
+  <!-- Quality check uses ONLY the 180 s after the ABBA measurement. -->
+  <rangefilter>
+    <input clear="false">ut</input><input as="min" clear="false">qualityStart</input><input as="max" clear="false">qualityEnd</input>
+    <input clear="false">ux</input><input clear="false">uy</input>
+    <output>qut</output><output>qx</output><output>qy</output>
+  </rangefilter>
+  <count><input as="buffer" clear="false">qut</input><output as="count">nq</output></count>
+  <min><input as="y" clear="false">qut</input><output as="min">tminq</output></min>
+  <max><input as="y" clear="false">qut</input><output as="max">tmaxq</output></max>
+  <formula formula="([1]-1)/([3]-[2])">
+    <input clear="false">nq</input><input clear="false">tminq</input><input clear="false">tmaxq</input><output>fs</output>
+  </formula>
+  <formula formula="max(1,round([1]*15))"><input clear="false">fs</input><output>f15</output></formula>
+
+  <reduce averageX="true" averageY="true">
+    <input clear="false" as="factor">f15</input><input clear="false" as="x">qut</input><input clear="false" as="y">qx</input>
+    <output as="x">tx15</output><output as="y">xavg15</output>
+  </reduce>
+  <differentiate><input clear="false">xavg15</input><output>xdiff15</output></differentiate>
+  <power><input as="base" clear="false">xdiff15</input><input as="exponent" type="value">2</input><output>xsq15</output></power>
+  <average><input clear="false">xsq15</input><output as="average">xms15</output></average>
+  <formula formula="57.29577951308232*sqrt(0.5*[1])"><input clear="false">xms15</input><output>allanX15</output></formula>
+  <formula formula="[1]/[2]"><input clear="false">expected</input><input clear="false">allanX15</input><output>ratioX15</output></formula>
+
+  <reduce averageX="true" averageY="true">
+    <input clear="false" as="factor">f15</input><input clear="false" as="x">qut</input><input clear="false" as="y">qy</input>
+    <output as="x">ty15</output><output as="y">yavg15</output>
+  </reduce>
+  <differentiate><input clear="false">yavg15</input><output>ydiff15</output></differentiate>
+  <power><input as="base" clear="false">ydiff15</input><input as="exponent" type="value">2</input><output>ysq15</output></power>
+  <average><input clear="false">ysq15</input><output as="average">yms15</output></average>
+  <formula formula="57.29577951308232*sqrt(0.5*[1])"><input clear="false">yms15</input><output>allanY15</output></formula>
+  <formula formula="[1]/[2]"><input clear="false">expected</input><input clear="false">allanY15</input><output>ratioY15</output></formula>
+
+  <if greater="true">
+    <input as="a" clear="false">ratioX15</input><input as="b" clear="false">ratioY15</input>
+    <input as="true" type="value">1</input><input as="false" type="value">2</input>
+    <output as="result">bestAxisCode</output>
+  </if>
+
+  <if greater="true" equal="true">
+    <input as="a" clear="false">now</input><input as="b" clear="false">qualityEnd</input>
+    <input as="true" type="value">1</input><input as="false" type="value">0</input>
+    <output as="result">qualityDone</output>
+  </if>
+
+  <formula formula="1"><output>qualityRankRaw</output></formula>
+  <if greater="true" equal="true">
+    <input as="a" clear="false">ratioY15</input><input as="b" type="value">2</input>
+    <input as="true" type="value">2</input><input as="false" clear="false">qualityRankRaw</input>
+    <output as="result">qualityRankRaw</output>
+  </if>
+  <if greater="true" equal="true">
+    <input as="a" clear="false">ratioY15</input><input as="b" type="value">3</input>
+    <input as="true" type="value">3</input><input as="false" clear="false">qualityRankRaw</input>
+    <output as="result">qualityRankRaw</output>
+  </if>
+  <if greater="true" equal="true">
+    <input as="a" clear="false">ratioY15</input><input as="b" type="value">5</input>
+    <input as="true" type="value">4</input><input as="false" clear="false">qualityRankRaw</input>
+    <output as="result">qualityRankRaw</output>
+  </if>
+
+  <if equal="true">
+    <input as="a" clear="false">qualityDone</input><input as="b" type="value">1</input>
+    <input as="true" clear="false">qualityRankRaw</input><input as="false" type="value">9</input>
+    <output as="result">qualityStatus</output>
+  </if>
+
+</analysis>
+
+<export>
+  <set name="Class summary">
+    <data name="Latitude (deg)">latitude</data>
+    <data name="Expected reversal (deg/s)">expected</data>
+    <data name="Measured Y reversal (deg/s)">dY</data>
+    <data name="Percent error">percentError</data>
+    <data name="X control reversal (deg/s)">dX</data>
+    <data name="Z control reversal (deg/s)">dZ</data>
+    <data name="Measured Earth omega (rad/s)">omegaEarth</data>
+    <data name="Y Allan 15 s (deg/s)">allanY15</data>
+    <data name="Y Earth-Allan ratio">ratioY15</data>
+    <data name="X Allan 15 s (deg/s)">allanX15</data>
+    <data name="X Earth-Allan ratio">ratioX15</data>
+    <data name="Quality status (1 noisy, 2 marginal, 3 good, 4 very good, 9 incomplete)">qualityStatus</data>
+    <data name="Quieter horizontal axis (1 X, 2 Y)">bestAxisCode</data>
+    <data name="Actual quality-test sampling rate (Hz)">fs</data>
+  </set>
+  <set name="Raw iPhone gyroscope">
+    <data name="Time (s)">ut</data>
+    <data name="X (rad/s)">ux</data>
+    <data name="Y (rad/s)">uy</data>
+    <data name="Z (rad/s)">uz</data>
+  </set>
+</export>
+
+</phyphox>
