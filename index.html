@@ -617,7 +617,7 @@
 
 
     /* ======================================================
-       ABBA TIMING EXPLANATION
+       ABBA KEY POINT
        ====================================================== */
 
     .abba-keypoint {
@@ -1125,17 +1125,16 @@
       <div class="abba-method-grid">
 
 
-        <!-- LEFT SIDE: METHOD -->
+        <!-- METHOD -->
 
         <div>
 
 
           <p>
 
-            The phone is measured in one orientation,
-            rotated through 180°, measured twice in the
-            reversed orientation, and then returned to
-            its original orientation.
+            Measurements are made in one orientation,
+            after a 180° reversal, and then again after
+            returning to the original orientation.
 
           </p>
 
@@ -1175,17 +1174,6 @@
 
 
 
-          <p>
-
-            Reversing the phone changes the sign
-            of the Earth-rotation component while
-            the gyroscope bias remains approximately
-            unchanged.
-
-          </p>
-
-
-
           <div class="equation">
 
             Δω =
@@ -1200,7 +1188,7 @@
 
 
 
-        <!-- RIGHT SIDE: ABBA IMAGE -->
+        <!-- ABBA IMAGE -->
 
         <div class="abba-figure">
 
@@ -1224,25 +1212,28 @@
 
 
 
-      <!-- ==================================================
-           WHY ABBA?
-           ================================================== -->
+      <!-- WHY ABBA? -->
 
       <div class="abba-keypoint">
 
 
         <h3>
-          Why use an ABBA sequence?
+          Why ABBA?
         </h3>
 
 
         <p>
 
-          The sequence is symmetric in time.
+          A 180° reversal changes the sign of the
+          <strong>Earth-rotation signal</strong>,
+          while the constant gyroscope bias does not change.
 
-          The <strong>average time of the two A measurements</strong>
-          is the same as the
-          <strong>average time of the two B measurements</strong>:
+        </p>
+
+
+        <p>
+
+          The ABBA sequence is also symmetric in time:
 
         </p>
 
@@ -1260,15 +1251,11 @@
 
 
 
-        <p>
+        <p style="text-align:center;">
 
-          A gyroscope bias that changes approximately
-          linearly with time is therefore sampled at
-          the same average time in A and B.
-
-          This means that
-          <strong>approximately linear drift cancels
-          to first order</strong>.
+          The average measurement time is therefore the same
+          for A and B, suppressing approximately linear
+          gyroscope drift.
 
         </p>
 
@@ -1362,10 +1349,6 @@
         );
 
 
-    /*
-       Start with Europe / Atlantic visible.
-    */
-
     globe.pointOfView({
 
       lat: 35,
@@ -1377,10 +1360,6 @@
     });
 
 
-
-    /*
-       Slowly rotate the Earth.
-    */
 
     const controls =
       globe.controls();
@@ -1402,11 +1381,6 @@
       false;
 
 
-
-    /*
-       Keep the globe correctly sized
-       when the browser window changes.
-    */
 
     window.addEventListener(
 
