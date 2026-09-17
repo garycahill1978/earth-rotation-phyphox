@@ -7,129 +7,364 @@
   <title>Measuring the Earth's Rotation with phyphox</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 30px 20px;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
       line-height: 1.6;
-      color: #222;
-      background: #f7f9fb;
     }
 
-    h1 {
-      color: #1565c0;
-      margin-bottom: 5px;
+    .hero {
+      background:
+        linear-gradient(135deg, #0b5cab 0%, #1976d2 60%, #42a5f5 100%);
+      color: white;
+      padding: 70px 20px 60px;
+      text-align: center;
     }
 
-    h2 {
-      margin-top: 35px;
-      color: #333;
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .subtitle {
-      color: #555;
-      margin-bottom: 30px;
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .hero .tagline {
+      margin: 0 auto 22px;
+      max-width: 720px;
+      font-size: 1.18rem;
+      opacity: 0.95;
+    }
+
+    .author {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: -35px auto 0;
+      padding: 0 20px 60px;
+    }
+
+    .intro {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .intro strong {
+      color: #0b5cab;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
     }
 
     .card {
       background: white;
-      padding: 22px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 26px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+      border: 1px solid #e6ebf1;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+      color: #111827;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #e8f2ff;
+      color: #0b5cab;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .badge.reference {
+      background: #eef7ef;
+      color: #2e7d32;
     }
 
     .button {
       display: inline-block;
+      margin-top: 12px;
+      padding: 12px 18px;
+      border-radius: 10px;
       background: #1565c0;
       color: white;
       text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 8px;
+      font-weight: 700;
+      transition: transform 0.15s ease,
+                  background 0.15s ease;
     }
 
     .button:hover {
       background: #0d47a1;
+      transform: translateY(-1px);
     }
 
-    .coming-soon {
-      color: #777;
-      font-style: italic;
+    .button.secondary {
+      background: #374151;
+    }
+
+    .button.secondary:hover {
+      background: #111827;
+    }
+
+    .note {
+      color: #6b7280;
+      font-size: 0.92rem;
+      margin-top: 14px;
+    }
+
+    .method {
+      margin-top: 28px;
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+      border: 1px solid #e6ebf1;
+    }
+
+    .method h2 {
+      margin-top: 0;
+    }
+
+    .abba {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 24px 0;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .step {
+      background: #edf5ff;
+      color: #0b5cab;
+      padding: 10px 14px;
+      border-radius: 9px;
+    }
+
+    .arrow {
+      color: #9ca3af;
+    }
+
+    .equation {
+      text-align: center;
+      font-size: 1.15rem;
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 18px;
+      font-family: Georgia, "Times New Roman", serif;
     }
 
     footer {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 1px solid #ccc;
-      color: #666;
-      font-size: 0.9em;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+      padding: 32px 20px 45px;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 48px;
+        padding-bottom: 50px;
+      }
+
+      .container {
+        margin-top: -25px;
+      }
+
+      .card,
+      .intro,
+      .method {
+        padding: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Measuring the Earth's Rotation with phyphox</h1>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Measuring the Earth's Rotation</h1>
 
-  <p class="subtitle">
-    Gary Cahill<br>
-    South East Technological University, Ireland
-  </p>
+      <p class="tagline">
+        A smartphone and MEMS gyroscope experiment using phyphox
+        and a simple 180° reversal method.
+      </p>
 
-  <div class="card">
-    <h2>Android Smartphone Experiment</h2>
+      <div class="author">
+        Gary Cahill<br>
+        South East Technological University, Ireland
+      </div>
+    </div>
+  </header>
 
-    <p>
-      A guided ABBA measurement using the phone's gyroscope.
-      Place the phone flat with the top edge pointing north and follow
-      the on-screen instructions.
-    </p>
 
-    <p>
-      The Earth-rotation result is available after about 90 seconds.
-      An optional sensor-quality test can continue afterwards.
-    </p>
+  <main class="container">
 
-    <a class="button"
-       href="Earth_Rotation_Challenge_Android.phyphox">
-       Open Android Experiment
-    </a>
-  </div>
+    <section class="intro">
+      <strong>The Earth rotates at only about 0.00418° per second.</strong>
+      <br>
+      Can a smartphone gyroscope detect it?
+      These experiments use an ABBA reversal sequence to separate
+      the Earth-rotation signal from sensor bias and drift.
+    </section>
 
-  <div class="card">
-    <h2>iPhone / iPad</h2>
 
-    <p class="coming-soon">
-      Experiment version in development.
-    </p>
-  </div>
+    <div class="grid">
 
-  <div class="card">
-    <h2>Murata SCH16T Demonstration</h2>
+      <section class="card">
+        <div class="badge">ANDROID</div>
 
-    <p>
-      High-performance MEMS gyroscope connected to an ESP32
-      and displayed in phyphox.
-    </p>
+        <h2>Earth Rotation Challenge</h2>
 
-    <p class="coming-soon">
-      Code and wiring information coming soon.
-    </p>
-  </div>
+        <p>
+          Guided measurement using the Android gyroscope.
+          Place the phone flat with the top edge pointing north
+          and follow the on-screen instructions.
+        </p>
 
-  <div class="card">
-    <h2>Poster and Resources</h2>
+        <p>
+          The main Earth-rotation result is available after
+          approximately 90 seconds.
+        </p>
 
-    <p class="coming-soon">
-      Poster, source code and additional material will be added here.
-    </p>
-  </div>
+        <a class="button"
+           href="Earth_Rotation_Challenge_Android.phyphox">
+          Open Android Experiment
+        </a>
+
+        <p class="note">
+          Uses the Android uncalibrated gyroscope stream.
+        </p>
+      </section>
+
+
+      <section class="card">
+        <div class="badge">IPHONE</div>
+
+        <h2>Earth Rotation Challenge</h2>
+
+        <p>
+          iPhone version of the same guided ABBA reversal
+          experiment.
+        </p>
+
+        <p>
+          Follow the same 180° reversal sequence and compare
+          the measured signal with the expected Earth rotation.
+        </p>
+
+        <a class="button"
+           href="Earth_Rotation_Challenge_iPhone.phyphox">
+          Open iPhone Experiment
+        </a>
+
+        <p class="note">
+          Uses the gyroscope stream currently available to phyphox on iOS.
+        </p>
+      </section>
+
+
+      <section class="card">
+        <div class="badge reference">REFERENCE SENSOR</div>
+
+        <h2>Murata SCH16T + ESP32</h2>
+
+        <p>
+          A high-performance MEMS gyroscope used as a reference
+          demonstration of the same Earth-rotation measurement.
+        </p>
+
+        <p>
+          The ESP32 sends the Murata gyroscope data directly to
+          phyphox over Bluetooth.
+        </p>
+
+        <a class="button secondary"
+           href="phyphoxMuRatav3.ino"
+           download>
+          Download Arduino Code
+        </a>
+
+        <p class="note">
+          Hardware: Murata SCH16T-K01-PCB + ESP32.
+        </p>
+      </section>
+
+    </div>
+
+
+    <section class="method">
+
+      <h2>The ABBA reversal method</h2>
+
+      <p>
+        The gyroscope is measured in one orientation, rotated through
+        180°, measured twice in the reversed orientation, and then
+        returned to its original position.
+      </p>
+
+      <div class="abba">
+        <span class="step">A1</span>
+        <span class="arrow">→</span>
+        <span class="step">B1</span>
+        <span class="arrow">→</span>
+        <span class="step">B2</span>
+        <span class="arrow">→</span>
+        <span class="step">A2</span>
+      </div>
+
+      <p>
+        Reversing the instrument changes the sign of the
+        Earth-rotation component while the sensor bias remains
+        approximately unchanged.
+      </p>
+
+      <div class="equation">
+        Δω =
+        (A1 + A2) / 2
+        −
+        (B1 + B2) / 2
+      </div>
+
+    </section>
+
+  </main>
+
 
   <footer>
-    Earth Rotation with phyphox — 2026
+    Measuring the Earth's Rotation with phyphox · 2026
   </footer>
 
 </body>
