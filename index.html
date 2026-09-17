@@ -3,35 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Measuring the Earth's Rotation with phyphox</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      line-height: 1.6;
+      color: #222;
+      background: #f7f9fb;
+    }
+
+    h1 {
+      color: #1565c0;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      margin-top: 35px;
+      color: #333;
+    }
+
+    .subtitle {
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .button {
+      display: inline-block;
+      background: #1565c0;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .button:hover {
+      background: #0d47a1;
+    }
+
+    .coming-soon {
+      color: #777;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      color: #666;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>Measuring the Earth's Rotation with phyphox</h1>
+  <h1>Measuring the Earth's Rotation with phyphox</h1>
 
-<p>
-Gary Cahill<br>
-South East Technological University, Ireland
-</p>
+  <p class="subtitle">
+    Gary Cahill<br>
+    South East Technological University, Ireland
+  </p>
 
-<h2>Experiments</h2>
+  <div class="card">
+    <h2>Android Smartphone Experiment</h2>
 
-<p>Android smartphone Earth-rotation experiment</p>
+    <p>
+      A guided ABBA measurement using the phone's gyroscope.
+      Place the phone flat with the top edge pointing north and follow
+      the on-screen instructions.
+    </p>
 
-<p>iPhone experiment</p>
+    <p>
+      The Earth-rotation result is available after about 90 seconds.
+      An optional sensor-quality test can continue afterwards.
+    </p>
 
-<h2>Murata SCH16T Demonstration</h2>
+    <a class="button"
+       href="Earth_Rotation_Challenge_Android.phyphox">
+       Open Android Experiment
+    </a>
+  </div>
 
-<p>
-A high-performance MEMS gyroscope connected to an ESP32 and phyphox.
-</p>
+  <div class="card">
+    <h2>iPhone / iPad</h2>
 
-<h2>Resources</h2>
+    <p class="coming-soon">
+      Experiment version in development.
+    </p>
+  </div>
 
-<p>Poster</p>
-<p>Experiment files</p>
-<p>ESP32 code</p>
+  <div class="card">
+    <h2>Murata SCH16T Demonstration</h2>
+
+    <p>
+      High-performance MEMS gyroscope connected to an ESP32
+      and displayed in phyphox.
+    </p>
+
+    <p class="coming-soon">
+      Code and wiring information coming soon.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Poster and Resources</h2>
+
+    <p class="coming-soon">
+      Poster, source code and additional material will be added here.
+    </p>
+  </div>
+
+  <footer>
+    Earth Rotation with phyphox — 2026
+  </footer>
 
 </body>
 </html>
