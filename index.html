@@ -366,6 +366,219 @@
 
 
     /* ======================================================
+       ALLAN DEVIATION / SENSOR QUALITY
+       ====================================================== */
+
+    .allan-section {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 30px;
+
+      margin-bottom: 28px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
+    }
+
+
+    .allan-section h2 {
+
+      margin-top: 0;
+
+      margin-bottom: 8px;
+
+      color: #111827;
+    }
+
+
+    .allan-intro {
+
+      font-size: 1.05rem;
+
+      max-width: 800px;
+
+      margin-bottom: 22px;
+    }
+
+
+    .allan-question-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 16px;
+
+      margin: 22px 0;
+    }
+
+
+    .allan-question {
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+
+      border-radius: 12px;
+
+      padding: 18px;
+    }
+
+
+    .allan-question h3 {
+
+      margin: 0 0 8px;
+
+      color: #0b5cab;
+
+      font-size: 1.05rem;
+    }
+
+
+    .allan-timescale {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 14px;
+
+      margin: 24px 0;
+    }
+
+
+    .allan-time-card {
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      text-align: center;
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+    }
+
+
+    .allan-time-card strong {
+
+      display: block;
+
+      color: #0b5cab;
+
+      margin-bottom: 7px;
+    }
+
+
+    .allan-sweet {
+
+      background: #edf5ff;
+
+      border:
+        2px solid #90caf9;
+    }
+
+
+    .allan-keyline {
+
+      text-align: center;
+
+      font-size: 1.12rem;
+
+      font-weight: 700;
+
+      color: #0b5cab;
+
+      margin: 24px 0;
+    }
+
+
+    .allan-ratio {
+
+      background: #edf5ff;
+
+      border-left:
+        5px solid #1565c0;
+
+      border-radius: 8px;
+
+      padding: 20px;
+
+      margin-top: 24px;
+    }
+
+
+    .allan-ratio h3 {
+
+      margin-top: 0;
+
+      color: #0b5cab;
+    }
+
+
+    .ratio-scale {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
+
+      margin-top: 18px;
+    }
+
+
+    .ratio-item {
+
+      text-align: center;
+
+      background: white;
+
+      border-radius: 9px;
+
+      padding: 12px;
+
+      border:
+        1px solid #dbe4ee;
+    }
+
+
+    .sensor-stream-note {
+
+      margin-top: 22px;
+
+      padding: 17px 20px;
+
+      border-radius: 10px;
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+    }
+
+
+    .sensor-stream-note strong {
+
+      color: #0b5cab;
+    }
+
+
+
+    /* ======================================================
        EXPERIMENT CARDS
        ====================================================== */
 
@@ -778,7 +991,11 @@
       }
 
 
-      .rotation-steps {
+      .rotation-steps,
+      .allan-question-grid,
+      .allan-timescale,
+      .ratio-scale {
+
         grid-template-columns: 1fr;
       }
 
@@ -786,7 +1003,9 @@
       .card,
       .intro,
       .method,
-      .science-figure {
+      .science-figure,
+      .allan-section {
+
         padding: 22px;
       }
 
@@ -1025,6 +1244,251 @@
 
 
     <!-- ==================================================
+         ALLAN DEVIATION
+         ================================================== -->
+
+    <section class="allan-section">
+
+      <h2>
+        Is your phone gyroscope good enough?
+      </h2>
+
+
+      <p class="allan-intro">
+
+        The Earth-rotation signal is extremely small.
+        A useful phone gyroscope must remain stable while
+        each measurement is averaged for about
+        <strong>10–15 seconds</strong>.
+
+      </p>
+
+
+
+      <div class="allan-question-grid">
+
+
+        <div class="allan-question">
+
+          <h3>
+            Standard deviation
+          </h3>
+
+          <p>
+            asks:
+          </p>
+
+          <p>
+            <strong>
+              “How noisy are the individual readings?”
+            </strong>
+          </p>
+
+        </div>
+
+
+
+        <div class="allan-question">
+
+          <h3>
+            Allan deviation
+          </h3>
+
+          <p>
+            asks:
+          </p>
+
+          <p>
+            <strong>
+              “How stable is the average if I measure
+              for this long?”
+            </strong>
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="allan-timescale">
+
+
+        <div class="allan-time-card">
+
+          <strong>
+            Short averaging times
+          </strong>
+
+          Random sensor noise dominates.
+
+          <br><br>
+
+          Averaging for longer usually helps.
+
+        </div>
+
+
+
+        <div class="allan-time-card allan-sweet">
+
+          <strong>
+            Around 10–15 s
+          </strong>
+
+          This is the important region for the
+          Earth-rotation experiment.
+
+          <br><br>
+
+          We want the gyro average to be stable here.
+
+        </div>
+
+
+
+        <div class="allan-time-card">
+
+          <strong>
+            Long averaging times
+          </strong>
+
+          Slow changes in gyroscope bias begin
+          to dominate.
+
+          <br><br>
+
+          Averaging longer is no longer necessarily better.
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="allan-keyline">
+
+        Short times → noise
+        &nbsp;•&nbsp;
+        Long times → drift
+        &nbsp;•&nbsp;
+        Allan deviation finds the useful averaging time
+
+      </div>
+
+
+
+      <div class="allan-ratio">
+
+
+        <h3>
+          A simple sensor-quality check
+        </h3>
+
+
+        <p>
+
+          For this experiment the Allan deviation at
+          <strong>15 seconds</strong> can be compared with
+          the expected Earth-rotation signal:
+
+        </p>
+
+
+        <div class="equation">
+
+          \[
+          R =
+          \frac{\text{expected Earth signal}}
+               {\text{15 s Allan deviation}}
+          \]
+
+        </div>
+
+
+
+        <div class="ratio-scale">
+
+
+          <div class="ratio-item">
+
+            <strong>
+              \(R < 1\)
+            </strong>
+
+            <br>
+
+            Sensor instability is larger than
+            the Earth signal.
+
+          </div>
+
+
+
+          <div class="ratio-item">
+
+            <strong>
+              \(R \approx 1\)
+            </strong>
+
+            <br>
+
+            The measurement is marginal.
+
+          </div>
+
+
+
+          <div class="ratio-item">
+
+            <strong>
+              \(R > 1\)
+            </strong>
+
+            <br>
+
+            The gyroscope is a promising candidate.
+
+          </div>
+
+
+        </div>
+
+
+        <p class="note">
+
+          This ratio is a practical screening measure,
+          rather than a formal statistical confidence test.
+
+        </p>
+
+
+      </div>
+
+
+
+      <div class="sensor-stream-note">
+
+        <strong>
+          The sensor stream also matters.
+        </strong>
+
+        Comparing calibrated and uncalibrated gyroscope
+        streams is important because software bias
+        compensation can change very low-frequency
+        behaviour — exactly where the Earth-rotation
+        signal appears.
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
          EXPERIMENTS
          ================================================== -->
 
@@ -1200,8 +1664,6 @@
       <div class="abba-method-grid">
 
 
-        <!-- METHOD -->
-
         <div>
 
 
@@ -1241,8 +1703,6 @@
 
 
 
-        <!-- ABBA IMAGE -->
-
         <div class="abba-figure">
 
           <img
@@ -1256,8 +1716,6 @@
       </div>
 
 
-
-      <!-- WHY ABBA? -->
 
       <div class="abba-keypoint">
 
