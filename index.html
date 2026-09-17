@@ -1,259 +1,735 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Measuring the Earth's Rotation with phyphox</title>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, Helvetica, Arial, sans-serif;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
       background: #f4f7fb;
+
       color: #1f2937;
+
       line-height: 1.6;
     }
 
+
+
+    /* ======================================================
+       HERO
+       ====================================================== */
+
     .hero {
+
       background:
-        linear-gradient(135deg, #0b5cab 0%, #1976d2 60%, #42a5f5 100%);
+        linear-gradient(
+          135deg,
+          #0b5cab 0%,
+          #1976d2 60%,
+          #42a5f5 100%
+        );
+
       color: white;
-      padding: 60px 20px 70px;
-      text-align: center;
+
+      padding: 45px 20px 65px;
+
       overflow: hidden;
     }
 
-    .hero-content {
-      max-width: 900px;
+
+    .hero-layout {
+
+      max-width: 1000px;
+
       margin: 0 auto;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 45px;
     }
 
+
+    .hero-text {
+
+      flex: 1;
+
+      text-align: left;
+    }
+
+
     .hero h1 {
+
       margin: 0 0 14px;
-      font-size: clamp(2.2rem, 5vw, 4rem);
+
+      font-size:
+        clamp(2.2rem, 5vw, 4rem);
+
       line-height: 1.1;
+
       letter-spacing: -1px;
     }
 
+
     .hero .tagline {
-      margin: 0 auto 18px;
-      max-width: 720px;
+
+      max-width: 620px;
+
       font-size: 1.18rem;
+
       opacity: 0.96;
+
+      margin-bottom: 20px;
     }
 
+
     .author {
+
+      margin-top: 18px;
+
       font-size: 1rem;
+
       opacity: 0.9;
     }
 
-    #globeViz {
-      width: 320px;
-      height: 320px;
-      margin: 28px auto 0;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.28);
+
+
+    /* ======================================================
+       ROTATING GLOBE
+       ====================================================== */
+
+    .globe-column {
+
+      flex: 0 0 250px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
     }
+
+
+    #globeViz {
+
+      width: 250px;
+
+      height: 250px;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.28);
+    }
+
+
+
+    /* ======================================================
+       MAIN PAGE
+       ====================================================== */
 
     .container {
+
       max-width: 1000px;
-      margin: -35px auto 0;
-      padding: 0 20px 60px;
+
+      margin: -32px auto 0;
+
+      padding:
+        0 20px 60px;
     }
 
+
+
+    /* ======================================================
+       INTRODUCTION
+       ====================================================== */
+
     .intro {
+
       background: white;
+
       border-radius: 16px;
+
       padding: 28px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+
+      box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.08);
+
       margin-bottom: 28px;
+
+      text-align: center;
+
+      font-size: 1.05rem;
+    }
+
+
+    .intro strong {
+
+      color: #0b5cab;
+
+      font-size: 1.15rem;
+    }
+
+
+
+    /* ======================================================
+       PHONE + EARTH FIGURE
+       ====================================================== */
+
+    .science-figure {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 24px;
+
+      margin-bottom: 28px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
+
       text-align: center;
     }
 
-    .intro strong {
-      color: #0b5cab;
+
+    .science-figure img {
+
+      display: block;
+
+      width: 100%;
+
+      max-width: 800px;
+
+      height: auto;
+
+      margin: 0 auto;
     }
 
+
+    .figure-caption {
+
+      color: #6b7280;
+
+      font-size: 0.92rem;
+
+      margin:
+        14px 0 0;
+    }
+
+
+
+    /* ======================================================
+       EXPERIMENT CARDS
+       ====================================================== */
+
     .grid {
+
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(280px, 1fr)
+        );
+
       gap: 22px;
     }
 
+
     .card {
+
       background: white;
+
       border-radius: 16px;
+
       padding: 26px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-      border: 1px solid #e6ebf1;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
     }
 
+
     .card h2 {
+
       margin-top: 0;
+
       margin-bottom: 10px;
+
       font-size: 1.4rem;
+
       color: #111827;
     }
 
+
+
+    /* ======================================================
+       BADGES
+       ====================================================== */
+
     .badge {
+
       display: inline-block;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #e8f2ff;
-      color: #0b5cab;
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-bottom: 12px;
+
+      padding:
+        5px 10px;
+
+      border-radius:
+        999px;
+
+      background:
+        #e8f2ff;
+
+      color:
+        #0b5cab;
+
+      font-size:
+        0.82rem;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        12px;
     }
+
 
     .badge.reference {
-      background: #eef7ef;
-      color: #2e7d32;
+
+      background:
+        #eef7ef;
+
+      color:
+        #2e7d32;
     }
+
+
+
+    /* ======================================================
+       BUTTONS
+       ====================================================== */
 
     .button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 12px 18px;
-      border-radius: 10px;
-      background: #1565c0;
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.15s ease,
-                  background 0.15s ease;
+
+      display:
+        inline-block;
+
+      margin-top:
+        12px;
+
+      padding:
+        12px 18px;
+
+      border-radius:
+        10px;
+
+      background:
+        #1565c0;
+
+      color:
+        white;
+
+      text-decoration:
+        none;
+
+      font-weight:
+        700;
+
+      transition:
+        transform 0.15s ease,
+        background 0.15s ease;
     }
+
 
     .button:hover {
-      background: #0d47a1;
-      transform: translateY(-1px);
+
+      background:
+        #0d47a1;
+
+      transform:
+        translateY(-1px);
     }
+
 
     .button.secondary {
-      background: #374151;
+
+      background:
+        #374151;
     }
+
 
     .button.secondary:hover {
-      background: #111827;
+
+      background:
+        #111827;
     }
+
 
     .note {
-      color: #6b7280;
-      font-size: 0.92rem;
-      margin-top: 14px;
+
+      color:
+        #6b7280;
+
+      font-size:
+        0.92rem;
+
+      margin-top:
+        14px;
     }
+
+
+
+    /* ======================================================
+       MURATA WIRING IMAGE
+       ====================================================== */
+
+    .wiring-image {
+
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+
+      margin:
+        18px auto 10px;
+
+      border-radius:
+        8px;
+    }
+
+
+
+    /* ======================================================
+       ABBA METHOD
+       ====================================================== */
 
     .method {
-      margin-top: 28px;
-      background: white;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-      border: 1px solid #e6ebf1;
+
+      margin-top:
+        28px;
+
+      background:
+        white;
+
+      border-radius:
+        16px;
+
+      padding:
+        28px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
     }
+
 
     .method h2 {
-      margin-top: 0;
+
+      margin-top:
+        0;
     }
+
 
     .abba {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin: 24px 0;
-      font-weight: 700;
-      font-size: 1.1rem;
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      justify-content:
+        center;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      margin:
+        24px 0;
+
+      font-weight:
+        700;
+
+      font-size:
+        1.1rem;
     }
+
 
     .step {
-      background: #edf5ff;
-      color: #0b5cab;
-      padding: 10px 14px;
-      border-radius: 9px;
+
+      background:
+        #edf5ff;
+
+      color:
+        #0b5cab;
+
+      padding:
+        10px 14px;
+
+      border-radius:
+        9px;
     }
+
 
     .arrow {
-      color: #9ca3af;
+
+      color:
+        #9ca3af;
+
+      font-size:
+        1.2rem;
     }
+
 
     .equation {
-      text-align: center;
-      font-size: 1.15rem;
-      background: #f8fafc;
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 18px;
-      font-family: Georgia, "Times New Roman", serif;
+
+      text-align:
+        center;
+
+      font-size:
+        1.2rem;
+
+      background:
+        #f8fafc;
+
+      border-radius:
+        10px;
+
+      padding:
+        18px;
+
+      margin-top:
+        18px;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
     }
+
+
+
+    /* ======================================================
+       FOOTER
+       ====================================================== */
 
     footer {
-      text-align: center;
-      color: #6b7280;
-      font-size: 0.9rem;
-      padding: 32px 20px 45px;
+
+      text-align:
+        center;
+
+      color:
+        #6b7280;
+
+      font-size:
+        0.9rem;
+
+      padding:
+        32px 20px 45px;
     }
 
-    @media (max-width: 600px) {
+
+
+    /* ======================================================
+       MOBILE
+       ====================================================== */
+
+    @media (max-width: 700px) {
+
       .hero {
-        padding-top: 45px;
-        padding-bottom: 55px;
+
+        padding:
+          42px 20px 55px;
       }
+
+
+      .hero-layout {
+
+        flex-direction:
+          column;
+
+        text-align:
+          center;
+
+        gap:
+          25px;
+      }
+
+
+      .hero-text {
+
+        text-align:
+          center;
+      }
+
+
+      .hero .tagline {
+
+        margin-left:
+          auto;
+
+        margin-right:
+          auto;
+      }
+
+
+      .globe-column {
+
+        flex-basis:
+          auto;
+      }
+
 
       #globeViz {
-        width: 240px;
-        height: 240px;
+
+        width:
+          210px;
+
+        height:
+          210px;
       }
 
+
       .container {
-        margin-top: -25px;
+
+        margin-top:
+          -25px;
       }
+
 
       .card,
       .intro,
-      .method {
-        padding: 22px;
+      .method,
+      .science-figure {
+
+        padding:
+          22px;
       }
+
     }
+
   </style>
+
 </head>
+
+
 
 <body>
 
+
+  <!-- ====================================================
+       HERO
+       ==================================================== -->
+
   <header class="hero">
-    <div class="hero-content">
 
-      <h1>Measuring the Earth's Rotation</h1>
+    <div class="hero-layout">
 
-      <p class="tagline">
-        A smartphone and MEMS gyroscope experiment using phyphox
-        and a simple 180° reversal method.
-      </p>
 
-      <div class="author">
-        Gary Cahill<br>
-        South East Technological University, Ireland
+      <div class="hero-text">
+
+        <h1>
+          Measuring the Earth's Rotation
+        </h1>
+
+
+        <p class="tagline">
+
+          A smartphone and MEMS gyroscope experiment
+          using phyphox and a simple 180° reversal method.
+
+        </p>
+
+
+        <div class="author">
+
+          Gary Cahill
+
+          <br>
+
+          South East Technological University, Ireland
+
+        </div>
+
       </div>
 
-      <div id="globeViz"></div>
+
+
+      <div class="globe-column">
+
+        <div id="globeViz"></div>
+
+      </div>
+
 
     </div>
+
   </header>
 
 
+
+  <!-- ====================================================
+       MAIN CONTENT
+       ==================================================== -->
+
   <main class="container">
+
+
+
+    <!-- INTRODUCTION -->
 
     <section class="intro">
 
-      <strong>The Earth rotates at only about 0.00418° per second.</strong>
+      <strong>
+        The Earth rotates at only about
+        0.00418° per second.
+      </strong>
 
       <br><br>
 
@@ -261,207 +737,444 @@
 
       <br>
 
-      These experiments use an ABBA reversal sequence to separate
-      the Earth-rotation signal from sensor bias and drift.
+      These experiments use a 180° reversal and
+      an ABBA measurement sequence to separate
+      the Earth-rotation signal from sensor bias
+      and drift.
 
     </section>
 
 
+
+    <!-- PHONE AND EARTH GEOMETRY -->
+
+    <section class="science-figure">
+
+      <img
+        src="phone and earth.png"
+        alt="Smartphone gyroscope axes and components of the Earth's rotation">
+
+
+      <p class="figure-caption">
+
+        Smartphone gyroscope axes and the horizontal
+        and vertical components of the Earth's rotation.
+
+      </p>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         EXPERIMENTS
+         ================================================== -->
+
     <div class="grid">
 
+
+
+      <!-- ANDROID -->
+
       <section class="card">
 
-        <div class="badge">ANDROID</div>
+        <div class="badge">
+          ANDROID
+        </div>
 
-        <h2>Earth Rotation Challenge</h2>
+
+        <h2>
+          Earth Rotation Challenge
+        </h2>
+
 
         <p>
-          Guided measurement using the Android gyroscope.
-          Place the phone flat with the top edge pointing north
-          and follow the on-screen instructions.
+
+          A guided Earth-rotation measurement
+          using the Android gyroscope.
+
         </p>
+
 
         <p>
-          The main Earth-rotation result is available after
-          approximately 90 seconds.
+
+          Place the phone flat with the top edge
+          pointing north and follow the on-screen
+          instructions.
+
         </p>
 
-        <a class="button"
-           href="Earth_Rotation_Challenge_Android.phyphox">
+
+        <p>
+
+          The main Earth-rotation result is
+          available after approximately 90 seconds.
+
+        </p>
+
+
+        <a
+          class="button"
+          href="Earth_Rotation_Challenge_Android.phyphox">
+
           Open Android Experiment
+
         </a>
 
+
         <p class="note">
-          Uses the Android uncalibrated gyroscope stream.
+
+          Uses the Android uncalibrated
+          gyroscope stream.
+
         </p>
 
       </section>
 
 
+
+      <!-- IPHONE -->
+
       <section class="card">
 
-        <div class="badge">IPHONE</div>
+        <div class="badge">
+          IPHONE
+        </div>
 
-        <h2>Earth Rotation Challenge</h2>
+
+        <h2>
+          Earth Rotation Challenge
+        </h2>
+
 
         <p>
-          iPhone version of the same guided ABBA reversal
-          experiment.
+
+          iPhone version of the same guided
+          ABBA reversal experiment.
+
         </p>
+
 
         <p>
-          Follow the same 180° reversal sequence and compare
-          the measured signal with the expected Earth rotation.
+
+          Follow the 180° reversal sequence
+          and compare the measured signal
+          with the expected Earth rotation.
+
         </p>
 
-        <a class="button"
-           href="Earth_Rotation_Challenge_iPhone.phyphox">
+
+        <a
+          class="button"
+          href="Earth_Rotation_Challenge_iPhone.phyphox">
+
           Open iPhone Experiment
+
         </a>
 
+
         <p class="note">
-          Uses the gyroscope stream currently available to phyphox on iOS.
+
+          Uses the gyroscope stream currently
+          available to phyphox on iOS.
+
         </p>
 
       </section>
 
+
+
+      <!-- MURATA -->
 
       <section class="card">
 
-        <div class="badge reference">REFERENCE SENSOR</div>
+        <div class="badge reference">
 
-        <h2>Murata SCH16T + ESP32</h2>
+          REFERENCE SENSOR
+
+        </div>
+
+
+        <h2>
+
+          Murata SCH16T + ESP32
+
+        </h2>
+
 
         <p>
-          A high-performance MEMS gyroscope used as a reference
-          demonstration of the same Earth-rotation measurement.
+
+          A high-performance MEMS gyroscope
+          used as a reference demonstration
+          of the same Earth-rotation measurement.
+
         </p>
+
 
         <p>
-          The ESP32 sends the Murata gyroscope data directly to
-          phyphox over Bluetooth.
+
+          The ESP32 sends the Murata gyroscope
+          data directly to phyphox over Bluetooth.
+
         </p>
 
-        <a class="button secondary"
-           href="phyphoxMuRatav3.ino"
-           download>
+
+
+        <img
+          class="wiring-image"
+          src="Wiring_muRata_1.png"
+          alt="ESP32 to Murata SCH16T wiring diagram">
+
+
+
+        <a
+          class="button secondary"
+          href="phyphoxMuRatav3.ino"
+          download>
+
           Download Arduino Code
+
         </a>
 
+
         <p class="note">
-          Hardware: Murata SCH16T-K01-PCB + ESP32.
+
+          Hardware:
+          Murata SCH16T-K01-PCB + ESP32.
+
         </p>
 
       </section>
+
 
     </div>
 
 
+
+    <!-- ==================================================
+         ABBA METHOD
+         ================================================== -->
+
     <section class="method">
 
-      <h2>The ABBA reversal method</h2>
+
+      <h2>
+        The ABBA reversal method
+      </h2>
+
 
       <p>
-        The gyroscope is measured in one orientation, rotated through
-        180°, measured twice in the reversed orientation, and then
-        returned to its original position.
+
+        The gyroscope is measured in one orientation,
+        rotated through 180°, measured twice in the
+        reversed orientation, and then returned to
+        its original position.
+
       </p>
+
+
 
       <div class="abba">
 
-        <span class="step">A1</span>
+        <span class="step">
+          A1
+        </span>
 
-        <span class="arrow">→</span>
+        <span class="arrow">
+          →
+        </span>
 
-        <span class="step">B1</span>
+        <span class="step">
+          B1
+        </span>
 
-        <span class="arrow">→</span>
+        <span class="arrow">
+          →
+        </span>
 
-        <span class="step">B2</span>
+        <span class="step">
+          B2
+        </span>
 
-        <span class="arrow">→</span>
+        <span class="arrow">
+          →
+        </span>
 
-        <span class="step">A2</span>
+        <span class="step">
+          A2
+        </span>
 
       </div>
 
+
+
       <p>
-        Reversing the instrument changes the sign of the
-        Earth-rotation component while the sensor bias remains
-        approximately unchanged.
+
+        Reversing the instrument changes the sign
+        of the Earth-rotation component while the
+        sensor bias remains approximately unchanged.
+
+        The symmetric ABBA sequence also suppresses
+        approximately linear bias drift.
+
       </p>
 
+
+
       <div class="equation">
+
         Δω =
         (A1 + A2) / 2
         −
         (B1 + B2) / 2
+
       </div>
 
+
     </section>
+
 
   </main>
 
 
+
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+
   <footer>
+
     Measuring the Earth's Rotation with phyphox · 2026
+
   </footer>
 
 
-  <!-- Rotating globe -->
-  <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
+
+  <!-- ====================================================
+       ROTATING EARTH
+       ==================================================== -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/globe.gl">
+  </script>
+
 
   <script>
+
     const globeContainer =
-      document.getElementById('globeViz');
+      document.getElementById(
+        'globeViz'
+      );
+
 
     const globeSize =
       globeContainer.clientWidth;
 
+
     const globe =
       Globe()(globeContainer)
-        .width(globeSize)
-        .height(globeSize)
-        .backgroundColor('rgba(0,0,0,0)')
+
+        .width(
+          globeSize
+        )
+
+        .height(
+          globeSize
+        )
+
+        .backgroundColor(
+          'rgba(0,0,0,0)'
+        )
+
         .globeImageUrl(
           'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
         )
+
         .bumpImageUrl(
           'https://unpkg.com/three-globe/example/img/earth-topology.png'
         )
-        .showAtmosphere(true)
-        .atmosphereColor('lightskyblue')
-        .atmosphereAltitude(0.18);
+
+        .showAtmosphere(
+          true
+        )
+
+        .atmosphereColor(
+          'lightskyblue'
+        )
+
+        .atmosphereAltitude(
+          0.16
+        );
+
+
+    /*
+       Start with Europe / Atlantic
+       reasonably visible.
+    */
 
     globe.pointOfView({
-      lat: 25,
-      lng: -10,
+
+      lat: 35,
+
+      lng: -15,
+
       altitude: 2.2
+
     });
+
+
+
+    /*
+       Slowly rotate the Earth.
+    */
 
     const controls =
       globe.controls();
 
-    controls.autoRotate = true;
 
-    controls.autoRotateSpeed = 0.6;
-
-    controls.enableZoom = false;
-
-    controls.enablePan = false;
+    controls.autoRotate =
+      true;
 
 
-    window.addEventListener('resize', () => {
+    controls.autoRotateSpeed =
+      0.55;
 
-      const newSize =
-        globeContainer.clientWidth;
 
-      globe
-        .width(newSize)
-        .height(newSize);
+    controls.enableZoom =
+      false;
 
-    });
+
+    controls.enablePan =
+      false;
+
+
+
+    /*
+       Keep globe size correct
+       when changing screen size.
+    */
+
+    window.addEventListener(
+
+      'resize',
+
+      () => {
+
+        const newSize =
+          globeContainer.clientWidth;
+
+
+        globe
+          .width(newSize)
+          .height(newSize);
+
+      }
+
+    );
+
   </script>
 
+
 </body>
+
 </html>
