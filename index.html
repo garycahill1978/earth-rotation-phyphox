@@ -78,9 +78,7 @@
 
 
     .hero-text {
-
       flex: 1;
-
       text-align: left;
     }
 
@@ -164,8 +162,7 @@
 
       margin: -32px auto 0;
 
-      padding:
-        0 20px 60px;
+      padding: 0 20px 60px;
     }
 
 
@@ -180,7 +177,7 @@
 
       border-radius: 16px;
 
-      padding: 28px;
+      padding: 30px;
 
       box-shadow:
         0 8px 30px
@@ -189,16 +186,117 @@
       margin-bottom: 28px;
 
       text-align: center;
-
-      font-size: 1.05rem;
     }
 
 
-    .intro strong {
+    .intro h2 {
+
+      margin-top: 0;
+
+      margin-bottom: 12px;
+
+      color: #111827;
+
+      font-size: 1.55rem;
+    }
+
+
+    .big-number {
 
       color: #0b5cab;
 
+      font-size: 2rem;
+
+      font-weight: 800;
+
+      margin: 12px 0 20px;
+    }
+
+
+    .rotation-steps {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+
+      margin-top: 24px;
+
+      text-align: left;
+    }
+
+
+    .rotation-step {
+
+      background: #f8fafc;
+
+      border: 1px solid #e3e9f0;
+
+      border-radius: 12px;
+
+      padding: 18px;
+    }
+
+
+    .rotation-step-number {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 32px;
+
+      height: 32px;
+
+      border-radius: 50%;
+
+      background: #1565c0;
+
+      color: white;
+
+      font-weight: 700;
+
+      margin-bottom: 10px;
+    }
+
+
+    .rotation-step strong {
+      color: #0b5cab;
+    }
+
+
+    .simple-equation {
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
       font-size: 1.15rem;
+
+      text-align: center;
+
+      margin: 10px 0;
+    }
+
+
+    .intro-summary {
+
+      margin-top: 24px;
+
+      padding: 16px 20px;
+
+      background: #edf5ff;
+
+      border-left: 5px solid #1565c0;
+
+      border-radius: 8px;
+
+      font-weight: 600;
     }
 
 
@@ -248,8 +346,7 @@
 
       font-size: 0.92rem;
 
-      margin:
-        14px 0 0;
+      margin: 14px 0 0;
     }
 
 
@@ -310,36 +407,27 @@
 
       display: inline-block;
 
-      padding:
-        5px 10px;
+      padding: 5px 10px;
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
-      background:
-        #e8f2ff;
+      background: #e8f2ff;
 
-      color:
-        #0b5cab;
+      color: #0b5cab;
 
-      font-size:
-        0.82rem;
+      font-size: 0.82rem;
 
-      font-weight:
-        700;
+      font-weight: 700;
 
-      margin-bottom:
-        12px;
+      margin-bottom: 12px;
     }
 
 
     .badge.reference {
 
-      background:
-        #eef7ef;
+      background: #eef7ef;
 
-      color:
-        #2e7d32;
+      color: #2e7d32;
     }
 
 
@@ -350,29 +438,21 @@
 
     .button {
 
-      display:
-        inline-block;
+      display: inline-block;
 
-      margin-top:
-        12px;
+      margin-top: 12px;
 
-      padding:
-        12px 18px;
+      padding: 12px 18px;
 
-      border-radius:
-        10px;
+      border-radius: 10px;
 
-      background:
-        #1565c0;
+      background: #1565c0;
 
-      color:
-        white;
+      color: white;
 
-      text-decoration:
-        none;
+      text-decoration: none;
 
-      font-weight:
-        700;
+      font-weight: 700;
 
       transition:
         transform 0.15s ease,
@@ -382,38 +462,29 @@
 
     .button:hover {
 
-      background:
-        #0d47a1;
+      background: #0d47a1;
 
-      transform:
-        translateY(-1px);
+      transform: translateY(-1px);
     }
 
 
     .button.secondary {
-
-      background:
-        #374151;
+      background: #374151;
     }
 
 
     .button.secondary:hover {
-
-      background:
-        #111827;
+      background: #111827;
     }
 
 
     .note {
 
-      color:
-        #6b7280;
+      color: #6b7280;
 
-      font-size:
-        0.92rem;
+      font-size: 0.92rem;
 
-      margin-top:
-        14px;
+      margin-top: 14px;
     }
 
 
@@ -430,11 +501,9 @@
 
       height: auto;
 
-      margin:
-        18px auto 10px;
+      margin: 18px auto 10px;
 
-      border-radius:
-        8px;
+      border-radius: 8px;
     }
 
 
@@ -445,17 +514,13 @@
 
     .method {
 
-      margin-top:
-        28px;
+      margin-top: 28px;
 
-      background:
-        white;
+      background: white;
 
-      border-radius:
-        16px;
+      border-radius: 16px;
 
-      padding:
-        28px;
+      padding: 28px;
 
       box-shadow:
         0 5px 18px
@@ -468,11 +533,9 @@
 
     .method h2 {
 
-      margin-top:
-        0;
+      margin-top: 0;
 
-      color:
-        #111827;
+      color: #111827;
     }
 
 
@@ -485,84 +548,63 @@
 
       gap: 35px;
 
-      align-items:
-        center;
+      align-items: center;
     }
 
 
     .abba {
 
-      display:
-        flex;
+      display: flex;
 
-      flex-wrap:
-        wrap;
+      flex-wrap: wrap;
 
-      justify-content:
-        center;
+      justify-content: center;
 
-      align-items:
-        center;
+      align-items: center;
 
-      gap:
-        8px;
+      gap: 8px;
 
-      margin:
-        24px 0;
+      margin: 24px 0;
 
-      font-weight:
-        700;
+      font-weight: 700;
 
-      font-size:
-        1.1rem;
+      font-size: 1.1rem;
     }
 
 
     .step {
 
-      background:
-        #edf5ff;
+      background: #edf5ff;
 
-      color:
-        #0b5cab;
+      color: #0b5cab;
 
-      padding:
-        10px 14px;
+      padding: 10px 14px;
 
-      border-radius:
-        9px;
+      border-radius: 9px;
     }
 
 
     .arrow {
 
-      color:
-        #9ca3af;
+      color: #9ca3af;
 
-      font-size:
-        1.2rem;
+      font-size: 1.2rem;
     }
 
 
     .equation {
 
-      text-align:
-        center;
+      text-align: center;
 
-      font-size:
-        1.2rem;
+      font-size: 1.2rem;
 
-      background:
-        #f8fafc;
+      background: #f8fafc;
 
-      border-radius:
-        10px;
+      border-radius: 10px;
 
-      padding:
-        18px;
+      padding: 18px;
 
-      margin-top:
-        18px;
+      margin-top: 18px;
 
       font-family:
         Georgia,
@@ -577,41 +619,31 @@
        ====================================================== */
 
     .abba-figure {
-
-      text-align:
-        center;
+      text-align: center;
     }
 
 
     .abba-figure img {
 
-      display:
-        block;
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      max-width:
-        270px;
+      max-width: 270px;
 
-      height:
-        auto;
+      height: auto;
 
-      margin:
-        0 auto;
+      margin: 0 auto;
     }
 
 
     .abba-figure p {
 
-      margin-top:
-        8px;
+      margin-top: 8px;
 
-      font-size:
-        0.85rem;
+      font-size: 0.85rem;
 
-      color:
-        #6b7280;
+      color: #6b7280;
     }
 
 
@@ -622,77 +654,60 @@
 
     .abba-keypoint {
 
-      background:
-        #edf5ff;
+      background: #edf5ff;
 
       border-left:
         5px solid #1565c0;
 
-      border-radius:
-        8px;
+      border-radius: 8px;
 
-      padding:
-        18px 20px;
+      padding: 18px 20px;
 
-      margin-top:
-        26px;
+      margin-top: 26px;
     }
 
 
     .abba-keypoint h3 {
 
-      margin:
-        0 0 10px;
+      margin: 0 0 10px;
 
-      color:
-        #0b5cab;
+      color: #0b5cab;
 
-      font-size:
-        1.2rem;
+      font-size: 1.2rem;
     }
 
 
     .abba-keypoint p {
-
-      margin:
-        8px 0;
+      margin: 8px 0;
     }
 
 
     .time-equation {
 
-      text-align:
-        center;
+      text-align: center;
 
-      font-size:
-        1.35rem;
+      font-size: 1.35rem;
 
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-      margin:
-        20px 0;
+      margin: 20px 0;
     }
 
 
     .takeaway {
 
-      text-align:
-        center;
+      text-align: center;
 
-      font-weight:
-        700;
+      font-weight: 700;
 
-      color:
-        #0b5cab;
+      color: #0b5cab;
 
-      font-size:
-        1.05rem;
+      font-size: 1.05rem;
 
-      margin-top:
-        18px;
+      margin-top: 18px;
     }
 
 
@@ -703,17 +718,13 @@
 
     footer {
 
-      text-align:
-        center;
+      text-align: center;
 
-      color:
-        #6b7280;
+      color: #6b7280;
 
-      font-size:
-        0.9rem;
+      font-size: 0.9rem;
 
-      padding:
-        32px 20px 45px;
+      padding: 32px 20px 45px;
     }
 
 
@@ -733,55 +744,47 @@
 
       .hero-layout {
 
-        flex-direction:
-          column;
+        flex-direction: column;
 
-        text-align:
-          center;
+        text-align: center;
 
-        gap:
-          25px;
+        gap: 25px;
       }
 
 
       .hero-text {
-
-        text-align:
-          center;
+        text-align: center;
       }
 
 
       .hero .tagline {
 
-        margin-left:
-          auto;
+        margin-left: auto;
 
-        margin-right:
-          auto;
+        margin-right: auto;
       }
 
 
       .globe-column {
-
-        flex-basis:
-          auto;
+        flex-basis: auto;
       }
 
 
       #globeViz {
 
-        width:
-          210px;
+        width: 210px;
 
-        height:
-          210px;
+        height: 210px;
       }
 
 
       .container {
+        margin-top: -25px;
+      }
 
-        margin-top:
-          -25px;
+
+      .rotation-steps {
+        grid-template-columns: 1fr;
       }
 
 
@@ -789,23 +792,17 @@
       .intro,
       .method,
       .science-figure {
-
-        padding:
-          22px;
+        padding: 22px;
       }
 
 
       .abba-method-grid {
-
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
 
       .abba-figure img {
-
-        max-width:
-          230px;
+        max-width: 230px;
       }
 
     }
@@ -878,31 +875,130 @@
 
 
 
-    <!-- INTRODUCTION -->
+    <!-- ==================================================
+         WHERE DOES 0.00418 COME FROM?
+         ================================================== -->
 
     <section class="intro">
 
-      <strong>
-        The Earth rotates at only about
-        0.00418° per second.
-      </strong>
+      <h2>
+        Where does 0.00418° per second come from?
+      </h2>
 
-      <br><br>
 
-      The signal is extremely small and can be obscured
-      by gyroscope noise, bias and drift.
+      <div class="big-number">
+        Earth's rotation rate ≈ 0.00418°/s
+      </div>
 
-      <br>
 
-      A 180° reversal changes the sign of the
-      Earth-rotation component, allowing it to be
-      separated from the much larger sensor bias.
+      <div class="rotation-steps">
+
+
+        <!-- STEP 1 -->
+
+        <div class="rotation-step">
+
+          <div class="rotation-step-number">
+            1
+          </div>
+
+          <p>
+            Earth moves around the Sun as well as spinning.
+            In one day it moves about
+          </p>
+
+          <div class="simple-equation">
+
+            360° / 365 ≈ 1°
+
+          </div>
+
+          <p>
+            around its orbit.
+          </p>
+
+        </div>
+
+
+
+        <!-- STEP 2 -->
+
+        <div class="rotation-step">
+
+          <div class="rotation-step-number">
+            2
+          </div>
+
+          <p>
+            About 1° of Earth's daily rotation corresponds
+            to roughly
+          </p>
+
+          <div class="simple-equation">
+
+            24 h / 365 ≈ 4 min
+
+          </div>
+
+          <p>
+            so one rotation relative to the stars is about
+            <strong>4 minutes shorter than 24 hours.</strong>
+          </p>
+
+        </div>
+
+
+
+        <!-- STEP 3 -->
+
+        <div class="rotation-step">
+
+          <div class="rotation-step-number">
+            3
+          </div>
+
+          <p>
+            A sidereal day is therefore approximately
+          </p>
+
+          <div class="simple-equation">
+
+            23 h 56 min 4 s
+
+          </div>
+
+          <p>
+            giving
+          </p>
+
+          <div class="simple-equation">
+
+            360° / 86164 s
+            ≈ <strong>0.00418°/s</strong>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="intro-summary">
+
+        That is the tiny angular velocity the phone gyroscope
+        is trying to detect — and it can easily be hidden by
+        sensor noise, bias and drift.
+
+      </div>
 
     </section>
 
 
 
-    <!-- PHONE AND EARTH GEOMETRY -->
+    <!-- ==================================================
+         PHONE AND EARTH GEOMETRY
+         ================================================== -->
 
     <section class="science-figure">
 
@@ -1125,8 +1221,6 @@
       <div class="abba-method-grid">
 
 
-        <!-- METHOD -->
-
         <div>
 
 
@@ -1142,33 +1236,13 @@
 
           <div class="abba">
 
-            <span class="step">
-              A1
-            </span>
-
-            <span class="arrow">
-              →
-            </span>
-
-            <span class="step">
-              B1
-            </span>
-
-            <span class="arrow">
-              →
-            </span>
-
-            <span class="step">
-              B2
-            </span>
-
-            <span class="arrow">
-              →
-            </span>
-
-            <span class="step">
-              A2
-            </span>
+            <span class="step">A1</span>
+            <span class="arrow">→</span>
+            <span class="step">B1</span>
+            <span class="arrow">→</span>
+            <span class="step">B2</span>
+            <span class="arrow">→</span>
+            <span class="step">A2</span>
 
           </div>
 
@@ -1188,8 +1262,6 @@
 
 
 
-        <!-- ABBA IMAGE -->
-
         <div class="abba-figure">
 
           <img
@@ -1198,15 +1270,19 @@
             alt="ABBA illustration showing Agnetha, Björn, Benny and Anni-Frid">
 
 
-          
+          <p>
+
+            ABBA =
+            Agnetha · Björn · Benny · Anni-Frid
+
+          </p>
+
         </div>
 
 
       </div>
 
 
-
-      <!-- WHY ABBA? -->
 
       <div class="abba-keypoint">
 
@@ -1220,14 +1296,14 @@
 
           A 180° reversal changes the sign of the
           <strong>Earth-rotation signal</strong>,
-          while the gyroscope bias does not change.
+          while the constant gyroscope bias does not change.
 
         </p>
 
 
         <p>
 
-          The ABBA sequence is symmetric in time:
+          The ABBA sequence is also symmetric in time:
 
         </p>
 
@@ -1247,8 +1323,9 @@
 
         <p style="text-align:center;">
 
-          The average measurement time is the same
-          for A and B, suppressing linear drift.
+          The average measurement time is therefore the same
+          for A and B, suppressing approximately linear
+          gyroscope drift.
 
         </p>
 
@@ -1297,9 +1374,7 @@
   <script>
 
     const globeContainer =
-      document.getElementById(
-        'globeViz'
-      );
+      document.getElementById('globeViz');
 
 
     const globeSize =
@@ -1309,13 +1384,9 @@
     const globe =
       Globe()(globeContainer)
 
-        .width(
-          globeSize
-        )
+        .width(globeSize)
 
-        .height(
-          globeSize
-        )
+        .height(globeSize)
 
         .backgroundColor(
           'rgba(0,0,0,0)'
@@ -1329,9 +1400,7 @@
           'https://unpkg.com/three-globe/example/img/earth-topology.png'
         )
 
-        .showAtmosphere(
-          true
-        )
+        .showAtmosphere(true)
 
         .atmosphereColor(
           'lightskyblue'
@@ -1358,20 +1427,13 @@
       globe.controls();
 
 
-    controls.autoRotate =
-      true;
+    controls.autoRotate = true;
 
+    controls.autoRotateSpeed = 0.55;
 
-    controls.autoRotateSpeed =
-      0.55;
+    controls.enableZoom = false;
 
-
-    controls.enableZoom =
-      false;
-
-
-    controls.enablePan =
-      false;
+    controls.enablePan = false;
 
 
 
