@@ -470,6 +470,23 @@
 
       margin-top:
         0;
+
+      color:
+        #111827;
+    }
+
+
+    .abba-method-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 270px;
+
+      gap: 35px;
+
+      align-items:
+        center;
     }
 
 
@@ -551,6 +568,131 @@
         Georgia,
         "Times New Roman",
         serif;
+    }
+
+
+
+    /* ======================================================
+       ABBA IMAGE
+       ====================================================== */
+
+    .abba-figure {
+
+      text-align:
+        center;
+    }
+
+
+    .abba-figure img {
+
+      display:
+        block;
+
+      width:
+        100%;
+
+      max-width:
+        270px;
+
+      height:
+        auto;
+
+      margin:
+        0 auto;
+    }
+
+
+    .abba-figure p {
+
+      margin-top:
+        8px;
+
+      font-size:
+        0.85rem;
+
+      color:
+        #6b7280;
+    }
+
+
+
+    /* ======================================================
+       ABBA TIMING EXPLANATION
+       ====================================================== */
+
+    .abba-keypoint {
+
+      background:
+        #edf5ff;
+
+      border-left:
+        5px solid #1565c0;
+
+      border-radius:
+        8px;
+
+      padding:
+        18px 20px;
+
+      margin-top:
+        26px;
+    }
+
+
+    .abba-keypoint h3 {
+
+      margin:
+        0 0 10px;
+
+      color:
+        #0b5cab;
+
+      font-size:
+        1.2rem;
+    }
+
+
+    .abba-keypoint p {
+
+      margin:
+        8px 0;
+    }
+
+
+    .time-equation {
+
+      text-align:
+        center;
+
+      font-size:
+        1.35rem;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      margin:
+        20px 0;
+    }
+
+
+    .takeaway {
+
+      text-align:
+        center;
+
+      font-weight:
+        700;
+
+      color:
+        #0b5cab;
+
+      font-size:
+        1.05rem;
+
+      margin-top:
+        18px;
     }
 
 
@@ -652,6 +794,20 @@
           22px;
       }
 
+
+      .abba-method-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .abba-figure img {
+
+        max-width:
+          230px;
+      }
+
     }
 
   </style>
@@ -681,8 +837,8 @@
 
         <p class="tagline">
 
-          A smartphone and MEMS gyroscope experiment
-          using phyphox and a simple 180° reversal method.
+          Can an ordinary smartphone directly measure
+          the rotation of the Earth?
 
         </p>
 
@@ -733,14 +889,14 @@
 
       <br><br>
 
-      Can a smartphone gyroscope detect it?
+      The signal is extremely small and can be obscured
+      by gyroscope noise, bias and drift.
 
       <br>
 
-      These experiments use a 180° reversal and
-      an ABBA measurement sequence to separate
-      the Earth-rotation signal from sensor bias
-      and drift.
+      A 180° reversal changes the sign of the
+      Earth-rotation component, allowing it to be
+      separated from the much larger sensor bias.
 
     </section>
 
@@ -752,13 +908,14 @@
 
       <img
         src="phone and earth.png"
+        loading="lazy"
         alt="Smartphone gyroscope axes and components of the Earth's rotation">
 
 
       <p class="figure-caption">
 
-        Smartphone gyroscope axes and the horizontal
-        and vertical components of the Earth's rotation.
+        Smartphone gyroscope axes and the horizontal and vertical
+        components of the Earth's rotation.
 
       </p>
 
@@ -798,9 +955,9 @@
 
         <p>
 
-          Place the phone flat with the top edge
-          pointing north and follow the on-screen
-          instructions.
+          Place the phone flat with the selected
+          gyroscope axis pointing north and follow
+          the on-screen reversal sequence.
 
         </p>
 
@@ -923,6 +1080,7 @@
         <img
           class="wiring-image"
           src="Wiring_muRata_1.png"
+          loading="lazy"
           alt="ESP32 to Murata SCH16T wiring diagram">
 
 
@@ -963,70 +1121,167 @@
       </h2>
 
 
-      <p>
 
-        The gyroscope is measured in one orientation,
-        rotated through 180°, measured twice in the
-        reversed orientation, and then returned to
-        its original position.
-
-      </p>
+      <div class="abba-method-grid">
 
 
+        <!-- LEFT SIDE: METHOD -->
 
-      <div class="abba">
+        <div>
 
-        <span class="step">
-          A1
-        </span>
 
-        <span class="arrow">
-          →
-        </span>
+          <p>
 
-        <span class="step">
-          B1
-        </span>
+            The phone is measured in one orientation,
+            rotated through 180°, measured twice in the
+            reversed orientation, and then returned to
+            its original orientation.
 
-        <span class="arrow">
-          →
-        </span>
+          </p>
 
-        <span class="step">
-          B2
-        </span>
 
-        <span class="arrow">
-          →
-        </span>
 
-        <span class="step">
-          A2
-        </span>
+          <div class="abba">
+
+            <span class="step">
+              A1
+            </span>
+
+            <span class="arrow">
+              →
+            </span>
+
+            <span class="step">
+              B1
+            </span>
+
+            <span class="arrow">
+              →
+            </span>
+
+            <span class="step">
+              B2
+            </span>
+
+            <span class="arrow">
+              →
+            </span>
+
+            <span class="step">
+              A2
+            </span>
+
+          </div>
+
+
+
+          <p>
+
+            Reversing the phone changes the sign
+            of the Earth-rotation component while
+            the gyroscope bias remains approximately
+            unchanged.
+
+          </p>
+
+
+
+          <div class="equation">
+
+            Δω =
+            (A1 + A2) / 2
+            −
+            (B1 + B2) / 2
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE: ABBA IMAGE -->
+
+        <div class="abba-figure">
+
+          <img
+            src="ABBA.png"
+            loading="lazy"
+            alt="ABBA illustration showing Agnetha, Björn, Benny and Anni-Frid">
+
+
+          <p>
+
+            ABBA =
+            Agnetha · Björn · Benny · Anni-Frid
+
+          </p>
+
+        </div>
+
 
       </div>
 
 
 
-      <p>
+      <!-- ==================================================
+           WHY ABBA?
+           ================================================== -->
 
-        Reversing the instrument changes the sign
-        of the Earth-rotation component while the
-        sensor bias remains approximately unchanged.
-
-        The symmetric ABBA sequence also suppresses
-        approximately linear bias drift.
-
-      </p>
+      <div class="abba-keypoint">
 
 
+        <h3>
+          Why use an ABBA sequence?
+        </h3>
 
-      <div class="equation">
 
-        Δω =
-        (A1 + A2) / 2
-        −
-        (B1 + B2) / 2
+        <p>
+
+          The sequence is symmetric in time.
+
+          The <strong>average time of the two A measurements</strong>
+          is the same as the
+          <strong>average time of the two B measurements</strong>:
+
+        </p>
+
+
+
+        <div class="time-equation">
+
+          (t<sub>A1</sub> + t<sub>A2</sub>) / 2
+
+          &nbsp;=&nbsp;
+
+          (t<sub>B1</sub> + t<sub>B2</sub>) / 2
+
+        </div>
+
+
+
+        <p>
+
+          A gyroscope bias that changes approximately
+          linearly with time is therefore sampled at
+          the same average time in A and B.
+
+          This means that
+          <strong>approximately linear drift cancels
+          to first order</strong>.
+
+        </p>
+
+
+
+        <div class="takeaway">
+
+          180° reversal cancels constant bias
+          &nbsp;•&nbsp;
+          ABBA timing suppresses linear drift
+
+        </div>
+
 
       </div>
 
@@ -1108,8 +1363,7 @@
 
 
     /*
-       Start with Europe / Atlantic
-       reasonably visible.
+       Start with Europe / Atlantic visible.
     */
 
     globe.pointOfView({
@@ -1150,8 +1404,8 @@
 
 
     /*
-       Keep globe size correct
-       when changing screen size.
+       Keep the globe correctly sized
+       when the browser window changes.
     */
 
     window.addEventListener(
