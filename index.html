@@ -11,6 +11,25 @@
   <title>Measuring the Earth's Rotation with phyphox</title>
 
 
+  <!-- ======================================================
+       MATHJAX
+       ====================================================== -->
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    async>
+  </script>
+
+
   <style>
 
     * {
@@ -271,12 +290,7 @@
 
     .simple-equation {
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 1.15rem;
+      font-size: 1.12rem;
 
       text-align: center;
 
@@ -602,14 +616,9 @@
 
       border-radius: 10px;
 
-      padding: 18px;
+      padding: 12px 18px;
 
       margin-top: 18px;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
     }
 
 
@@ -619,6 +628,7 @@
        ====================================================== */
 
     .abba-figure {
+
       text-align: center;
     }
 
@@ -634,16 +644,6 @@
       height: auto;
 
       margin: 0 auto;
-    }
-
-
-    .abba-figure p {
-
-      margin-top: 8px;
-
-      font-size: 0.85rem;
-
-      color: #6b7280;
     }
 
 
@@ -686,14 +686,9 @@
 
       text-align: center;
 
-      font-size: 1.35rem;
+      font-size: 1.25rem;
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      margin: 20px 0;
+      margin: 12px 0;
     }
 
 
@@ -909,7 +904,10 @@
 
           <div class="simple-equation">
 
-            360° / 365 ≈ 1°
+            \[
+            \frac{360^\circ}{365}
+            \approx 1^\circ
+            \]
 
           </div>
 
@@ -930,20 +928,18 @@
           </div>
 
           <p>
-            About 1° of Earth's daily rotation corresponds
-            to roughly
+            This makes one rotation relative to the stars
+            about 4 minutes shorter than a 24-hour solar day:
           </p>
 
           <div class="simple-equation">
 
-            24 h / 365 ≈ 4 min
+            \[
+            \frac{24\ \mathrm{h}}{365}
+            \approx 4\ \mathrm{min}
+            \]
 
           </div>
-
-          <p>
-            so one rotation relative to the stars is about
-            <strong>4 minutes shorter than 24 hours.</strong>
-          </p>
 
         </div>
 
@@ -958,12 +954,16 @@
           </div>
 
           <p>
-            A sidereal day is therefore approximately
+            A sidereal day is approximately
           </p>
 
           <div class="simple-equation">
 
-            23 h 56 min 4 s
+            \[
+            23\ \mathrm{h}\;
+            56\ \mathrm{min}\;
+            4\ \mathrm{s}
+            \]
 
           </div>
 
@@ -973,8 +973,13 @@
 
           <div class="simple-equation">
 
-            360° / 86164 s
-            ≈ <strong>0.00418°/s</strong>
+            \[
+            \Omega_E =
+            \frac{360^\circ}
+                 {86164\ \mathrm{s}}
+            \approx
+            0.00418^\circ\!/\mathrm{s}
+            \]
 
           </div>
 
@@ -1042,27 +1047,21 @@
 
 
         <p>
-
           A guided Earth-rotation measurement
           using the Android gyroscope.
-
         </p>
 
 
         <p>
-
           Place the phone flat with the selected
           gyroscope axis pointing north and follow
           the on-screen reversal sequence.
-
         </p>
 
 
         <p>
-
           The main Earth-rotation result is
           available after approximately 90 seconds.
-
         </p>
 
 
@@ -1076,10 +1075,8 @@
 
 
         <p class="note">
-
           Uses the Android uncalibrated
           gyroscope stream.
-
         </p>
 
       </section>
@@ -1101,19 +1098,15 @@
 
 
         <p>
-
           iPhone version of the same guided
           ABBA reversal experiment.
-
         </p>
 
 
         <p>
-
           Follow the 180° reversal sequence
           and compare the measured signal
           with the expected Earth rotation.
-
         </p>
 
 
@@ -1127,10 +1120,8 @@
 
 
         <p class="note">
-
           Uses the gyroscope stream currently
           available to phyphox on iOS.
-
         </p>
 
       </section>
@@ -1142,35 +1133,26 @@
       <section class="card">
 
         <div class="badge reference">
-
           REFERENCE SENSOR
-
         </div>
 
 
         <h2>
-
           Murata SCH16T + ESP32
-
         </h2>
 
 
         <p>
-
           A high-performance MEMS gyroscope
           used as a reference demonstration
           of the same Earth-rotation measurement.
-
         </p>
 
 
         <p>
-
           The ESP32 sends the Murata gyroscope
           data directly to phyphox over Bluetooth.
-
         </p>
-
 
 
         <img
@@ -1178,7 +1160,6 @@
           src="Wiring_muRata_1.png"
           loading="lazy"
           alt="ESP32 to Murata SCH16T wiring diagram">
-
 
 
         <a
@@ -1192,10 +1173,8 @@
 
 
         <p class="note">
-
           Hardware:
           Murata SCH16T-K01-PCB + ESP32.
-
         </p>
 
       </section>
@@ -1221,17 +1200,16 @@
       <div class="abba-method-grid">
 
 
+        <!-- METHOD -->
+
         <div>
 
 
           <p>
-
             Measurements are made in one orientation,
             after a 180° reversal, and then again after
             returning to the original orientation.
-
           </p>
-
 
 
           <div class="abba">
@@ -1247,13 +1225,14 @@
           </div>
 
 
-
           <div class="equation">
 
-            Δω =
-            (A1 + A2) / 2
-            −
-            (B1 + B2) / 2
+            \[
+            \Delta\omega =
+            \frac{A_1+A_2}{2}
+            -
+            \frac{B_1+B_2}{2}
+            \]
 
           </div>
 
@@ -1262,15 +1241,14 @@
 
 
 
+        <!-- ABBA IMAGE -->
+
         <div class="abba-figure">
 
           <img
             src="ABBA.png"
             loading="lazy"
-            alt="ABBA illustration showing Agnetha, Björn, Benny and Anni-Frid">
-
-
-  
+            alt="ABBA illustration">
 
         </div>
 
@@ -1278,6 +1256,8 @@
       </div>
 
 
+
+      <!-- WHY ABBA? -->
 
       <div class="abba-keypoint">
 
@@ -1288,42 +1268,35 @@
 
 
         <p>
-
           A 180° reversal changes the sign of the
           <strong>Earth-rotation signal</strong>,
           while the constant gyroscope bias does not change.
-
         </p>
 
 
         <p>
-
           The ABBA sequence is also symmetric in time:
-
         </p>
-
 
 
         <div class="time-equation">
 
-          (t<sub>A1</sub> + t<sub>A2</sub>) / 2
-
-          &nbsp;=&nbsp;
-
-          (t<sub>B1</sub> + t<sub>B2</sub>) / 2
+          \[
+          \frac{t_{A1}+t_{A2}}{2}
+          =
+          \frac{t_{B1}+t_{B2}}{2}
+          \]
 
         </div>
 
 
-
         <p style="text-align:center;">
 
-          The average measurement time is therefore the same
-          for A and B, suppressing approximately linear
+          The average measurement time is the same for
+          A and B, suppressing approximately linear
           gyroscope drift.
 
         </p>
-
 
 
         <div class="takeaway">
@@ -1417,7 +1390,6 @@
     });
 
 
-
     const controls =
       globe.controls();
 
@@ -1431,7 +1403,6 @@
     controls.enablePan = false;
 
 
-
     window.addEventListener(
 
       'resize',
@@ -1440,7 +1411,6 @@
 
         const newSize =
           globeContainer.clientWidth;
-
 
         globe
           .width(newSize)
