@@ -1539,6 +1539,87 @@
 
 
     <section class="method">
+      <h2>What does the setup cost?</h2>
+
+      <p>
+        The Murata sensor board is by far the main cost. The remaining parts
+        are inexpensive and commonly available. No particular supplier is
+        required, so the table below gives approximate costs rather than shop
+        links.
+      </p>
+
+      <table class="wiring-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Approx. cost</th>
+            <th>What is needed</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Murata SCH16T-K01-PCB</strong></td>
+            <td>€75–€100</td>
+            <td>The reference gyroscope used for this experiment.</td>
+          </tr>
+
+          <tr>
+            <td><strong>ESP32 development board</strong></td>
+            <td>€8–€15</td>
+            <td>A standard ESP32 board with Bluetooth LE.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Dupont jumper wires</strong></td>
+            <td>€2–€5</td>
+            <td>Suitable jumper leads for the SPI connections.</td>
+          </tr>
+
+          <tr>
+            <td><strong>USB cable</strong></td>
+            <td>€0–€5</td>
+            <td>For programming and powering the ESP32.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Mount / base</strong></td>
+            <td>€0–€10</td>
+            <td>I used LEGO to hold the Murata board securely on a rigid base.</td>
+          </tr>
+
+          <tr>
+            <td><strong>Phone running phyphox</strong></td>
+            <td>Existing device</td>
+            <td>Used as the display, control and data-recording interface.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="intro-summary">
+        <strong>Typical total hardware cost: approximately €90–€120</strong>,
+        excluding the phone and depending mainly on the Murata board price
+        and shipping.
+      </div>
+
+      <div class="licence-box">
+        <strong>Mounting</strong><br>
+        I used LEGO to support the Murata board. A precision-machined mount is
+        not required; the important points are that the sensor is held
+        securely, its orientation is repeatable, and changes in tilt are kept
+        small during the 180° reversal. No breadboard is required for the
+        wiring shown above.
+      </div>
+
+      <p class="note">
+        Components are available from major electronics distributors.
+        Prices vary with supplier, VAT and shipping; no particular supplier
+        is required for this project.
+      </p>
+    </section>
+
+
+    <section class="method">
       <h2>The ABBA reversal method</h2>
 
       <p>
