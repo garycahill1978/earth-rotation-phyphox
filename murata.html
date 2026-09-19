@@ -1757,9 +1757,14 @@
         alt="Allan deviation of the Murata SCH16T-K01 gyroscope">
 
       <p class="figure-caption">
-        Allan deviation of the warmed Murata reference run. The sensor
-        instability over the relevant averaging times is well below the
-        horizontal Earth-rotation component.
+        Allan deviation of the warmed Murata reference run. At short averaging
+        times the measured values follow the performance expected from the
+        SCH16T X/Y noise-density specification quite closely. Beyond roughly
+        20 s, the measured Allan deviation stops falling and begins to rise as
+        slower bias drift and other low-frequency effects become more
+        important. The horizontal Earth-rotation component at Kilcock remains
+        well above the measured sensor instability over the useful averaging
+        range.
       </p>
     </section>
 
@@ -1771,7 +1776,11 @@
         The warmed Murata Allan-deviation measurements are approximately
         0.000114°/s at 5 s, 0.000087°/s at 10–15 s and 0.000062°/s at 20 s.
         These values are far smaller than the horizontal Earth-rotation
-        component at Kilcock, approximately 0.00249°/s.
+        component at Kilcock, approximately 0.00249°/s. The close agreement
+        with the datasheet white-noise expectation at short averaging times,
+        followed by the flattening and rise at longer averaging times, shows
+        why simply averaging for longer does not continue to improve the
+        measurement indefinitely.
       </p>
 
       <div class="allan-result-summary">
