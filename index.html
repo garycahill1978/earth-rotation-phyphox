@@ -1516,8 +1516,8 @@
 
 
         <p class="note">
-          Uses the gyroscope stream currently
-          available to phyphox on iOS.
+          Uses the standard <strong>calibrated gyroscope stream</strong>
+          currently available to phyphox on iOS.
         </p>
 
       </section>
@@ -1735,16 +1735,20 @@
         <img
           src="Allan_poster_clean_labels_v4.png"
           loading="lazy"
-          alt="Allan deviation comparison for Pixel 9a, Pixel 6 Pro, iPhone 13 and Murata SCH16T-K01">
+          alt="Allan deviation comparison for Pixel 9a, Pixel 6 Pro, iPhone 13, iPad Air (1st generation, 2013) and Murata SCH16T-K01">
 
         <p class="figure-caption">
-          Allan deviation of three smartphone gyroscopes and the
-          Murata SCH16T-K01 reference sensor. Smartphone streams were
-          averaged to approximately 10 Hz before analysis; the Murata
-          data were recorded at approximately 11 Hz from the ESP32 stream.
-          The vertical markers show 5, 10, 15 and 20 s averaging times.
-          The dashed line marks the expected horizontal Earth-rotation
-          component near Ireland, approximately 0.0025° s⁻¹.
+          Allan deviation of the Pixel 9a, Pixel 6 Pro, iPhone 13,
+          an iPad Air (1st generation, 2013; iOS 12.5.8) and the Murata SCH16T-K01 reference sensor.
+          The Android phones use the uncalibrated gyroscope stream,
+          while the iPhone 13 and iPad Air use the standard <strong>calibrated</strong>
+          gyroscope stream available to phyphox on iOS.
+          Mobile-device streams were averaged to approximately 10 Hz
+          before analysis; the Murata data were recorded at approximately
+          11 Hz from the ESP32 stream. The vertical markers show 5, 10,
+          15 and 20 s averaging times. The dashed line marks the expected
+          horizontal Earth-rotation component near Ireland,
+          approximately 0.0025° s⁻¹.
         </p>
 
       </div>
@@ -1758,6 +1762,15 @@
         time increases through the 5–20 s region. The Murata SCH16T-K01
         is substantially more stable over the same averaging times,
         providing a useful reference for the smartphone measurements.
+
+        <br><br>
+
+        The <strong>iPad Air (1st generation, 2013; iOS 12.5.8)</strong> is included as an example of a
+        mobile device whose gyroscope is not sufficiently stable for this
+        experiment. Its Allan deviation remains above the expected
+        horizontal Earth-rotation signal throughout the averaging times
+        shown, demonstrating that sensor performance varies substantially
+        between devices.
 
       </div>
 
@@ -2012,95 +2025,21 @@
 
 
 
-      <!-- QUALITY RATIO -->
+      <!-- SIGNAL COMPARISON -->
 
       <div class="allan-ratio">
-
 
         <h3>
           Can the gyro resolve the Earth signal?
         </h3>
 
-
         <p>
-
-          For this experiment we can compare the Allan deviation
-          at a chosen averaging time \( \tau \)
-          with the expected Earth-rotation signal:
-
+          Comparing the Allan deviation with the expected Earth-rotation
+          signal provides a practical indication of whether a gyroscope is
+          stable enough to attempt the measurement. The ABBA reversal
+          experiment then tests whether the signal is actually retained
+          and detected.
         </p>
-
-
-        <div class="equation">
-
-          \[
-          R(\tau) =
-          \frac{
-          \text{expected Earth signal}
-          }{
-          \sigma_A(\tau)
-          }
-          \]
-
-        </div>
-
-
-
-        <div class="ratio-scale">
-
-
-          <div class="ratio-item">
-
-            <strong>
-              \(R < 1\)
-            </strong>
-
-            <br>
-
-            Instability is larger than
-            the Earth signal.
-
-          </div>
-
-
-
-          <div class="ratio-item">
-
-            <strong>
-              \(R \approx 1\)
-            </strong>
-
-            <br>
-
-            The measurement is marginal.
-
-          </div>
-
-
-
-          <div class="ratio-item">
-
-            <strong>
-              \(R > 1\)
-            </strong>
-
-            <br>
-
-            The gyroscope is a promising candidate.
-
-          </div>
-
-
-        </div>
-
-
-        <p class="note">
-
-          This is a practical screening ratio rather than
-          a formal statistical confidence test.
-
-        </p>
-
 
       </div>
 
