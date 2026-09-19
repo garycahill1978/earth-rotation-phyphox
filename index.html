@@ -970,6 +970,50 @@
     }
 
 
+    .allan-figure {
+
+      margin: 26px 0 24px;
+
+      text-align: center;
+    }
+
+
+    .allan-figure img {
+
+      display: block;
+
+      width: 100%;
+
+      max-width: 900px;
+
+      height: auto;
+
+      margin: 0 auto;
+
+      border-radius: 10px;
+    }
+
+
+    .allan-result-summary {
+
+      margin: 20px 0 24px;
+
+      padding: 17px 20px;
+
+      border-radius: 10px;
+
+      background: #edf5ff;
+
+      border-left: 5px solid #1565c0;
+    }
+
+
+    .allan-result-summary strong {
+
+      color: #0b5cab;
+    }
+
+
 
     /* ======================================================
        FOOTER
@@ -1610,9 +1654,43 @@
         Even if a gyroscope looks quiet from one reading
         to the next, its average can slowly wander with time.
         We need to know how stable that average is over the
-        <strong>10–15 second</strong> intervals used in the experiment.
+        <strong>5–20 second</strong> intervals used in the experiment.
 
       </p>
+
+
+      <!-- MEASURED ALLAN COMPARISON -->
+
+      <div class="allan-figure">
+
+        <img
+          src="Allan_poster_clean_labels_v4.png"
+          loading="lazy"
+          alt="Allan deviation comparison for Pixel 9a, Pixel 6 Pro, iPhone 13 and Murata SCH16T-K01">
+
+        <p class="figure-caption">
+          Allan deviation of three smartphone gyroscopes and the
+          Murata SCH16T-K01 reference sensor. Smartphone streams were
+          averaged to approximately 10 Hz before analysis; the Murata
+          data were recorded at approximately 11 Hz from the ESP32 stream.
+          The vertical markers show 5, 10, 15 and 20 s averaging times.
+          The dashed line marks the expected horizontal Earth-rotation
+          component near Ireland, approximately 0.0025° s⁻¹.
+        </p>
+
+      </div>
+
+
+      <div class="allan-result-summary">
+
+        <strong>What does the comparison show?</strong>
+
+        The smartphone gyroscopes become more stable as the averaging
+        time increases through the 5–20 s region. The Murata SCH16T-K01
+        is substantially more stable over the same averaging times,
+        providing a useful reference for the smartphone measurements.
+
+      </div>
 
 
 
@@ -1783,7 +1861,7 @@
         <div class="allan-time-card allan-sweet">
 
           <strong>
-            Around 10–15 s
+            Around 5–20 s
           </strong>
 
           This is the important region for the
@@ -1841,8 +1919,8 @@
 
         <p>
 
-          For this experiment we can compare the
-          <strong>15-second Allan deviation</strong>
+          For this experiment we can compare the Allan deviation
+          at a chosen averaging time \( \tau \)
           with the expected Earth-rotation signal:
 
         </p>
@@ -1851,11 +1929,11 @@
         <div class="equation">
 
           \[
-          R =
+          R(\tau) =
           \frac{
           \text{expected Earth signal}
           }{
-          \text{15 s Allan deviation}
+          \sigma_A(\tau)
           }
           \]
 
