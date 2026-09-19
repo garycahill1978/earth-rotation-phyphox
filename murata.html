@@ -1,1 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Murata SCH16T-K01 Earth-Rotation Reference Experiment</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    async>
+  </script>
+
+  <style>
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      background: #f4f7fb;
+
+      color: #1f2937;
+
+      line-height: 1.6;
+    }
+
+
+
+    /* ======================================================
+       HERO
+       ====================================================== */
+
+    .hero {
+
+      background:
+        linear-gradient(
+          135deg,
+          #0b5cab 0%,
+          #1976d2 60%,
+          #42a5f5 100%
+        );
+
+      color: white;
+
+      padding: 45px 20px 65px;
+
+      overflow: hidden;
+    }
+
+
+    .hero-layout {
+
+      max-width: 1000px;
+
+      margin: 0 auto;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 45px;
+    }
+
+
+    .hero-text {
+      flex: 1;
+      text-align: left;
+    }
+
+
+    .hero h1 {
+
+      margin: 0 0 14px;
+
+      font-size:
+        clamp(2.2rem, 5vw, 4rem);
+
+      line-height: 1.1;
+
+      letter-spacing: -1px;
+    }
+
+
+    .hero .tagline {
+
+      max-width: 620px;
+
+      font-size: 1.18rem;
+
+      opacity: 0.96;
+
+      margin-bottom: 20px;
+    }
+
+
+    .author {
+
+      margin-top: 18px;
+
+      font-size: 1rem;
+
+      opacity: 0.9;
+    }
+
+
+
+    /* ======================================================
+       ROTATING GLOBE
+       ====================================================== */
+
+    .globe-column {
+
+      flex: 0 0 250px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+    }
+
+
+    #globeViz {
+
+      width: 250px;
+
+      height: 250px;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.28);
+    }
+
+
+
+    /* ======================================================
+       MAIN PAGE
+       ====================================================== */
+
+    .container {
+
+      max-width: 1000px;
+
+      margin: -32px auto 0;
+
+      padding: 0 20px 60px;
+    }
+
+
+
+    /* ======================================================
+       INTRODUCTION
+       ====================================================== */
+
+    .intro {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.08);
+
+      margin-bottom: 28px;
+
+      text-align: center;
+    }
+
+
+    .intro h2 {
+
+      margin-top: 0;
+
+      margin-bottom: 12px;
+
+      color: #111827;
+
+      font-size: 1.55rem;
+    }
+
+
+    .big-number {
+
+      color: #0b5cab;
+
+      font-size: 2rem;
+
+      font-weight: 800;
+
+      margin: 12px 0 20px;
+    }
+
+
+    .rotation-steps {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+
+      margin-top: 24px;
+
+      text-align: left;
+    }
+
+
+    .rotation-step {
+
+      background: #f8fafc;
+
+      border: 1px solid #e3e9f0;
+
+      border-radius: 12px;
+
+      padding: 18px;
+    }
+
+
+    .rotation-step-number {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 32px;
+
+      height: 32px;
+
+      border-radius: 50%;
+
+      background: #1565c0;
+
+      color: white;
+
+      font-weight: 700;
+
+      margin-bottom: 10px;
+    }
+
+
+    .rotation-step strong {
+      color: #0b5cab;
+    }
+
+
+    .simple-equation {
+
+      font-size: 1.12rem;
+
+      text-align: center;
+
+      margin: 10px 0;
+    }
+
+
+    .intro-summary {
+
+      margin-top: 24px;
+
+      padding: 16px 20px;
+
+      background: #edf5ff;
+
+      border-left: 5px solid #1565c0;
+
+      border-radius: 8px;
+
+      font-weight: 600;
+    }
+
+
+
+    /* ======================================================
+       PHONE + EARTH FIGURE
+       ====================================================== */
+
+    .science-figure {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 24px;
+
+      margin-bottom: 28px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
+
+      text-align: center;
+    }
+
+
+    .science-figure img {
+
+      display: block;
+
+      width: 100%;
+
+      max-width: 800px;
+
+      height: auto;
+
+      margin: 0 auto;
+    }
+
+
+    .figure-caption {
+
+      color: #6b7280;
+
+      font-size: 0.92rem;
+
+      margin: 14px 0 0;
+    }
+
+
+
+    /* ======================================================
+       EXPERIMENT CARDS
+       ====================================================== */
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(280px, 1fr)
+        );
+
+      gap: 22px;
+    }
+
+
+    .card {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 26px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
+    }
+
+
+    .card h2 {
+
+      margin-top: 0;
+
+      margin-bottom: 10px;
+
+      font-size: 1.4rem;
+
+      color: #111827;
+    }
+
+
+
+    /* ======================================================
+       BADGES
+       ====================================================== */
+
+    .badge {
+
+      display: inline-block;
+
+      padding: 5px 10px;
+
+      border-radius: 999px;
+
+      background: #e8f2ff;
+
+      color: #0b5cab;
+
+      font-size: 0.82rem;
+
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+
+    .badge.reference {
+
+      background: #eef7ef;
+
+      color: #2e7d32;
+    }
+
+
+
+    /* ======================================================
+       BUTTONS
+       ====================================================== */
+
+    .button {
+
+      display: inline-block;
+
+      margin-top: 12px;
+
+      padding: 12px 18px;
+
+      border-radius: 10px;
+
+      background: #1565c0;
+
+      color: white;
+
+      text-decoration: none;
+
+      font-weight: 700;
+
+      transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+    }
+
+
+    .button:hover {
+
+      background: #0d47a1;
+
+      transform: translateY(-1px);
+    }
+
+
+    .button.secondary {
+      background: #374151;
+    }
+
+
+    .button.secondary:hover {
+      background: #111827;
+    }
+
+
+    .note {
+
+      color: #6b7280;
+
+      font-size: 0.92rem;
+
+      margin-top: 14px;
+    }
+
+
+
+    /* ======================================================
+       MURATA WIRING
+       ====================================================== */
+
+    .wiring-image {
+
+      display: block;
+
+      width: 100%;
+
+      height: auto;
+
+      margin: 18px auto 10px;
+
+      border-radius: 8px;
+    }
+
+
+
+    /* ======================================================
+       ABBA METHOD
+       ====================================================== */
+
+    .method {
+
+      margin-top: 28px;
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 28px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
+    }
+
+
+    .method h2 {
+
+      margin-top: 0;
+
+      color: #111827;
+    }
+
+
+    .abba-method-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 270px;
+
+      gap: 35px;
+
+      align-items: center;
+    }
+
+
+    .abba {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 8px;
+
+      margin: 24px 0;
+
+      font-weight: 700;
+
+      font-size: 1.1rem;
+    }
+
+
+    .step {
+
+      background: #edf5ff;
+
+      color: #0b5cab;
+
+      padding: 10px 14px;
+
+      border-radius: 9px;
+    }
+
+
+    .arrow {
+
+      color: #9ca3af;
+
+      font-size: 1.2rem;
+    }
+
+
+    .equation {
+
+      text-align: center;
+
+      font-size: 1.2rem;
+
+      background: #f8fafc;
+
+      border-radius: 10px;
+
+      padding: 12px 18px;
+
+      margin-top: 18px;
+    }
+
+
+    .abba-figure {
+
+      text-align: center;
+    }
+
+
+    .abba-figure img {
+
+      display: block;
+
+      width: 100%;
+
+      max-width: 270px;
+
+      height: auto;
+
+      margin: 0 auto;
+    }
+
+
+    .abba-keypoint {
+
+      background: #edf5ff;
+
+      border-left:
+        5px solid #1565c0;
+
+      border-radius: 8px;
+
+      padding: 18px 20px;
+
+      margin-top: 26px;
+    }
+
+
+    .abba-keypoint h3 {
+
+      margin: 0 0 10px;
+
+      color: #0b5cab;
+
+      font-size: 1.2rem;
+    }
+
+
+    .abba-keypoint p {
+      margin: 8px 0;
+    }
+
+
+    .time-equation {
+
+      text-align: center;
+
+      font-size: 1.25rem;
+
+      margin: 12px 0;
+    }
+
+
+    .takeaway {
+
+      text-align: center;
+
+      font-weight: 700;
+
+      color: #0b5cab;
+
+      font-size: 1.05rem;
+
+      margin-top: 18px;
+    }
+
+
+
+    /* ======================================================
+       ALLAN DEVIATION
+       ====================================================== */
+
+    .allan-section {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 30px;
+
+      margin-top: 28px;
+
+      margin-bottom: 28px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
+
+      border:
+        1px solid #e6ebf1;
+    }
+
+
+    .allan-section h2 {
+
+      margin-top: 0;
+
+      margin-bottom: 8px;
+
+      color: #111827;
+    }
+
+
+    .allan-intro {
+
+      font-size: 1.05rem;
+
+      max-width: 820px;
+
+      margin-bottom: 22px;
+    }
+
+
+    .allan-history {
+
+      background: #edf5ff;
+
+      border-left: 5px solid #1565c0;
+
+      border-radius: 8px;
+
+      padding: 18px 20px;
+
+      margin: 20px 0 24px;
+    }
+
+
+    .allan-history h3 {
+
+      margin: 0 0 8px;
+
+      color: #0b5cab;
+
+      font-size: 1.15rem;
+    }
+
+
+    .allan-history p {
+
+      margin: 6px 0;
+    }
+
+
+    .allan-question-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 16px;
+
+      margin: 22px 0;
+    }
+
+
+    .allan-question {
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+
+      border-radius: 12px;
+
+      padding: 18px;
+    }
+
+
+    .allan-question h3 {
+
+      margin: 0 0 8px;
+
+      color: #0b5cab;
+
+      font-size: 1.05rem;
+    }
+
+
+    .allan-explain {
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+
+      border-radius: 12px;
+
+      padding: 18px 20px;
+
+      margin: 20px 0;
+    }
+
+
+    .allan-explain h3 {
+
+      margin-top: 0;
+
+      color: #0b5cab;
+    }
+
+
+    .allan-explain p:last-child {
+
+      margin-bottom: 0;
+    }
+
+
+    .allan-timescale {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 14px;
+
+      margin: 24px 0;
+    }
+
+
+    .allan-time-card {
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      text-align: center;
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+    }
+
+
+    .allan-time-card strong {
+
+      display: block;
+
+      color: #0b5cab;
+
+      margin-bottom: 7px;
+    }
+
+
+    .allan-sweet {
+
+      background: #edf5ff;
+
+      border:
+        2px solid #90caf9;
+    }
+
+
+    .allan-keyline {
+
+      text-align: center;
+
+      font-size: 1.12rem;
+
+      font-weight: 700;
+
+      color: #0b5cab;
+
+      margin: 24px 0;
+    }
+
+
+    .allan-ratio {
+
+      background: #edf5ff;
+
+      border-left:
+        5px solid #1565c0;
+
+      border-radius: 8px;
+
+      padding: 20px;
+
+      margin-top: 24px;
+    }
+
+
+    .allan-ratio h3 {
+
+      margin-top: 0;
+
+      color: #0b5cab;
+    }
+
+
+    .ratio-scale {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
+
+      margin-top: 18px;
+    }
+
+
+    .ratio-item {
+
+      text-align: center;
+
+      background: white;
+
+      border-radius: 9px;
+
+      padding: 12px;
+
+      border:
+        1px solid #dbe4ee;
+    }
+
+
+    .sensor-stream-note {
+
+      margin-top: 22px;
+
+      padding: 17px 20px;
+
+      border-radius: 10px;
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e3e9f0;
+    }
+
+
+    .sensor-stream-note strong {
+
+      color: #0b5cab;
+    }
+
+
+    .allan-figure {
+
+      margin: 26px 0 24px;
+
+      text-align: center;
+    }
+
+
+    .allan-figure img {
+
+      display: block;
+
+      width: 100%;
+
+      max-width: 900px;
+
+      height: auto;
+
+      margin: 0 auto;
+
+      border-radius: 10px;
+    }
+
+
+    .allan-result-summary {
+
+      margin: 20px 0 24px;
+
+      padding: 17px 20px;
+
+      border-radius: 10px;
+
+      background: #edf5ff;
+
+      border-left: 5px solid #1565c0;
+    }
+
+
+    .allan-result-summary strong {
+
+      color: #0b5cab;
+    }
+
+
+    .two-timescales {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 16px;
+
+      margin: 24px 0;
+    }
+
+
+    .timescale-box {
+
+      background: #f8fafc;
+
+      border: 1px solid #e3e9f0;
+
+      border-radius: 12px;
+
+      padding: 20px;
+    }
+
+
+    .timescale-box h3 {
+
+      margin: 0 0 10px;
+
+      color: #0b5cab;
+
+      font-size: 1.08rem;
+    }
+
+
+    .timescale-box p:last-child {
+
+      margin-bottom: 0;
+    }
+
+
+    .timing-choice {
+
+      background: #edf5ff;
+
+      border-left: 5px solid #1565c0;
+
+      border-radius: 8px;
+
+      padding: 20px;
+
+      margin: 22px 0 26px;
+    }
+
+
+    .timing-choice h3 {
+
+      margin: 0 0 10px;
+
+      color: #0b5cab;
+    }
+
+
+    .timing-choice p:last-child {
+
+      margin-bottom: 0;
+    }
+
+
+
+    /* ======================================================
+       FOOTER
+       ====================================================== */
+
+    footer {
+
+      text-align: center;
+
+      color: #6b7280;
+
+      font-size: 0.9rem;
+
+      padding: 32px 20px 45px;
+    }
+
+
+
+    /* ======================================================
+       MOBILE
+       ====================================================== */
+
+    @media (max-width: 700px) {
+
+      .hero {
+
+        padding:
+          42px 20px 55px;
+      }
+
+
+      .hero-layout {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 25px;
+      }
+
+
+      .hero-text {
+        text-align: center;
+      }
+
+
+      .hero .tagline {
+
+        margin-left: auto;
+
+        margin-right: auto;
+      }
+
+
+      .globe-column {
+        flex-basis: auto;
+      }
+
+
+      #globeViz {
+
+        width: 210px;
+
+        height: 210px;
+      }
+
+
+      .container {
+        margin-top: -25px;
+      }
+
+
+      .rotation-steps,
+      .allan-question-grid,
+      .allan-timescale,
+      .ratio-scale,
+      .two-timescales {
+
+        grid-template-columns: 1fr;
+      }
+
+
+      .card,
+      .intro,
+      .method,
+      .science-figure,
+      .allan-section {
+
+        padding: 22px;
+      }
+
+
+      .abba-method-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .abba-figure img {
+        max-width: 230px;
+      }
+
+    }
+
+  
+
+    .nav-row {
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: #0b5cab;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .murata-hero-image {
+      flex: 0 0 390px;
+      max-width: 42%;
+    }
+
+    .murata-hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 330px;
+      object-fit: contain;
+      background: white;
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .headline-result {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      margin-bottom: 28px;
+      text-align: center;
+      border: 1px solid #e6ebf1;
+    }
+
+    .headline-result h2 {
+      margin-top: 0;
+    }
+
+    .headline-value {
+      color: #0b5cab;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      font-weight: 800;
+      margin: 12px 0 6px;
+      line-height: 1.2;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin: 22px 0 8px;
+    }
+
+    .flow-box {
+      padding: 11px 15px;
+      border-radius: 10px;
+      background: #edf5ff;
+      color: #0b5cab;
+      font-weight: 700;
+      border: 1px solid #d9e8f8;
+    }
+
+    .flow-arrow {
+      color: #94a3b8;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .result-box {
+      background: #f8fafc;
+      border: 1px solid #e3e9f0;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .result-box strong {
+      display: block;
+      color: #0b5cab;
+      font-size: 1.25rem;
+      margin-bottom: 5px;
+    }
+
+    .hardware-image {
+      width: 100%;
+      margin-top: 18px;
+      border-radius: 12px;
+      border: 1px solid #e3e9f0;
+      background: white;
+      padding: 10px;
+    }
+
+    .wiring-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 8px;
+    }
+
+    .wiring-table th,
+    .wiring-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e3e9f0;
+      text-align: left;
+    }
+
+    .wiring-table th {
+      background: #edf5ff;
+      color: #0b5cab;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .download-card {
+      display: block;
+      background: #f8fafc;
+      border: 1px solid #e3e9f0;
+      border-radius: 12px;
+      padding: 18px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .download-card:hover {
+      border-color: #9cc8ef;
+      background: #f0f7ff;
+    }
+
+    .download-card strong {
+      display: block;
+      color: #0b5cab;
+      margin-bottom: 4px;
+    }
+
+    .download-card.pending {
+      opacity: 0.75;
+      cursor: default;
+    }
+
+    .licence-box {
+      background: #f8fafc;
+      border-left: 4px solid #0b5cab;
+      padding: 16px 18px;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    code {
+      background: #f1f5f9;
+      border-radius: 5px;
+      padding: 2px 5px;
+    }
+
+    @media (max-width: 760px) {
+      .hero-layout {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .murata-hero-image {
+        max-width: 100%;
+        flex-basis: auto;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <header class="hero">
+    <div class="hero-layout">
+
+      <div class="hero-text">
+        <h1>Murata SCH16T-K01 Reference Experiment</h1>
+
+        <p class="tagline">
+          Measuring the Earth's rotation with a high-performance MEMS
+          gyroscope, an ESP32 and phyphox.
+        </p>
+
+        <div class="author">
+          Gary Cahill
+          <br>
+          South East Technological University, Ireland
+        </div>
+      </div>
+
+      <div class="murata-hero-image">
+        <img
+          src="Wiring_muRata_1.png"
+          alt="Murata SCH16T-K01 and ESP32 wiring setup">
+      </div>
+
+    </div>
+  </header>
+
+
+  <main class="container">
+
+    <div class="nav-row">
+      <a class="nav-link" href="index.html">← Back to the smartphone experiment</a>
+      <a class="nav-link" href="#downloads">Files &amp; code ↓</a>
+    </div>
+
+
+    <section class="headline-result">
+      <div class="badge reference">REFERENCE GYROSCOPE</div>
+
+      <h2>Repeated Earth-rotation measurement</h2>
+
+      <div class="headline-value">
+        0.004993 ± 0.000141°/s
+      </div>
+
+      <p>
+        Mean ± between-run sample standard deviation,
+        <strong>n = 9</strong>.
+      </p>
+
+      <p class="note">
+        Expected 180° reversal at Kilcock (53.4° N):
+        approximately <strong>0.004982°/s</strong>.
+      </p>
+    </section>
+
+
+    <section class="intro">
+      <h2>Why use the Murata?</h2>
+
+      <p>
+        Smartphone gyroscopes vary substantially in noise, drift and internal
+        processing. The Murata SCH16T-K01 provides a higher-performance
+        reference sensor, allowing the same ABBA reversal method to be tested
+        independently of the phone's own gyroscope.
+      </p>
+
+      <div class="intro-summary">
+        The smartphone experiment asks whether consumer hardware can see the
+        signal. The Murata experiment tests whether the measurement method
+        itself accurately recovers the expected rotation of the Earth.
+      </div>
+    </section>
+
+
+    <section class="method">
+      <h2>How the system works</h2>
+
+      <div class="flow">
+        <div class="flow-box">Murata SCH16T-K01</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">SPI</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">ESP32</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">5-sample averaging</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Bluetooth LE</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">phyphox</div>
+      </div>
+
+      <p class="note">
+        The ESP32 reads the sensor, averages groups of five samples and sends
+        the result to phyphox at roughly 10–11 readings per second.
+      </p>
+    </section>
+
+
+    <div class="grid">
+
+      <section class="card">
+        <div class="badge reference">HARDWARE</div>
+
+        <h2>Murata + ESP32 setup</h2>
+
+        <p>
+          The SCH16T-K01 breakout communicates with the ESP32 using SPI.
+          The wiring diagram below is the setup used for this experiment.
+        </p>
+
+        <img
+          class="hardware-image"
+          src="Wiring_muRata_1.png"
+          alt="Wiring diagram for Murata SCH16T-K01 connected to ESP32">
+
+        <p class="figure-caption">
+          Murata SCH16T-K01 / ESP32 wiring used for the Earth-rotation
+          measurements.
+        </p>
+      </section>
+
+
+      <section class="card">
+        <div class="badge">SOFTWARE</div>
+
+        <h2>Arduino requirements</h2>
+
+        <p>
+          The ESP32 sketch requires the SCH16T sensor library and the phyphox
+          Bluetooth LE library.
+        </p>
+
+        <ul>
+          <li>ESP32 Arduino board support</li>
+          <li><code>smplboards-SCH16T</code></li>
+          <li><code>phyphoxBle</code></li>
+          <li><code>SPI</code> — supplied with the ESP32 Arduino core</li>
+        </ul>
+
+        <p>
+          For reproducibility, the downloadable package should preserve the
+          exact working library version and the final Arduino sketch used for
+          these measurements.
+        </p>
+
+        <div class="licence-box">
+          <strong>Third-party library</strong><br>
+          The <code>smplboards-SCH16T</code> library should be distributed
+          with its original licence and copyright notices intact.
+        </div>
+      </section>
+
+    </div>
+
+
+    <section class="method">
+      <h2>The ABBA reversal method</h2>
+
+      <p>
+        The sensor is measured in one orientation, rotated through 180°, and
+        then returned using the symmetric sequence:
+      </p>
+
+      <div class="abba">
+        <span class="step">A₁</span>
+        <span class="arrow">→</span>
+        <span class="step">B₁</span>
+        <span class="arrow">→</span>
+        <span class="step">B₂</span>
+        <span class="arrow">→</span>
+        <span class="step">A₂</span>
+      </div>
+
+      <div class="equation">
+        \[
+        \Delta\omega =
+        \frac{A_1 + A_2}{2}
+        -
+        \frac{B_1 + B_2}{2}
+        \]
+      </div>
+
+      <div class="abba-keypoint">
+        <h3>Why reverse the sensor?</h3>
+
+        <p>
+          A 180° reversal changes the sign of the Earth-rotation component
+          while a constant sensor bias does not. The symmetric ABBA ordering
+          also suppresses approximately linear drift during the sequence.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="science-figure">
+      <img
+        src="Murata_ABBA_runs.png"
+        loading="lazy"
+        alt="Nine repeated Murata SCH16T-K01 Earth-rotation measurements">
+
+      <p class="figure-caption">
+        Nine Murata measurements included in the headline result. The dashed
+        line shows the expected reversal at Kilcock, the solid line shows the
+        mean, and the shaded band shows ±1 between-run sample standard
+        deviation.
+      </p>
+    </section>
+
+
+    <section class="allan-section">
+      <h2>Repeated result</h2>
+
+      <div class="result-grid">
+
+        <div class="result-box">
+          <strong>0.004993°/s</strong>
+          measured mean reversal
+        </div>
+
+        <div class="result-box">
+          <strong>0.004982°/s</strong>
+          expected at 53.4° N
+        </div>
+
+        <div class="result-box">
+          <strong>0.22%</strong>
+          difference of the mean
+        </div>
+
+      </div>
+
+      <p>
+        The full master dataset retains one additional complete Murata run
+        measuring approximately 0.004056°/s. It is not included in the current
+        nine-run headline mean. The reason for excluding that run should be
+        stated explicitly in any final publication.
+      </p>
+    </section>
+
+
+    <section class="allan-section">
+      <h2>Estimate latitude from the gyroscope</h2>
+
+      <p>
+        For a horizontal north–south sensitive axis, the expected 180°
+        reversal is
+      </p>
+
+      <div class="equation">
+        \[
+        \Delta\omega = 2\Omega_E\cos\lambda
+        \]
+      </div>
+
+      <p>
+        and therefore
+      </p>
+
+      <div class="equation">
+        \[
+        \lambda =
+        \cos^{-1}
+        \left(
+        \frac{\Delta\omega}{2\Omega_E}
+        \right).
+        \]
+      </div>
+
+      <div class="headline-value" style="font-size:2rem;">
+        Gyroscope estimate ≈ 53.31° N
+      </div>
+
+      <p style="text-align:center;">
+        Kilcock is approximately 53.4° N. The agreement of the central value
+        is striking, although the repeatability does not justify interpreting
+        this as kilometre-scale positioning accuracy.
+      </p>
+    </section>
+
+
+    <section class="science-figure">
+      <img
+        src="Murata_Allan.png"
+        loading="lazy"
+        alt="Allan deviation of the Murata SCH16T-K01 gyroscope">
+
+      <p class="figure-caption">
+        Allan deviation of the warmed Murata reference run. The sensor
+        instability over the relevant averaging times is well below the
+        horizontal Earth-rotation component.
+      </p>
+    </section>
+
+
+    <section class="allan-section">
+      <h2>Sensor stability</h2>
+
+      <p>
+        The warmed Murata Allan-deviation measurements are approximately
+        0.000114°/s at 5 s, 0.000087°/s at 10–15 s and 0.000062°/s at 20 s.
+        These values are far smaller than the horizontal Earth-rotation
+        component at Kilcock, approximately 0.00249°/s.
+      </p>
+
+      <div class="allan-result-summary">
+        This is why the reference sensor resolves the reversal much more
+        consistently than most of the phone gyroscopes tested.
+      </div>
+    </section>
+
+
+    <section class="method" id="downloads">
+      <h2>Files &amp; code</h2>
+
+      <p>
+        Keep the webpage itself simple and provide the reproduction material
+        as downloadable files. The two current figures are already ready to
+        place in the same GitHub Pages folder as this page.
+      </p>
+
+      <div class="download-grid">
+
+        <a class="download-card" href="Murata_ABBA_runs.png">
+          <strong>Murata ABBA results</strong>
+          PNG figure — nine repeated measurements.
+        </a>
+
+        <a class="download-card" href="Murata_Allan.png">
+          <strong>Murata Allan deviation</strong>
+          PNG figure — warmed reference run.
+        </a>
+
+        <a class="download-card" href="Wiring_muRata_1.png">
+          <strong>Wiring / setup</strong>
+          Murata SCH16T-K01 and ESP32 setup image.
+        </a>
+
+        <div class="download-card pending">
+          <strong>Arduino sketch</strong>
+          Add the final working ESP32 sketch here.
+        </div>
+
+        <div class="download-card pending">
+          <strong>phyphox experiment</strong>
+          Add the final Murata phyphox experiment file here.
+        </div>
+
+        <div class="download-card pending">
+          <strong>Raw measurements</strong>
+          Add the Murata ABBA ZIP files or one combined data archive here.
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="allan-section">
+      <h2>Reproducibility notes</h2>
+
+      <ul>
+        <li>Location: Kilcock, Ireland, approximately 53.4° N.</li>
+        <li>Reference sensor: Murata SCH16T-K01.</li>
+        <li>Controller: ESP32.</li>
+        <li>Sensor interface: SPI.</li>
+        <li>BLE data sent to phyphox at roughly 10–11 readings per second.</li>
+        <li>The transmitted stream is already averaged over five sensor reads.</li>
+        <li>Headline result: mean ± between-run sample SD for n = 9.</li>
+      </ul>
+    </section>
+
+
+    <section class="allan-section">
+      <h2>Connection to the smartphone experiment</h2>
+
+      <div class="allan-result-summary">
+        The smartphone measurements show that the Earth's rotation can be
+        accessible with consumer MEMS gyroscopes. The Murata reference
+        measurement shows that the same ABBA / phyphox method can recover the
+        expected Earth-rotation signal with substantially better repeatability.
+      </div>
+
+      <p style="margin-top:22px;">
+        <a class="nav-link" href="index.html">
+          ← Return to the smartphone Earth-rotation experiment
+        </a>
+      </p>
+    </section>
+
+  </main>
+
+
+  <footer>
+    Earth rotation with phyphox · Murata SCH16T-K01 reference experiment
+  </footer>
+
+</body>
+</html>
