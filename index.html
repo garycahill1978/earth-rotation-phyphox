@@ -1083,6 +1083,16 @@
 
 
 
+
+    /* Keep the final Conclusions card aligned with the main content.
+       This also protects the layout if a browser reparses the final block. */
+    .conclusions-section {
+      width: 100%;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* ======================================================
        FOOTER
        ====================================================== */
@@ -2117,7 +2127,7 @@
          CONCLUSIONS
          ================================================== -->
 
-    <section class="allan-section">
+    <section class="allan-section conclusions-section">
 
       <h2>
         Conclusions
