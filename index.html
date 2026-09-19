@@ -1516,7 +1516,7 @@
 
 
         <p class="note">
-          Uses the standard <strong>calibrated gyroscope stream</strong>
+          Uses the standard <strong>raw gyroscope stream</strong>
           currently available to phyphox on iOS.
         </p>
 
@@ -1706,6 +1706,57 @@
 
 
     <!-- ==================================================
+         MEASURED ABBA RESULTS
+         ================================================== -->
+
+    <section class="allan-section">
+
+      <h2>
+        What did the devices actually measure?
+      </h2>
+
+      <p class="allan-intro">
+        The expected 180° Earth-rotation reversal at this latitude is
+        approximately <strong>0.00505°/s</strong>. The plot below compares
+        the measured ABBA reversal signal from the devices tested with the
+        Murata SCH16T-K01 shown as a reference measurement.
+      </p>
+
+
+      <div class="allan-figure">
+
+        <img
+          src="ABBA_all_tested_devices_with_Murata_v4.png"
+          loading="lazy"
+          alt="Measured Earth-rotation ABBA reversal results across tested phones and the Murata SCH16T-K01 reference gyroscope">
+
+        <p class="figure-caption">
+          Measured ABBA reversal signal for completed device tests.
+          The dashed line shows the expected Earth-rotation reversal.
+          Error bars show the standard deviation where repeated
+          measurements were available.
+        </p>
+
+      </div>
+
+
+      <div class="allan-result-summary">
+
+        <strong>What does the comparison show?</strong>
+
+        Several smartphone measurements are of the same order as the
+        expected Earth-rotation reversal, while other devices give much
+        poorer agreement. The Murata SCH16T-K01 reference sensor gives a
+        result very close to the expected value with much smaller
+        repeatability scatter.
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
          ALLAN DEVIATION
          ================================================== -->
 
@@ -1741,7 +1792,7 @@
           Allan deviation of the Pixel 9a, Pixel 6 Pro, iPhone 13,
           an iPad Air (1st generation, 2013; iOS 12.5.8) and the Murata SCH16T-K01 reference sensor.
           The Android phones use the uncalibrated gyroscope stream,
-          while the iPhone 13 and iPad Air use the standard <strong>calibrated</strong>
+          while the iPhone 13 and iPad Air use the standard <strong>raw</strong>
           gyroscope stream available to phyphox on iOS.
           Mobile-device streams were averaged to approximately 10 Hz
           before analysis; the Murata data were recorded at approximately
