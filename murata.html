@@ -1379,6 +1379,13 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+
+    @media (max-width: 760px) {
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 
@@ -1405,8 +1412,8 @@
 
       <div class="murata-hero-image">
         <img
-          src="Wiring_muRata_1.png"
-          alt="Murata SCH16T-K01 and ESP32 wiring setup">
+          src="murata_Photo.png"
+          alt="Murata SCH16T-K01, ESP32, compass, lazy Susan and phone running phyphox">
       </div>
 
     </div>
@@ -1470,7 +1477,7 @@
         <div class="flow-arrow">→</div>
         <div class="flow-box">ESP32</div>
         <div class="flow-arrow">→</div>
-        <div class="flow-box">5-sample averaging</div>
+        <div class="flow-box">5-sample averaging (live display)</div>
         <div class="flow-arrow">→</div>
         <div class="flow-box">Bluetooth LE</div>
         <div class="flow-arrow">→</div>
@@ -1478,8 +1485,10 @@
       </div>
 
       <p class="note">
-        The ESP32 reads the sensor, averages groups of five samples and sends
-        the result to phyphox at roughly 10–11 readings per second.
+        The sensor is sampled at 50 Hz. During the A₁, B₁, B₂ and A₂ measurement
+        blocks, every valid 50 Hz sample contributes to the block statistics.
+        For the live phyphox display and BLE stream, groups of five samples are
+        averaged, giving approximately 10 updates per second.
       </p>
     </section>
 
@@ -1533,12 +1542,6 @@
           <strong>Sketch → Include Library → Add .ZIP Library…</strong>.
         </p>
 
-        <div class="licence-box">
-          <strong>Third-party software</strong><br>
-          The library ZIP files are included for reproducibility. Their original
-          licence and copyright notices should remain with the redistributed
-          source. The project sketch is provided separately.
-        </div>
       </section>
 
     </div>
@@ -1591,7 +1594,7 @@
           <tr>
             <td><strong>Mount / base</strong></td>
             <td>€0–€10</td>
-            <td>I used LEGO to hold the Murata board securely on a small lazy Susan for the 180° reversals. The North/South orientation was set approximately by eye, using a compass as a guide rather than a precision alignment system. The important requirements were secure mounting, repeatable reversal and keeping changes in tilt as small as possible.</td>
+            <td>Simple rigid base; LEGO on a small lazy Susan was used here.</td>
           </tr>
 
           <tr>
@@ -1609,11 +1612,12 @@
       </div>
 
       <div class="licence-box">
-        <strong>Mounting</strong><br>
-        I used LEGO to support the Murata board. A precision-machined mount is
-        not required; the important points are that the sensor is held
-        securely, its orientation is repeatable, and changes in tilt are kept
-        small during the 180° reversal. No breadboard is required for the
+        <strong>Mounting and alignment</strong><br>
+        I used LEGO to hold the Murata board securely on a small lazy Susan for
+        the 180° reversals. North/South was aligned approximately by eye using
+        a compass rather than a precision alignment system. The important
+        requirements are secure mounting, repeatable reversal and keeping
+        changes in tilt as small as possible. No breadboard is required for the
         wiring shown above.
       </div>
 
@@ -1701,12 +1705,6 @@
 
       </div>
 
-      <p>
-        The full master dataset retains one additional complete Murata run
-        measuring approximately 0.004056°/s. It is not included in the current
-        nine-run headline mean. The reason for excluding that run should be
-        stated explicitly in any final publication.
-      </p>
     </section>
 
 
@@ -1811,7 +1809,7 @@
           Working SCH16T + ESP32 + phyphox BLE guided ABBA experiment.
         </a>
 
-        <a class="download-card" href="README_Murata_Code.txt" download>
+        <a class="download-card" href="README_Murata_Code.txt" target="_blank">
           <strong>Setup instructions</strong>
           Wiring, required libraries, installation and upload instructions.
         </a>
@@ -1840,6 +1838,12 @@
         using <strong>Add .ZIP Library…</strong>, then open
         <code>phyphoxMuRatav3.ino</code>, select the ESP32 board and upload.
       </div>
+
+      <p class="note">
+        The two Arduino library archives are provided as the tested copies used
+        for this setup; their original project licence and copyright notices
+        remain applicable.
+      </p>
     </section>
 
 
@@ -1851,8 +1855,9 @@
         <li>Reference sensor: Murata SCH16T-K01.</li>
         <li>Controller: ESP32.</li>
         <li>Sensor interface: SPI.</li>
-        <li>BLE data sent to phyphox at roughly 10–11 readings per second.</li>
-        <li>The transmitted live stream is averaged over five sensor reads.</li>
+        <li>Scientific sensor acquisition: 50 Hz.</li>
+        <li>ABBA block statistics use every valid 50 Hz sample during each measurement interval.</li>
+        <li>The live BLE / phyphox display averages five sensor reads, giving approximately 10 updates per second.</li>
         <li>The exact tested SCH16T and phyphox BLE library copies are provided as ZIP files.</li>
         <li>Headline result: mean ± between-run sample SD for n = 9.</li>
       </ul>
