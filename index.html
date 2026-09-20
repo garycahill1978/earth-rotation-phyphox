@@ -1213,6 +1213,210 @@
 
     }
 
+
+    /* ======================================================
+       COMPACT SUPPORTING EARTH FIGURE
+       ====================================================== */
+
+    .earth-rotation-compact img {
+      max-width: 550px;
+    }
+
+
+    /* ======================================================
+       EXPANDABLE ALLAN EXPLANATION
+       ====================================================== */
+
+    .allan-details {
+      margin: 24px 0;
+      background: #f8fafc;
+      border: 1px solid #dbe4ee;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .allan-details summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 20px;
+      color: #0b5cab;
+      font-weight: 700;
+      font-size: 1.08rem;
+      background: #edf5ff;
+    }
+
+    .allan-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .allan-details summary::after {
+      content: "＋";
+      float: right;
+      font-size: 1.15rem;
+      line-height: 1;
+      color: #0b5cab;
+    }
+
+    .allan-details[open] summary::after {
+      content: "−";
+    }
+
+    .allan-details-content {
+      padding: 2px 20px 22px;
+    }
+
+    .allan-details-content > :first-child {
+      margin-top: 20px;
+    }
+
+
+    /* ======================================================
+       ALLAN BLOCK-GROUPING DIAGRAM
+       ====================================================== */
+
+    .tau-diagram {
+      margin: 22px 0;
+      padding: 20px;
+      border: 1px solid #dbe4ee;
+      border-radius: 12px;
+      background: white;
+    }
+
+    .tau-diagram h3 {
+      margin: 0 0 8px;
+      color: #0b5cab;
+      font-size: 1.12rem;
+    }
+
+    .tau-diagram-intro {
+      margin: 0 0 18px;
+    }
+
+    .tau-stream-axis {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      margin: 10px 0 18px;
+      color: #6b7280;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .tau-stream-line {
+      height: 5px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        #cbd5e1 0%,
+        #94a3b8 50%,
+        #cbd5e1 100%
+      );
+    }
+
+    .tau-row {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .tau-label {
+      font-weight: 700;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .tau-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .tau-block {
+      min-height: 28px;
+      border-radius: 6px;
+      border: 1px solid rgba(31, 41, 55, 0.14);
+    }
+
+    .tau-5  { background: #b7e4c7; }
+    .tau-10 { background: #a8d8f0; }
+    .tau-15 { background: #d7c4f2; }
+    .tau-20 { background: #f7cf9a; }
+
+    .span-1 { grid-column: span 1; }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+
+    .tau-diagram-key {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 9px;
+      background: #f8fafc;
+      border: 1px solid #e3e9f0;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .tau-diagram-note {
+      margin: 12px 0 0;
+      color: #6b7280;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .allan-quick-summary {
+      margin: 20px 0;
+      padding: 16px 18px;
+      background: #edf5ff;
+      border-left: 5px solid #1565c0;
+      border-radius: 8px;
+    }
+
+    .allan-quick-summary strong {
+      color: #0b5cab;
+    }
+
+    @media (max-width: 700px) {
+      .earth-rotation-compact img {
+        max-width: 100%;
+      }
+
+      .allan-details summary {
+        padding: 16px;
+      }
+
+      .allan-details-content {
+        padding: 2px 14px 18px;
+      }
+
+      .tau-diagram {
+        padding: 16px 12px;
+      }
+
+      .tau-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        margin: 14px 0;
+      }
+
+      .tau-label {
+        white-space: normal;
+      }
+
+      .tau-grid {
+        gap: 3px;
+      }
+
+      .tau-block {
+        min-height: 24px;
+      }
+    }
+
+
   </style>
 
 </head>
@@ -1430,7 +1634,7 @@
          EARTH ROTATION AXES WITH LATITUDE
          ================================================== -->
 
-    <section class="science-figure">
+    <section class="science-figure earth-rotation-compact">
 
       <img
         src="earthrotation.png"
@@ -1792,20 +1996,15 @@
 
     <section class="allan-section">
 
-
       <h2>
         Is your phone gyroscope good enough?
       </h2>
 
-
       <p class="allan-intro">
-
-        The Earth-rotation signal is extremely small.
-        Even if a gyroscope looks quiet from one reading
-        to the next, its average can slowly wander with time.
-        We need to know how stable that average is over the
+        The Earth-rotation signal is extremely small. Even if a gyroscope looks
+        quiet from one reading to the next, its average can slowly wander with
+        time. We therefore need to know how stable that average is over the
         <strong>5–20 second</strong> intervals used in the experiment.
-
       </p>
 
 
@@ -1825,11 +2024,11 @@
           while the iPhone 13 and iPad Air use the standard <strong>raw</strong>
           gyroscope stream available to phyphox on iOS.
           Mobile-device streams were averaged to approximately 10 Hz
-          before analysis; the Murata data were recorded at approximately
-          11 Hz from the ESP32 stream. The vertical markers show 5, 10,
-          15 and 20 s averaging times. The dashed line marks the expected
-          horizontal Earth-rotation component near Ireland,
-          approximately 0.0025° s⁻¹.
+          before analysis. The Murata Allan data use the approximately
+          10–11 Hz live BLE stream, which averages groups of five sensor reads.
+          The vertical markers show 5, 10, 15 and 20 s averaging times.
+          The dashed line marks the expected horizontal Earth-rotation component
+          near Ireland, approximately 0.0025° s⁻¹.
         </p>
 
       </div>
@@ -1846,264 +2045,339 @@
 
         <br><br>
 
-        The <strong>iPad Air (1st generation, 2013; iOS 12.5.8)</strong> is included as an example of a
-        mobile device whose gyroscope is not sufficiently stable for this
-        experiment. Its Allan deviation remains above the expected
-        horizontal Earth-rotation signal throughout the averaging times
-        shown, demonstrating that sensor performance varies substantially
-        between devices.
+        The <strong>iPad Air (1st generation, 2013; iOS 12.5.8)</strong>
+        is included as an example of a mobile device whose gyroscope is not
+        sufficiently stable for this experiment. Its Allan deviation remains
+        above the expected horizontal Earth-rotation signal throughout the
+        averaging times shown, demonstrating that sensor performance varies
+        substantially between devices.
 
       </div>
 
 
-
-      <!-- REAL WORLD CONTEXT -->
-
-      <div class="allan-history">
-
-        <h3>
-          From atomic clocks to phone gyroscopes
-        </h3>
-
-
-        <p>
-
-          <strong>Allan deviation</strong> is named after
-          physicist David W. Allan and was developed for
-          precision measurements of time and frequency.
-
-        </p>
-
-
-        <p>
-
-          It is used to study the stability of extremely
-          precise oscillators and atomic clocks, and has also
-          been used to characterise the clocks carried by
-          GPS satellites.
-
-        </p>
-
-
-        <p>
-
-          Here we use the same idea for a smartphone
-          gyroscope: <strong>how stable is the measured
-          rotation rate when we average for different
-          lengths of time?</strong>
-
-        </p>
-
+      <div class="allan-quick-summary">
+        <strong>Why 15 s?</strong>
+        A 15 s interval is a practical middle ground: averaging reduces much
+        of the short-term random noise, while the complete ABBA sequence is
+        still short enough to limit exposure to slow drift.
       </div>
 
 
+      <!-- EXPANDABLE ALLAN EXPLANATION -->
 
-      <!-- STANDARD DEVIATION VS ALLAN -->
+      <details class="allan-details">
 
-      <div class="allan-question-grid">
+        <summary>
+          More about Allan deviation — what it means and how it is calculated
+        </summary>
+
+        <div class="allan-details-content">
 
 
-        <div class="allan-question">
+          <!-- REAL WORLD CONTEXT -->
 
-          <h3>
-            Standard deviation
-          </h3>
+          <div class="allan-history">
 
-          <p>
-            asks:
-          </p>
+            <h3>
+              From atomic clocks to phone gyroscopes
+            </h3>
 
-          <p>
-            <strong>
-              “How noisy are the individual readings?”
-            </strong>
-          </p>
+            <p>
+              <strong>Allan deviation</strong> is named after physicist
+              David W. Allan and was developed for precision measurements
+              of time and frequency.
+            </p>
+
+            <p>
+              It is used to study the stability of extremely precise
+              oscillators and atomic clocks, and has also been used to
+              characterise the clocks carried by GPS satellites.
+            </p>
+
+            <p>
+              Here we use the same idea for a smartphone gyroscope:
+              <strong>how stable is the measured rotation rate when we average
+              for different lengths of time?</strong>
+            </p>
+
+          </div>
+
+
+          <!-- STANDARD DEVIATION VS ALLAN -->
+
+          <div class="allan-question-grid">
+
+            <div class="allan-question">
+
+              <h3>
+                Standard deviation
+              </h3>
+
+              <p>
+                asks:
+              </p>
+
+              <p>
+                <strong>
+                  “How noisy are the individual readings?”
+                </strong>
+              </p>
+
+            </div>
+
+
+            <div class="allan-question">
+
+              <h3>
+                Allan deviation
+              </h3>
+
+              <p>
+                asks:
+              </p>
+
+              <p>
+                <strong>
+                  “How stable is the average if I measure for this long?”
+                </strong>
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- SAME DATA, DIFFERENT GROUPING TIMES -->
+
+          <div class="tau-diagram">
+
+            <h3>
+              The same data stream, grouped at different averaging times
+            </h3>
+
+            <p class="tau-diagram-intro">
+              Allan deviation does not sort the readings by value. It keeps the
+              data in time order and groups neighbouring readings into consecutive
+              blocks of duration \( \tau \).
+            </p>
+
+            <div class="tau-stream-axis" aria-label="The same illustrative 60 second data stream is used in every row">
+              <span>0 s</span>
+              <div class="tau-stream-line"></div>
+              <span>60 s</span>
+            </div>
+
+
+            <div class="tau-row">
+              <div class="tau-label">\( \tau = 5\,\mathrm{s} \)</div>
+              <div class="tau-grid" aria-label="Twelve 5-second blocks">
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+                <span class="tau-block tau-5 span-1"></span>
+              </div>
+            </div>
+
+
+            <div class="tau-row">
+              <div class="tau-label">\( \tau = 10\,\mathrm{s} \)</div>
+              <div class="tau-grid" aria-label="Six 10-second blocks">
+                <span class="tau-block tau-10 span-2"></span>
+                <span class="tau-block tau-10 span-2"></span>
+                <span class="tau-block tau-10 span-2"></span>
+                <span class="tau-block tau-10 span-2"></span>
+                <span class="tau-block tau-10 span-2"></span>
+                <span class="tau-block tau-10 span-2"></span>
+              </div>
+            </div>
+
+
+            <div class="tau-row">
+              <div class="tau-label">\( \tau = 15\,\mathrm{s} \)</div>
+              <div class="tau-grid" aria-label="Four 15-second blocks">
+                <span class="tau-block tau-15 span-3"></span>
+                <span class="tau-block tau-15 span-3"></span>
+                <span class="tau-block tau-15 span-3"></span>
+                <span class="tau-block tau-15 span-3"></span>
+              </div>
+            </div>
+
+
+            <div class="tau-row">
+              <div class="tau-label">\( \tau = 20\,\mathrm{s} \)</div>
+              <div class="tau-grid" aria-label="Three 20-second blocks">
+                <span class="tau-block tau-20 span-4"></span>
+                <span class="tau-block tau-20 span-4"></span>
+                <span class="tau-block tau-20 span-4"></span>
+              </div>
+            </div>
+
+
+            <div class="tau-diagram-key">
+              Same 60 s of data → different block sizes → one mean from each block
+              → compare neighbouring block means
+            </div>
+
+            <p class="tau-diagram-note">
+              Schematic only: the real calculation uses all recorded samples
+              within each time interval.
+            </p>
+
+          </div>
+
+
+          <!-- WHAT ALLAN ACTUALLY DOES -->
+
+          <div class="allan-explain">
+
+            <h3>
+              What does it actually do?
+            </h3>
+
+            <p>
+              Choose an averaging time \( \tau \). Divide the gyro data into
+              intervals of that length, calculate the average rotation rate in
+              each interval, and compare neighbouring averages.
+            </p>
+
+            <div class="equation">
+
+              \[
+                \sigma_A(\tau)
+                =
+                \sqrt{
+                \frac{1}{2}
+                \left\langle
+                \left(
+                \bar{\omega}_{i+1}
+                -
+                \bar{\omega}_{i}
+                \right)^2
+                \right\rangle
+                }
+              \]
+
+            </div>
+
+            <p style="text-align:center;">
+              If neighbouring averages are very similar, the Allan deviation
+              is small and the sensor is stable at that averaging time.
+            </p>
+
+          </div>
+
+
+          <!-- TWO TIMESCALES -->
+
+          <div class="allan-explain">
+
+            <h3>
+              Two different timescales matter
+            </h3>
+
+            <p>
+              It is useful to separate the <strong>averaging time for each
+              individual gyro measurement</strong> from the
+              <strong>total duration of the full ABBA sequence</strong>.
+              They affect the experiment in different ways.
+            </p>
+
+          </div>
+
+
+          <div class="two-timescales">
+
+            <div class="timescale-box">
+
+              <h3>
+                1. Individual averaging time, \( \tau \)
+              </h3>
+
+              <p>
+                This is the duration of each A or B measurement.
+                Increasing \( \tau \) reduces short-term random noise
+                and usually improves the stability of the average.
+              </p>
+
+              <p>
+                The Allan-deviation plot shows this directly:
+                the smartphone curves fall strongly as the averaging
+                time increases through the first few tens of seconds.
+              </p>
+
+            </div>
+
+
+            <div class="timescale-box">
+
+              <h3>
+                2. Total ABBA sequence time
+              </h3>
+
+              <p>
+                Longer individual measurements also make the whole
+                A1–B1–B2–A2 sequence longer.
+              </p>
+
+              <p>
+                Over a longer experiment, slow gyroscope bias changes,
+                temperature drift and other low-frequency effects have
+                more time to influence the result.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="timing-choice">
+
+            <h3>
+              Why use 15-second measurements?
+            </h3>
+
+            <p>
+              A 15 s averaging interval is a
+              <strong>practical compromise</strong>, not necessarily the
+              minimum point on the Allan-deviation curve.
+            </p>
+
+            <p>
+              By 15 s, much of the short-term random noise has already
+              been reduced, while the complete ABBA sequence can still
+              be finished in about <strong>76 s</strong>.
+              This keeps the full reversal experiment below roughly
+              100 s, limiting the time available for slow drift and
+              thermal changes to build up.
+            </p>
+
+            <p>
+              So the aim is not simply to make each measurement as long
+              as possible:
+              <strong>average long enough to reduce noise, but keep the
+              complete experiment short enough to suppress slow drift.</strong>
+            </p>
+
+          </div>
+
+
+          <div class="allan-keyline">
+            Longer \( \tau \) → less random noise
+            &nbsp;•&nbsp;
+            Longer full sequence → more exposure to slow drift
+          </div>
 
         </div>
 
-
-
-        <div class="allan-question">
-
-          <h3>
-            Allan deviation
-          </h3>
-
-          <p>
-            asks:
-          </p>
-
-          <p>
-            <strong>
-              “How stable is the average if I measure
-              for this long?”
-            </strong>
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-
-      <!-- WHAT ALLAN ACTUALLY DOES -->
-
-      <div class="allan-explain">
-
-
-        <h3>
-          What does it actually do?
-        </h3>
-
-
-        <p>
-
-          Choose an averaging time \( \tau \).
-          Divide the gyro data into intervals of that length,
-          calculate the average rotation rate in each interval,
-          and compare neighbouring averages.
-
-        </p>
-
-
-        <div class="equation">
-
-          \[
-          \sigma_A(\tau)
-          =
-          \sqrt{
-          \frac{1}{2}
-          \left\langle
-          \left(
-          \bar{\omega}_{i+1}
-          -
-          \bar{\omega}_{i}
-          \right)^2
-          \right\rangle
-          }
-          \]
-
-        </div>
-
-
-        <p style="text-align:center;">
-
-          If neighbouring averages are very similar,
-          the Allan deviation is small and the sensor
-          is stable at that averaging time.
-
-        </p>
-
-
-      </div>
-
-
-
-      <!-- TWO TIMESCALES -->
-
-      <div class="allan-explain">
-
-        <h3>
-          Two different timescales matter
-        </h3>
-
-        <p>
-          It is useful to separate the <strong>averaging time for each
-          individual gyro measurement</strong> from the
-          <strong>total duration of the full ABBA sequence</strong>.
-          They affect the experiment in different ways.
-        </p>
-
-      </div>
-
-
-      <div class="two-timescales">
-
-
-        <div class="timescale-box">
-
-          <h3>
-            1. Individual averaging time, \( \tau \)
-          </h3>
-
-          <p>
-            This is the duration of each A or B measurement.
-            Increasing \( \tau \) reduces short-term random noise
-            and usually improves the stability of the average.
-          </p>
-
-          <p>
-            The Allan-deviation plot shows this directly:
-            the smartphone curves fall strongly as the averaging
-            time increases through the first few tens of seconds.
-          </p>
-
-        </div>
-
-
-        <div class="timescale-box">
-
-          <h3>
-            2. Total ABBA sequence time
-          </h3>
-
-          <p>
-            Longer individual measurements also make the whole
-            A1–B1–B2–A2 sequence longer.
-          </p>
-
-          <p>
-            Over a longer experiment, slow gyroscope bias changes,
-            temperature drift and other low-frequency effects have
-            more time to influence the result.
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="timing-choice">
-
-        <h3>
-          Why use 15-second measurements?
-        </h3>
-
-        <p>
-          A 15 s averaging interval is a
-          <strong>practical compromise</strong>, not necessarily the
-          minimum point on the Allan-deviation curve.
-        </p>
-
-        <p>
-          By 15 s, much of the short-term random noise has already
-          been reduced, while the complete ABBA sequence can still
-          be finished in about <strong>76 s</strong>.
-          This keeps the full reversal experiment below roughly
-          100 s, limiting the time available for slow drift and
-          thermal changes to build up.
-        </p>
-
-        <p>
-          So the aim is not simply to make each measurement as long
-          as possible:
-          <strong>average long enough to reduce noise, but keep the
-          complete experiment short enough to suppress slow drift.</strong>
-        </p>
-
-      </div>
-
-
-      <div class="allan-keyline">
-
-        Longer \( \tau \) → less random noise
-        &nbsp;•&nbsp;
-        Longer full sequence → more exposure to slow drift
-
-      </div>
-
+      </details>
 
 
       <!-- SIGNAL COMPARISON -->
@@ -2125,7 +2399,6 @@
       </div>
 
 
-
       <!-- SENSOR STREAM -->
 
       <div class="sensor-stream-note">
@@ -2134,14 +2407,11 @@
           The sensor stream also matters.
         </strong>
 
-        Comparing calibrated and uncalibrated gyroscope
-        streams is important because software bias
-        compensation can alter very slow changes in the
-        signal — exactly the behaviour we are trying
-        to measure.
+        Comparing calibrated and uncalibrated gyroscope streams is important
+        because software bias compensation can alter very slow changes in the
+        signal — exactly the behaviour we are trying to measure.
 
       </div>
-
 
     </section>
 
