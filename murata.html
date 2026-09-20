@@ -1386,6 +1386,37 @@
       }
     }
 
+
+    .cost-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+      gap: 24px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .cost-photo {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid #e3e9f0;
+      background: white;
+    }
+
+    .cost-photo-caption {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 760px) {
+      .cost-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 
@@ -1412,8 +1443,8 @@
 
       <div class="murata-hero-image">
         <img
-          src="murata_Photo.png"
-          alt="Murata SCH16T-K01, ESP32, compass, lazy Susan and phone running phyphox">
+          src="Wiring_muRata_1.png"
+          alt="Murata SCH16T-K01 and ESP32 wiring setup">
       </div>
 
     </div>
@@ -1557,7 +1588,9 @@
         links.
       </p>
 
-      <table class="wiring-table">
+      <div class="cost-layout">
+        <div>
+          <table class="wiring-table">
         <thead>
           <tr>
             <th>Part</th>
@@ -1603,7 +1636,22 @@
             <td>Used as the display, control and data-recording interface.</td>
           </tr>
         </tbody>
-      </table>
+          </table>
+        </div>
+
+        <div>
+          <img
+            class="cost-photo"
+            src="murata_Photo.png"
+            alt="Complete Murata SCH16T-K01 Earth-rotation setup with ESP32, power bank, compass, lazy Susan and phone running phyphox">
+
+          <p class="cost-photo-caption">
+            Complete experimental setup used here: Murata SCH16T-K01, ESP32,
+            power bank, compass, LEGO mounting on a small lazy Susan, and a phone
+            running phyphox.
+          </p>
+        </div>
+      </div>
 
       <div class="intro-summary">
         <strong>Typical total hardware cost: approximately €90–€120</strong>,
