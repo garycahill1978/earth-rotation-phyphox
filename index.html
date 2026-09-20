@@ -1111,6 +1111,47 @@
       margin-right: auto;
     }
 
+
+    /* ======================================================
+       REFERENCES
+       ====================================================== */
+
+    .references-section {
+      width: 100%;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .references-section h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .references-list {
+      margin: 0;
+      padding-left: 1.35rem;
+      color: #4b5563;
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .references-list li {
+      margin-bottom: 11px;
+      padding-left: 4px;
+    }
+
+    .references-list a {
+      color: #0b5cab;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .references-list a:hover {
+      text-decoration: underline;
+    }
+
     /* ======================================================
        FOOTER
        ====================================================== */
@@ -2035,7 +2076,19 @@
 
         Several smartphone measurements are of the same order as the
         expected Earth-rotation reversal, while device-to-device performance
-        varies substantially. Across the nine Murata measurements included in
+        varies substantially.
+
+        <br><br>
+
+        <strong>
+          Several Android phones using the uncalibrated gyroscope produced
+          reversal measurements close to the expected Earth-rotation signal,
+          while other devices did not resolve it.
+        </strong>
+
+        <br><br>
+
+        Across the nine Murata measurements included in
         the repeated reference dataset, the mean reversal is
         <strong>0.004993°/s</strong> with a between-run sample standard
         deviation of <strong>0.000141°/s</strong>.
@@ -2709,6 +2762,64 @@
         </ul>
 
       </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         REFERENCES
+         ================================================== -->
+
+    <section class="allan-section references-section">
+
+      <h2>
+        References &amp; technical sources
+      </h2>
+
+      <ol class="references-list">
+
+        <li>
+          Staacks, S., Hütz, S., Heinke, H. &amp; Stampfer, C. (2018).
+          <em>Advanced tools for smartphone-based experiments: phyphox.</em>
+          <em>Physics Education</em>, 53(4), 045009.
+          <a href="https://doi.org/10.1088/1361-6552/aac05e"
+             target="_blank" rel="noopener">
+            DOI: 10.1088/1361-6552/aac05e
+          </a>
+        </li>
+
+        <li>
+          Allan, D. W. (1966).
+          <em>Statistics of Atomic Frequency Standards.</em>
+          <em>Proceedings of the IEEE</em>, 54(2), 221–230.
+          <a href="https://doi.org/10.1109/PROC.1966.4634"
+             target="_blank" rel="noopener">
+            DOI: 10.1109/PROC.1966.4634
+          </a>
+        </li>
+
+        <li>
+          Android Developers.
+          <em>Sensor.TYPE_GYROSCOPE_UNCALIBRATED</em> —
+          Android sensor API reference.
+          <a href="https://developer.android.com/reference/android/hardware/Sensor#TYPE_GYROSCOPE_UNCALIBRATED"
+             target="_blank" rel="noopener">
+            Technical documentation
+          </a>
+        </li>
+
+        <li>
+          Murata Manufacturing Co., Ltd.
+          <em>SCH16T Series Combined Gyro Sensor and Accelerometer</em>,
+          including the SCH16T-K01 technical documentation.
+          <a href="https://www.murata.com/products/sensor/gyro/overview/lineup/sch16t"
+             target="_blank" rel="noopener">
+            Product documentation
+          </a>
+        </li>
+
+      </ol>
 
     </section>
 
