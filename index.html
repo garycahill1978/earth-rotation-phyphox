@@ -522,6 +522,24 @@
 
 
 
+
+    .murata-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 18px auto 10px;
+      border-radius: 12px;
+      border: 1px solid #e3e9f0;
+      background: white;
+    }
+
+    .murata-photo-caption {
+      color: #6b7280;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin: 8px 0 2px;
+    }
+
     /* ======================================================
        ABBA METHOD
        ====================================================== */
@@ -1562,10 +1580,15 @@
 
 
         <img
-          class="wiring-image"
-          src="Wiring_muRata_1.png"
+          class="murata-photo"
+          src="murata_Photo.png"
           loading="lazy"
-          alt="ESP32 to Murata SCH16T wiring diagram">
+          alt="Murata SCH16T-K01 reference setup with ESP32, compass, lazy Susan and phone running phyphox">
+
+        <p class="murata-photo-caption">
+          The complete reference setup: Murata SCH16T-K01, ESP32, compass,
+          LEGO mounting on a small lazy Susan, and a phone running phyphox.
+        </p>
 
 
         <a
@@ -1578,8 +1601,8 @@
 
 
         <p class="note">
-          Wiring, Arduino code, tested libraries
-          and results.
+          Full wiring, Arduino code, tested libraries,
+          cost and results.
         </p>
 
       </section>
