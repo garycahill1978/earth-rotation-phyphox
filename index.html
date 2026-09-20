@@ -1152,6 +1152,27 @@
       text-decoration: underline;
     }
 
+    .citation {
+      font-size: 0.78em;
+      vertical-align: super;
+      line-height: 0;
+      margin-left: 2px;
+    }
+
+    .citation a {
+      color: #0b5cab;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .citation a:hover {
+      text-decoration: underline;
+    }
+
+    .references-list li {
+      scroll-margin-top: 24px;
+    }
+
     /* ======================================================
        FOOTER
        ====================================================== */
@@ -1772,8 +1793,9 @@
 
 
         <p>
-          A guided Earth-rotation measurement
-          using the Android gyroscope.
+          A guided Earth-rotation measurement using
+          phyphox<sup class="citation"><a href="#ref-1">[1]</a></sup>
+          and the Android gyroscope.
         </p>
 
 
@@ -1801,7 +1823,7 @@
 
         <p class="note">
           Uses the Android uncalibrated
-          gyroscope stream.
+          gyroscope stream<sup class="citation"><a href="#ref-3">[3]</a></sup>.
         </p>
 
       </section>
@@ -1868,7 +1890,7 @@
 
 
         <p>
-          A high-performance MEMS gyroscope
+          A high-performance MEMS gyroscope<sup class="citation"><a href="#ref-4">[4]</a></sup>
           used as a reference demonstration
           of the same Earth-rotation measurement.
         </p>
@@ -2065,6 +2087,8 @@
 
         <p class="figure-caption">
           Selected ABBA reversal measurements across tested devices. The dashed line shows an expected Earth-rotation reversal of about <strong>0.0050°/s</strong> as a visual guide. Error bars show the <strong>between-run sample standard deviation</strong> where repeated same-protocol measurements were available. The <strong>Murata SCH16T-K01</strong> reference uses <strong>n = 9</strong> measurements.
+          <br><br>
+          <strong>Note:</strong> each smartphone result represents the individual device tested and should not be taken as representative of every unit of that phone model.
         </p>
 
       </div>
@@ -2085,6 +2109,11 @@
           reversal measurements close to the expected Earth-rotation signal,
           while other devices did not resolve it.
         </strong>
+
+        <br><br>
+
+        Performance varies strongly between <strong>phone models</strong>,
+        <strong>sensor streams</strong> and <strong>individual gyroscope axes</strong>.
 
         <br><br>
 
@@ -2160,6 +2189,16 @@
         above the expected horizontal Earth-rotation signal throughout the
         averaging times shown, demonstrating that sensor performance varies
         substantially between devices.
+
+      </div>
+
+
+      <div class="sensor-stream-note">
+
+        <strong>Important:</strong>
+        Allan deviation is used here as a <strong>screening tool for sensor stability</strong>.
+        A low Allan deviation does not by itself demonstrate detection of the Earth's rotation;
+        the Earth-rotation signal is demonstrated by the <strong>180° ABBA reversal measurement</strong>.
 
       </div>
 
@@ -2288,7 +2327,7 @@
             <p>
               <strong>Allan deviation</strong> is named after physicist
               David W. Allan and was developed for precision measurements
-              of time and frequency.
+              of time and frequency<sup class="citation"><a href="#ref-2">[2]</a></sup>.
             </p>
 
             <p>
@@ -2779,7 +2818,7 @@
 
       <ol class="references-list">
 
-        <li>
+        <li id="ref-1">
           Staacks, S., Hütz, S., Heinke, H. &amp; Stampfer, C. (2018).
           <em>Advanced tools for smartphone-based experiments: phyphox.</em>
           <em>Physics Education</em>, 53(4), 045009.
@@ -2789,7 +2828,7 @@
           </a>
         </li>
 
-        <li>
+        <li id="ref-2">
           Allan, D. W. (1966).
           <em>Statistics of Atomic Frequency Standards.</em>
           <em>Proceedings of the IEEE</em>, 54(2), 221–230.
@@ -2799,7 +2838,7 @@
           </a>
         </li>
 
-        <li>
+        <li id="ref-3">
           Android Developers.
           <em>Sensor.TYPE_GYROSCOPE_UNCALIBRATED</em> —
           Android sensor API reference.
@@ -2809,7 +2848,7 @@
           </a>
         </li>
 
-        <li>
+        <li id="ref-4">
           Murata Manufacturing Co., Ltd.
           <em>SCH16T Series Combined Gyro Sensor and Accelerometer</em>,
           including the SCH16T-K01 technical documentation.
@@ -2836,6 +2875,8 @@
 
 <footer>
 
+    Presented at the phyphox 10-year conference · RWTH Aachen University · September 2026
+    <br>
     Measuring the Earth's Rotation with phyphox · 2026
 
   </footer>
