@@ -2111,13 +2111,107 @@
       </div>
 
 
-      <div class="allan-quick-summary">
-        <strong>Why 15 s?</strong>
-        A 15 s interval is a practical middle ground: averaging reduces much
-        of the short-term random noise, while the complete ABBA sequence is
-        still short enough to limit exposure to slow drift.
+
+      <!-- TWO TIMESCALES: CORE EXPERIMENTAL DESIGN -->
+
+      <div class="allan-explain">
+
+        <h3>
+          Two different timescales matter
+        </h3>
+
+        <p>
+          It is useful to separate the <strong>averaging time for each
+          individual gyro measurement</strong> from the
+          <strong>total duration of the full ABBA sequence</strong>.
+          They affect the experiment in different ways.
+        </p>
+
       </div>
 
+
+      <div class="two-timescales">
+
+        <div class="timescale-box">
+
+          <h3>
+            1. Individual averaging time, \( \tau \)
+          </h3>
+
+          <p>
+            This is the duration of each A or B measurement.
+            Increasing \( \tau \) reduces short-term random noise and
+            initially improves the stability of the average, until slower
+            drift begins to become important.
+          </p>
+
+          <p>
+            The Allan-deviation plot shows this directly: the smartphone
+            curves generally fall as the averaging time increases through
+            the <strong>5–20 s</strong> range used here.
+          </p>
+
+        </div>
+
+
+        <div class="timescale-box">
+
+          <h3>
+            2. Total ABBA sequence time
+          </h3>
+
+          <p>
+            Longer individual measurements also make the whole
+            A1–B1–B2–A2 sequence longer.
+          </p>
+
+          <p>
+            Over a longer experiment, slow gyroscope bias changes,
+            temperature drift and other low-frequency effects have
+            more time to influence the result.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="timing-choice">
+
+        <h3>
+          Why use 15-second measurements?
+        </h3>
+
+        <p>
+          A 15 s averaging interval is a
+          <strong>practical compromise</strong>, not necessarily the
+          minimum point on the Allan-deviation curve.
+        </p>
+
+        <p>
+          By 15 s, much of the short-term random noise has already
+          been reduced, while the complete ABBA sequence can still
+          be finished in about <strong>76 s</strong>.
+          This keeps the full reversal experiment below roughly
+          100 s, limiting the time available for slow drift and
+          thermal changes to build up.
+        </p>
+
+        <p>
+          So the aim is not simply to make each measurement as long
+          as possible:
+          <strong>average long enough to reduce noise, but keep the
+          complete experiment short enough to suppress slow drift.</strong>
+        </p>
+
+      </div>
+
+
+      <div class="allan-keyline">
+        Longer \( \tau \) → less random noise
+        &nbsp;•&nbsp;
+        Longer full sequence → more exposure to slow drift
+      </div>
 
       <!-- EXPANDABLE ALLAN EXPLANATION -->
 
@@ -2533,106 +2627,6 @@
 
           </div>
 
-
-          <!-- TWO TIMESCALES -->
-
-          <div class="allan-explain">
-
-            <h3>
-              Two different timescales matter
-            </h3>
-
-            <p>
-              It is useful to separate the <strong>averaging time for each
-              individual gyro measurement</strong> from the
-              <strong>total duration of the full ABBA sequence</strong>.
-              They affect the experiment in different ways.
-            </p>
-
-          </div>
-
-
-          <div class="two-timescales">
-
-            <div class="timescale-box">
-
-              <h3>
-                1. Individual averaging time, \( \tau \)
-              </h3>
-
-              <p>
-                This is the duration of each A or B measurement.
-                Increasing \( \tau \) reduces short-term random noise
-                and usually improves the stability of the average.
-              </p>
-
-              <p>
-                The Allan-deviation plot shows this directly:
-                the smartphone curves fall strongly as the averaging
-                time increases through the first few tens of seconds.
-              </p>
-
-            </div>
-
-
-            <div class="timescale-box">
-
-              <h3>
-                2. Total ABBA sequence time
-              </h3>
-
-              <p>
-                Longer individual measurements also make the whole
-                A1–B1–B2–A2 sequence longer.
-              </p>
-
-              <p>
-                Over a longer experiment, slow gyroscope bias changes,
-                temperature drift and other low-frequency effects have
-                more time to influence the result.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="timing-choice">
-
-            <h3>
-              Why use 15-second measurements?
-            </h3>
-
-            <p>
-              A 15 s averaging interval is a
-              <strong>practical compromise</strong>, not necessarily the
-              minimum point on the Allan-deviation curve.
-            </p>
-
-            <p>
-              By 15 s, much of the short-term random noise has already
-              been reduced, while the complete ABBA sequence can still
-              be finished in about <strong>76 s</strong>.
-              This keeps the full reversal experiment below roughly
-              100 s, limiting the time available for slow drift and
-              thermal changes to build up.
-            </p>
-
-            <p>
-              So the aim is not simply to make each measurement as long
-              as possible:
-              <strong>average long enough to reduce noise, but keep the
-              complete experiment short enough to suppress slow drift.</strong>
-            </p>
-
-          </div>
-
-
-          <div class="allan-keyline">
-            Longer \( \tau \) → less random noise
-            &nbsp;•&nbsp;
-            Longer full sequence → more exposure to slow drift
-          </div>
 
         </div>
 
