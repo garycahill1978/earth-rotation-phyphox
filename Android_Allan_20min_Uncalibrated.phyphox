@@ -1,0 +1,627 @@
+<phyphox version="1.19" locale="en">
+<title>Android Allan 20 min - Uncalibrated</title>
+<category>Gyroscope</category>
+<description>Twenty-minute stationary Allan-deviation test for Android sensor type 16 (uncalibrated gyroscope). Estimates Allan deviation at practical averaging times for the Earth-rotation reversal experiment. Five-second start delay, then 1200 seconds of acquisition.</description>
+<data-containers>
+<container size="100000">gx</container>
+<container size="100000">gy</container>
+<container size="100000">gz</container>
+<container size="100000">gt</container>
+<container size="1">n</container>
+<container size="1">tmin</container>
+<container size="1">tmax</container>
+<container size="1">fs</container>
+<container size="1">elapsed</container>
+<container size="7" init="3,5,10,15,20,25,30">tau_points</container>
+<container size="7" init="0.00249,0.00249,0.00249,0.00249,0.00249,0.00249,0.00249">earth_points</container>
+<container size="7" init="0.000498,0.000498,0.000498,0.000498,0.000498,0.000498,0.000498">good_points</container>
+<container size="7">allan_points</container>
+<container size="7">ratio_points</container>
+<container size="1">allan_min</container>
+<container size="1">allan_min_tau</container>
+<container size="1">best_ratio</container>
+<container size="1">best_ratio_tau</container>
+<container size="1">recommended_tau</container>
+<container size="1">quality_code</container>
+<container size="1">f3</container>
+<container size="100000">ty3</container>
+<container size="100000">yavg3</container>
+<container size="100000">ydiff3</container>
+<container size="100000">ysq3</container>
+<container size="1">yms3</container>
+<container size="1">ay3</container>
+<container size="1">r3</container>
+<container size="1">f5</container>
+<container size="100000">ty5</container>
+<container size="100000">yavg5</container>
+<container size="100000">ydiff5</container>
+<container size="100000">ysq5</container>
+<container size="1">yms5</container>
+<container size="1">ay5</container>
+<container size="1">r5</container>
+<container size="1">f10</container>
+<container size="100000">ty10</container>
+<container size="100000">yavg10</container>
+<container size="100000">ydiff10</container>
+<container size="100000">ysq10</container>
+<container size="1">yms10</container>
+<container size="1">ay10</container>
+<container size="1">r10</container>
+<container size="1">f15</container>
+<container size="100000">ty15</container>
+<container size="100000">yavg15</container>
+<container size="100000">ydiff15</container>
+<container size="100000">ysq15</container>
+<container size="1">yms15</container>
+<container size="1">ay15</container>
+<container size="1">r15</container>
+<container size="1">f20</container>
+<container size="100000">ty20</container>
+<container size="100000">yavg20</container>
+<container size="100000">ydiff20</container>
+<container size="100000">ysq20</container>
+<container size="1">yms20</container>
+<container size="1">ay20</container>
+<container size="1">r20</container>
+<container size="1">f25</container>
+<container size="100000">ty25</container>
+<container size="100000">yavg25</container>
+<container size="100000">ydiff25</container>
+<container size="100000">ysq25</container>
+<container size="1">yms25</container>
+<container size="1">ay25</container>
+<container size="1">r25</container>
+<container size="1">f30</container>
+<container size="100000">ty30</container>
+<container size="100000">yavg30</container>
+<container size="100000">ydiff30</container>
+<container size="100000">ysq30</container>
+<container size="1">yms30</container>
+<container size="1">ay30</container>
+<container size="1">r30</container>
+<container size="1">rec5_30</container>
+<container size="1">rec3_30</container>
+<container size="1">rec5_25</container>
+<container size="1">rec3_25</container>
+<container size="1">rec5_20</container>
+<container size="1">rec3_20</container>
+<container size="1">rec5_15</container>
+<container size="1">rec3_15</container>
+<container size="1">rec5_10</container>
+<container size="1">rec3_10</container>
+<container size="1">rec5_5</container>
+<container size="1">rec3_5</container>
+<container size="1">rec5_3</container>
+<container size="1">rec3_3</container>
+</data-containers>
+
+<input>
+  <sensor type="custom" typeFilter="16" rate="100" rateStrategy="request">
+    <output component="x">gx</output>
+    <output component="y">gy</output>
+    <output component="z">gz</output>
+    <output component="t">gt</output>
+  </sensor>
+</input>
+
+<views>
+
+<view label="Start here">
+  <info label="PHONE GYROSCOPE QUALITY TEST"/>
+  <info label="Place the phone flat on a rigid, stationary surface. Do not touch or move it. Preferably do not charge it. Press Start, take your hands away during the 5 s delay, and leave it stationary for the full 20 minute run."/>
+  <value label="Elapsed test time" size="2" precision="0" unit="s"><input>elapsed</input></value>
+  <value label="Actual gyro sampling rate" size="1" precision="2" unit="Hz"><input>fs</input></value>
+  <separator height="1"/>
+  <value label="Recommended averaging interval" size="2" precision="0" unit="s"><input>recommended_tau</input></value>
+  <value label="Best Earth-signal / Allan-noise ratio" size="2" precision="2"><input>best_ratio</input></value>
+  <value label="Allan minimum" size="1" precision="6" unit="deg/s"><input>allan_min</input></value>
+  <value label="Allan minimum occurs at" size="1" precision="0" unit="s"><input>allan_min_tau</input></value>
+  <info label="Interpretation: best ratio >= 5 = very good; 3 to 5 = usable; below 3 = not recommended. The recommended interval is the SHORTEST tested interval reaching ratio >= 5; if none does, it uses the shortest interval reaching ratio >= 3. A recommendation of 0 s means no tested interval is adequate."/>
+</view>
+
+
+<view label="Allan curve">
+  <info label="Blue: measured Y-axis Allan deviation. Green: very-good threshold (expected Earth reversal / 5). Red: expected horizontal Earth-reversal signal near 53.4 degrees N, 0.00249 deg/s."/>
+  <graph labelX="Averaging time" unitX="s" labelY="Allan deviation" unitY="deg/s"
+         logX="true" logY="true" aspectRatio="1.5" partialUpdate="false">
+    <input axis="x">tau_points</input>
+    <input axis="y" color="blue" lineWidth="2">allan_points</input>
+    <input axis="x">tau_points</input>
+    <input axis="y" color="green" lineWidth="1">good_points</input>
+    <input axis="x">tau_points</input>
+    <input axis="y" color="red" lineWidth="1">earth_points</input>
+  </graph>
+</view>
+
+<view label="Numbers">
+<info label="Use the shortest interval with adequate signal-to-Allan ratio, not necessarily the absolute Allan minimum."/>
+<value label="3 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay3</input></value>
+<value label="5 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay5</input></value>
+<value label="10 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay10</input></value>
+<value label="15 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay15</input></value>
+<value label="20 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay20</input></value>
+<value label="25 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay25</input></value>
+<value label="30 s Allan deviation" size="1" precision="6" unit="deg/s"><input>ay30</input></value>
+<separator height="1"/>
+<value label="3 s Earth/Allan ratio" size="1" precision="2"><input>r3</input></value>
+<value label="5 s Earth/Allan ratio" size="1" precision="2"><input>r5</input></value>
+<value label="10 s Earth/Allan ratio" size="1" precision="2"><input>r10</input></value>
+<value label="15 s Earth/Allan ratio" size="1" precision="2"><input>r15</input></value>
+<value label="20 s Earth/Allan ratio" size="1" precision="2"><input>r20</input></value>
+<value label="25 s Earth/Allan ratio" size="1" precision="2"><input>r25</input></value>
+<value label="30 s Earth/Allan ratio" size="1" precision="2"><input>r30</input></value>
+</view>
+
+<view label="Raw gyro">
+  <info label="Raw Android sensor type 16 (uncalibrated gyroscope), shown in rad/s."/>
+  <graph labelX="Time" unitX="s" labelY="Angular velocity" unitY="rad/s" timeOnX="true" partialUpdate="true">
+    <input axis="x">gt</input><input axis="y" color="green">gx</input>
+    <input axis="x">gt</input><input axis="y" color="blue">gy</input>
+    <input axis="x">gt</input><input axis="y" color="yellow">gz</input>
+  </graph>
+</view>
+
+</views>
+<analysis sleep="5" timedRun="true" timedRunStartDelay="5" timedRunStopDelay="1200">
+
+<count><input as="buffer" clear="false">gt</input><output as="count">n</output></count>
+<min><input as="y" clear="false">gt</input><output as="min">tmin</output></min>
+<max><input as="y" clear="false">gt</input><output as="max">tmax</output></max>
+<formula formula="([1]-1)/([3]-[2])">
+  <input clear="false">n</input><input clear="false">tmin</input><input clear="false">tmax</input><output>fs</output>
+</formula>
+<formula formula="[1]-[2]">
+  <input clear="false">tmax</input><input clear="false">tmin</input><output>elapsed</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*3))">
+  <input clear="false">fs</input><output>f3</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*5))">
+  <input clear="false">fs</input><output>f5</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*10))">
+  <input clear="false">fs</input><output>f10</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*15))">
+  <input clear="false">fs</input><output>f15</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*20))">
+  <input clear="false">fs</input><output>f20</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*25))">
+  <input clear="false">fs</input><output>f25</output>
+</formula>
+
+
+<formula formula="max(1,round([1]*30))">
+  <input clear="false">fs</input><output>f30</output>
+</formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f3</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty3</output>
+      <output as="y">yavg3</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg3</input>
+      <output>ydiff3</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff3</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq3</output>
+    </power>
+    <average>
+      <input clear="false">ysq3</input>
+      <output as="average">yms3</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms3</input>
+      <output>ay3</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay3</input>
+      <output>r3</output>
+    </formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f5</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty5</output>
+      <output as="y">yavg5</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg5</input>
+      <output>ydiff5</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff5</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq5</output>
+    </power>
+    <average>
+      <input clear="false">ysq5</input>
+      <output as="average">yms5</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms5</input>
+      <output>ay5</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay5</input>
+      <output>r5</output>
+    </formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f10</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty10</output>
+      <output as="y">yavg10</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg10</input>
+      <output>ydiff10</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff10</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq10</output>
+    </power>
+    <average>
+      <input clear="false">ysq10</input>
+      <output as="average">yms10</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms10</input>
+      <output>ay10</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay10</input>
+      <output>r10</output>
+    </formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f15</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty15</output>
+      <output as="y">yavg15</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg15</input>
+      <output>ydiff15</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff15</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq15</output>
+    </power>
+    <average>
+      <input clear="false">ysq15</input>
+      <output as="average">yms15</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms15</input>
+      <output>ay15</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay15</input>
+      <output>r15</output>
+    </formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f20</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty20</output>
+      <output as="y">yavg20</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg20</input>
+      <output>ydiff20</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff20</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq20</output>
+    </power>
+    <average>
+      <input clear="false">ysq20</input>
+      <output as="average">yms20</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms20</input>
+      <output>ay20</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay20</input>
+      <output>r20</output>
+    </formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f25</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty25</output>
+      <output as="y">yavg25</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg25</input>
+      <output>ydiff25</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff25</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq25</output>
+    </power>
+    <average>
+      <input clear="false">ysq25</input>
+      <output as="average">yms25</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms25</input>
+      <output>ay25</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay25</input>
+      <output>r25</output>
+    </formula>
+
+
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f30</input>
+      <input clear="false" as="x">gt</input>
+      <input clear="false" as="y">gy</input>
+      <output as="x">ty30</output>
+      <output as="y">yavg30</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg30</input>
+      <output>ydiff30</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff30</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq30</output>
+    </power>
+    <average>
+      <input clear="false">ysq30</input>
+      <output as="average">yms30</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms30</input>
+      <output>ay30</output>
+    </formula>
+    <formula formula="0.00249/[1]">
+      <input clear="false">ay30</input>
+      <output>r30</output>
+    </formula>
+
+<append>
+<input as="in" clear="false">ay3</input>
+<input as="in" clear="false">ay5</input>
+<input as="in" clear="false">ay10</input>
+<input as="in" clear="false">ay15</input>
+<input as="in" clear="false">ay20</input>
+<input as="in" clear="false">ay25</input>
+<input as="in" clear="false">ay30</input>
+<output as="out">allan_points</output></append>
+<append>
+<input as="in" clear="false">r3</input>
+<input as="in" clear="false">r5</input>
+<input as="in" clear="false">r10</input>
+<input as="in" clear="false">r15</input>
+<input as="in" clear="false">r20</input>
+<input as="in" clear="false">r25</input>
+<input as="in" clear="false">r30</input>
+<output as="out">ratio_points</output></append>
+
+<min>
+  <input as="x" clear="false">tau_points</input>
+  <input as="y" clear="false">allan_points</input>
+  <output as="min">allan_min</output>
+  <output as="position">allan_min_tau</output>
+</min>
+<max>
+  <input as="x" clear="false">tau_points</input>
+  <input as="y" clear="false">ratio_points</input>
+  <output as="max">best_ratio</output>
+  <output as="position">best_ratio_tau</output>
+</max>
+
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r30</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">30</input>
+      <input as="false" type="value">0</input>
+      <output as="result">rec5_30</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r25</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">25</input>
+      <input as="false" clear="false">rec5_30</input>
+      <output as="result">rec5_25</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r20</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">20</input>
+      <input as="false" clear="false">rec5_25</input>
+      <output as="result">rec5_20</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r15</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">15</input>
+      <input as="false" clear="false">rec5_20</input>
+      <output as="result">rec5_15</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r10</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">10</input>
+      <input as="false" clear="false">rec5_15</input>
+      <output as="result">rec5_10</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r5</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">5</input>
+      <input as="false" clear="false">rec5_10</input>
+      <output as="result">rec5_5</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r3</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">3</input>
+      <input as="false" clear="false">rec5_5</input>
+      <output as="result">rec5_3</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r30</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">30</input>
+      <input as="false" type="value">0</input>
+      <output as="result">rec3_30</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r25</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">25</input>
+      <input as="false" clear="false">rec3_30</input>
+      <output as="result">rec3_25</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r20</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">20</input>
+      <input as="false" clear="false">rec3_25</input>
+      <output as="result">rec3_20</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r15</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">15</input>
+      <input as="false" clear="false">rec3_20</input>
+      <output as="result">rec3_15</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r10</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">10</input>
+      <input as="false" clear="false">rec3_15</input>
+      <output as="result">rec3_10</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r5</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">5</input>
+      <input as="false" clear="false">rec3_10</input>
+      <output as="result">rec3_5</output>
+    </if>
+
+    <if greater="true" equal="true">
+      <input as="a" clear="false">r3</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">3</input>
+      <input as="false" clear="false">rec3_5</input>
+      <output as="result">rec3_3</output>
+    </if>
+
+<if greater="true">
+  <input as="a" clear="false">rec5_3</input>
+  <input as="b" type="value">0</input>
+  <input as="true" clear="false">rec5_3</input>
+  <input as="false" clear="false">rec3_3</input>
+  <output as="result">recommended_tau</output>
+</if>
+
+
+<if greater="true" equal="true">
+  <input as="a" clear="false">best_ratio</input>
+  <input as="b" type="value">3</input>
+  <input as="true" type="value">1</input>
+  <input as="false" type="value">0</input>
+  <output as="result">quality_code</output>
+</if>
+<if greater="true" equal="true">
+  <input as="a" clear="false">best_ratio</input>
+  <input as="b" type="value">5</input>
+  <input as="true" type="value">2</input>
+  <input as="false" clear="false">quality_code</input>
+  <output as="result">quality_code</output>
+</if>
+
+</analysis>
+<export>
+
+<set name="Raw uncalibrated gyro">
+  <data name="Time (s)">gt</data>
+  <data name="X (rad/s)">gx</data>
+  <data name="Y (rad/s)">gy</data>
+  <data name="Z (rad/s)">gz</data>
+</set>
+<set name="Allan quality results">
+  <data name="Actual sampling rate (Hz)">fs</data>
+  <data name="Elapsed test time (s)">elapsed</data>
+
+<data name="Y Allan 3 s (deg/s)">ay3</data>
+<data name="Y Allan 5 s (deg/s)">ay5</data>
+<data name="Y Allan 10 s (deg/s)">ay10</data>
+<data name="Y Allan 15 s (deg/s)">ay15</data>
+<data name="Y Allan 20 s (deg/s)">ay20</data>
+<data name="Y Allan 25 s (deg/s)">ay25</data>
+<data name="Y Allan 30 s (deg/s)">ay30</data>
+<data name="Earth-Allan ratio 3 s">r3</data>
+<data name="Earth-Allan ratio 5 s">r5</data>
+<data name="Earth-Allan ratio 10 s">r10</data>
+<data name="Earth-Allan ratio 15 s">r15</data>
+<data name="Earth-Allan ratio 20 s">r20</data>
+<data name="Earth-Allan ratio 25 s">r25</data>
+<data name="Earth-Allan ratio 30 s">r30</data>
+
+  <data name="Allan minimum (deg/s)">allan_min</data>
+  <data name="Allan-minimum tau (s)">allan_min_tau</data>
+  <data name="Best Earth-Allan ratio">best_ratio</data>
+  <data name="Recommended interval (s)">recommended_tau</data>
+  <data name="Quality code (2 very good, 1 usable, 0 fail)">quality_code</data>
+</set>
+
+</export>
+</phyphox>

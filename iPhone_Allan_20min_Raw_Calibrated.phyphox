@@ -1,0 +1,4908 @@
+<?xml version='1.0' encoding='utf-8'?>
+<phyphox version="1.19" locale="en">
+  <title>iPhone Allan 20 min - Raw + Cal</title>
+  <category>Gyroscope</category>
+  <icon>AD</icon>
+  <description>Twenty-minute stationary Allan-deviation comparison of concurrent raw (uncalibrated) and calibrated iPhone gyroscope streams. Separate log-log comparisons for X, Y and Z in deg/s. Five-second start countdown, then 1200 seconds of acquisition. After automatic stop, press Finalise plots and export All data. Requires the iOS beta supporting preferUncalibrated.</description>
+  <link label="Allan deviation: NIST handbook">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication1065.pdf</link>
+  <data-containers>
+    <container size="1" init="1200">duration</container>
+    <container size="1" init="0">now</container>
+    <container size="1" init="0">elapsedMinutes</container>
+    <container size="1" init="1200">remaining</container>
+    <container size="1" init="5">minimumBlocks</container>
+    <container size="1" init="0">refreshRequest</container>
+    <container size="1" init="0">refreshDone</container>
+    <container size="16" init="0.1,0.2,0.5,1,2,3,5,7,10,15,20,30,45,60,90,120">tauTargets</container>
+    <container size="0">workMeans</container>
+    <container size="0">workComplete</container>
+    <container size="0">workDiff</container>
+    <container size="0">workSquared</container>
+    <container size="0">workTime</container>
+    <container size="0">workY</container>
+    <container size="1">workMeanSquared</container>
+    <container size="1">workAdev</container>
+    <container size="0">ut</container>
+    <container size="0">uwt</container>
+    <container size="0">ux</container>
+    <container size="0">uwx</container>
+    <container size="0">uy</container>
+    <container size="0">uwy</container>
+    <container size="0">uz</container>
+    <container size="0">uwz</container>
+    <container size="1">un</container>
+    <container size="1">ut0</container>
+    <container size="1">ut1</container>
+    <container size="1">uspan</container>
+    <container size="1">ufs</container>
+    <container size="1">udtMean</container>
+    <container size="1">udtSD</container>
+    <container size="1">umaxGap</container>
+    <container size="1">uplotFactor</container>
+    <container size="0">udt</container>
+    <container size="16">utauPlot</container>
+    <container size="16">ublockPlot</container>
+    <container size="16">upairPlot</container>
+    <container size="16">uxAllan</container>
+    <container size="16">uyAllan</container>
+    <container size="16">uzAllan</container>
+    <container size="1">u00m</container>
+    <container size="1">u00tau</container>
+    <container size="1">u00blocks</container>
+    <container size="1">u00pairs</container>
+    <container size="1">u00x</container>
+    <container size="1">u00y</container>
+    <container size="1">u00z</container>
+    <container size="1">u01m</container>
+    <container size="1">u01tau</container>
+    <container size="1">u01blocks</container>
+    <container size="1">u01pairs</container>
+    <container size="1">u01x</container>
+    <container size="1">u01y</container>
+    <container size="1">u01z</container>
+    <container size="1">u02m</container>
+    <container size="1">u02tau</container>
+    <container size="1">u02blocks</container>
+    <container size="1">u02pairs</container>
+    <container size="1">u02x</container>
+    <container size="1">u02y</container>
+    <container size="1">u02z</container>
+    <container size="1">u03m</container>
+    <container size="1">u03tau</container>
+    <container size="1">u03blocks</container>
+    <container size="1">u03pairs</container>
+    <container size="1">u03x</container>
+    <container size="1">u03y</container>
+    <container size="1">u03z</container>
+    <container size="1">u04m</container>
+    <container size="1">u04tau</container>
+    <container size="1">u04blocks</container>
+    <container size="1">u04pairs</container>
+    <container size="1">u04x</container>
+    <container size="1">u04y</container>
+    <container size="1">u04z</container>
+    <container size="1">u05m</container>
+    <container size="1">u05tau</container>
+    <container size="1">u05blocks</container>
+    <container size="1">u05pairs</container>
+    <container size="1">u05x</container>
+    <container size="1">u05y</container>
+    <container size="1">u05z</container>
+    <container size="1">u06m</container>
+    <container size="1">u06tau</container>
+    <container size="1">u06blocks</container>
+    <container size="1">u06pairs</container>
+    <container size="1">u06x</container>
+    <container size="1">u06y</container>
+    <container size="1">u06z</container>
+    <container size="1">u07m</container>
+    <container size="1">u07tau</container>
+    <container size="1">u07blocks</container>
+    <container size="1">u07pairs</container>
+    <container size="1">u07x</container>
+    <container size="1">u07y</container>
+    <container size="1">u07z</container>
+    <container size="1">u08m</container>
+    <container size="1">u08tau</container>
+    <container size="1">u08blocks</container>
+    <container size="1">u08pairs</container>
+    <container size="1">u08x</container>
+    <container size="1">u08y</container>
+    <container size="1">u08z</container>
+    <container size="1">u09m</container>
+    <container size="1">u09tau</container>
+    <container size="1">u09blocks</container>
+    <container size="1">u09pairs</container>
+    <container size="1">u09x</container>
+    <container size="1">u09y</container>
+    <container size="1">u09z</container>
+    <container size="1">u10m</container>
+    <container size="1">u10tau</container>
+    <container size="1">u10blocks</container>
+    <container size="1">u10pairs</container>
+    <container size="1">u10x</container>
+    <container size="1">u10y</container>
+    <container size="1">u10z</container>
+    <container size="1">u11m</container>
+    <container size="1">u11tau</container>
+    <container size="1">u11blocks</container>
+    <container size="1">u11pairs</container>
+    <container size="1">u11x</container>
+    <container size="1">u11y</container>
+    <container size="1">u11z</container>
+    <container size="1">u12m</container>
+    <container size="1">u12tau</container>
+    <container size="1">u12blocks</container>
+    <container size="1">u12pairs</container>
+    <container size="1">u12x</container>
+    <container size="1">u12y</container>
+    <container size="1">u12z</container>
+    <container size="1">u13m</container>
+    <container size="1">u13tau</container>
+    <container size="1">u13blocks</container>
+    <container size="1">u13pairs</container>
+    <container size="1">u13x</container>
+    <container size="1">u13y</container>
+    <container size="1">u13z</container>
+    <container size="1">u14m</container>
+    <container size="1">u14tau</container>
+    <container size="1">u14blocks</container>
+    <container size="1">u14pairs</container>
+    <container size="1">u14x</container>
+    <container size="1">u14y</container>
+    <container size="1">u14z</container>
+    <container size="1">u15m</container>
+    <container size="1">u15tau</container>
+    <container size="1">u15blocks</container>
+    <container size="1">u15pairs</container>
+    <container size="1">u15x</container>
+    <container size="1">u15y</container>
+    <container size="1">u15z</container>
+    <container size="0">uplotTx</container>
+    <container size="0">uplotx</container>
+    <container size="0">uplotTy</container>
+    <container size="0">uploty</container>
+    <container size="0">uplotTz</container>
+    <container size="0">uplotz</container>
+    <container size="0">ct</container>
+    <container size="0">cwt</container>
+    <container size="0">cx</container>
+    <container size="0">cwx</container>
+    <container size="0">cy</container>
+    <container size="0">cwy</container>
+    <container size="0">cz</container>
+    <container size="0">cwz</container>
+    <container size="1">cn</container>
+    <container size="1">ct0</container>
+    <container size="1">ct1</container>
+    <container size="1">cspan</container>
+    <container size="1">cfs</container>
+    <container size="1">cdtMean</container>
+    <container size="1">cdtSD</container>
+    <container size="1">cmaxGap</container>
+    <container size="1">cplotFactor</container>
+    <container size="0">cdt</container>
+    <container size="16">ctauPlot</container>
+    <container size="16">cblockPlot</container>
+    <container size="16">cpairPlot</container>
+    <container size="16">cxAllan</container>
+    <container size="16">cyAllan</container>
+    <container size="16">czAllan</container>
+    <container size="1">c00m</container>
+    <container size="1">c00tau</container>
+    <container size="1">c00blocks</container>
+    <container size="1">c00pairs</container>
+    <container size="1">c00x</container>
+    <container size="1">c00y</container>
+    <container size="1">c00z</container>
+    <container size="1">c01m</container>
+    <container size="1">c01tau</container>
+    <container size="1">c01blocks</container>
+    <container size="1">c01pairs</container>
+    <container size="1">c01x</container>
+    <container size="1">c01y</container>
+    <container size="1">c01z</container>
+    <container size="1">c02m</container>
+    <container size="1">c02tau</container>
+    <container size="1">c02blocks</container>
+    <container size="1">c02pairs</container>
+    <container size="1">c02x</container>
+    <container size="1">c02y</container>
+    <container size="1">c02z</container>
+    <container size="1">c03m</container>
+    <container size="1">c03tau</container>
+    <container size="1">c03blocks</container>
+    <container size="1">c03pairs</container>
+    <container size="1">c03x</container>
+    <container size="1">c03y</container>
+    <container size="1">c03z</container>
+    <container size="1">c04m</container>
+    <container size="1">c04tau</container>
+    <container size="1">c04blocks</container>
+    <container size="1">c04pairs</container>
+    <container size="1">c04x</container>
+    <container size="1">c04y</container>
+    <container size="1">c04z</container>
+    <container size="1">c05m</container>
+    <container size="1">c05tau</container>
+    <container size="1">c05blocks</container>
+    <container size="1">c05pairs</container>
+    <container size="1">c05x</container>
+    <container size="1">c05y</container>
+    <container size="1">c05z</container>
+    <container size="1">c06m</container>
+    <container size="1">c06tau</container>
+    <container size="1">c06blocks</container>
+    <container size="1">c06pairs</container>
+    <container size="1">c06x</container>
+    <container size="1">c06y</container>
+    <container size="1">c06z</container>
+    <container size="1">c07m</container>
+    <container size="1">c07tau</container>
+    <container size="1">c07blocks</container>
+    <container size="1">c07pairs</container>
+    <container size="1">c07x</container>
+    <container size="1">c07y</container>
+    <container size="1">c07z</container>
+    <container size="1">c08m</container>
+    <container size="1">c08tau</container>
+    <container size="1">c08blocks</container>
+    <container size="1">c08pairs</container>
+    <container size="1">c08x</container>
+    <container size="1">c08y</container>
+    <container size="1">c08z</container>
+    <container size="1">c09m</container>
+    <container size="1">c09tau</container>
+    <container size="1">c09blocks</container>
+    <container size="1">c09pairs</container>
+    <container size="1">c09x</container>
+    <container size="1">c09y</container>
+    <container size="1">c09z</container>
+    <container size="1">c10m</container>
+    <container size="1">c10tau</container>
+    <container size="1">c10blocks</container>
+    <container size="1">c10pairs</container>
+    <container size="1">c10x</container>
+    <container size="1">c10y</container>
+    <container size="1">c10z</container>
+    <container size="1">c11m</container>
+    <container size="1">c11tau</container>
+    <container size="1">c11blocks</container>
+    <container size="1">c11pairs</container>
+    <container size="1">c11x</container>
+    <container size="1">c11y</container>
+    <container size="1">c11z</container>
+    <container size="1">c12m</container>
+    <container size="1">c12tau</container>
+    <container size="1">c12blocks</container>
+    <container size="1">c12pairs</container>
+    <container size="1">c12x</container>
+    <container size="1">c12y</container>
+    <container size="1">c12z</container>
+    <container size="1">c13m</container>
+    <container size="1">c13tau</container>
+    <container size="1">c13blocks</container>
+    <container size="1">c13pairs</container>
+    <container size="1">c13x</container>
+    <container size="1">c13y</container>
+    <container size="1">c13z</container>
+    <container size="1">c14m</container>
+    <container size="1">c14tau</container>
+    <container size="1">c14blocks</container>
+    <container size="1">c14pairs</container>
+    <container size="1">c14x</container>
+    <container size="1">c14y</container>
+    <container size="1">c14z</container>
+    <container size="1">c15m</container>
+    <container size="1">c15tau</container>
+    <container size="1">c15blocks</container>
+    <container size="1">c15pairs</container>
+    <container size="1">c15x</container>
+    <container size="1">c15y</container>
+    <container size="1">c15z</container>
+    <container size="0">cplotTx</container>
+    <container size="0">cplotx</container>
+    <container size="0">cplotTy</container>
+    <container size="0">cploty</container>
+    <container size="0">cplotTz</container>
+    <container size="0">cplotz</container>
+  </data-containers>
+  <input>
+    <sensor type="gyroscope" rate="100" rateStrategy="request" preferUncalibrated="true">
+      <output component="x">ux</output>
+      <output component="y">uy</output>
+      <output component="z">uz</output>
+      <output component="t">ut</output>
+    </sensor>
+    <sensor type="gyroscope" rate="100" rateStrategy="request" preferUncalibrated="false">
+      <output component="x">cx</output>
+      <output component="y">cy</output>
+      <output component="z">cz</output>
+      <output component="t">ct</output>
+    </sensor>
+  </input>
+  <views>
+    <view label="1. Record">
+      <info label="20 MINUTE STATIONARY RUN" />
+      <info label="Place the iPhone flat on a rigid surface and let it settle. Keep the same orientation throughout: no ABBA turns during this run. Keep phyphox open in the foreground." />
+      <info label="Press Start. A 5 s countdown lets you take your hands away; the app then records for 20 minutes and stops automatically. Do not pause and resume. Start each run with cleared data." />
+      <value label="Recorded time" precision="1" size="2" unit="min">
+        <input>elapsedMinutes</input>
+      </value>
+      <value label="Time remaining" precision="0" size="1" unit="s">
+        <input>remaining</input>
+      </value>
+      <button label="Finalise plots (after stop)">
+        <input type="value">1</input>
+        <output>refreshRequest</output>
+      </button>
+      <info label="After the automatic stop, press Finalise plots once, then export All data. This includes the last samples received since the most recent live plot update." />
+      <value label="Uncalibrated / raw samples analysed" precision="0" size="1">
+        <input>un</input>
+      </value>
+      <value label="Uncalibrated / raw measured rate" precision="2" size="1" unit="Hz">
+        <input>ufs</input>
+      </value>
+      <value label="Calibrated samples analysed" precision="0" size="1">
+        <input>cn</input>
+      </value>
+      <value label="Calibrated measured rate" precision="2" size="1" unit="Hz">
+        <input>cfs</input>
+      </value>
+      <info label="Leave the experiment-menu gyroscope calibration switch unchanged: it can change both inputs together. Reopen this experiment if you accidentally change it." />
+    </view>
+    <view label="2. Allan X">
+      <info label="ORANGE: raw / uncalibrated" color="ff8c42" />
+      <info label="BLUE: calibrated" color="4da6ff" />
+      <graph label="X Allan deviation" labelX="Averaging time" unitX="s" labelY="Allan deviation" unitY="deg/s" logX="true" logY="true" partialUpdate="false" aspectRatio="1.1" style="lines" lineWidth="2">
+        <input axis="x">utauPlot</input>
+        <input axis="y" color="ff8c42">uxAllan</input>
+        <input axis="x">ctauPlot</input>
+        <input axis="y" color="4da6ff">cxAllan</input>
+      </graph>
+      <info label="Complete non-overlapping blocks only. Points appear after at least 5 blocks. Live curves refresh about every 10 s; press Finalise plots after recording stops." />
+      <value label="Raw at about 10 s" precision="6" size="1" unit="deg/s">
+        <input>u08x</input>
+      </value>
+      <value label="Calibrated at about 10 s" precision="6" size="1" unit="deg/s">
+        <input>c08x</input>
+      </value>
+      <value label="Raw at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>u09x</input>
+      </value>
+      <value label="Calibrated at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>c09x</input>
+      </value>
+      <value label="Raw at about 20 s" precision="6" size="1" unit="deg/s">
+        <input>u10x</input>
+      </value>
+      <value label="Calibrated at about 20 s" precision="6" size="1" unit="deg/s">
+        <input>c10x</input>
+      </value>
+      <button label="Finalise plots (after stop)">
+        <input type="value">1</input>
+        <output>refreshRequest</output>
+      </button>
+    </view>
+    <view label="3. Allan Y">
+      <info label="ORANGE: raw / uncalibrated" color="ff8c42" />
+      <info label="BLUE: calibrated" color="4da6ff" />
+      <graph label="Y Allan deviation" labelX="Averaging time" unitX="s" labelY="Allan deviation" unitY="deg/s" logX="true" logY="true" partialUpdate="false" aspectRatio="1.1" style="lines" lineWidth="2">
+        <input axis="x">utauPlot</input>
+        <input axis="y" color="ff8c42">uyAllan</input>
+        <input axis="x">ctauPlot</input>
+        <input axis="y" color="4da6ff">cyAllan</input>
+      </graph>
+      <info label="Complete non-overlapping blocks only. Points appear after at least 5 blocks. Live curves refresh about every 10 s; press Finalise plots after recording stops." />
+      <value label="Raw at about 10 s" precision="6" size="1" unit="deg/s">
+        <input>u08y</input>
+      </value>
+      <value label="Calibrated at about 10 s" precision="6" size="1" unit="deg/s">
+        <input>c08y</input>
+      </value>
+      <value label="Raw at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>u09y</input>
+      </value>
+      <value label="Calibrated at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>c09y</input>
+      </value>
+      <value label="Raw at about 20 s" precision="6" size="1" unit="deg/s">
+        <input>u10y</input>
+      </value>
+      <value label="Calibrated at about 20 s" precision="6" size="1" unit="deg/s">
+        <input>c10y</input>
+      </value>
+      <button label="Finalise plots (after stop)">
+        <input type="value">1</input>
+        <output>refreshRequest</output>
+      </button>
+    </view>
+    <view label="4. Allan Z">
+      <info label="ORANGE: raw / uncalibrated" color="ff8c42" />
+      <info label="BLUE: calibrated" color="4da6ff" />
+      <graph label="Z Allan deviation" labelX="Averaging time" unitX="s" labelY="Allan deviation" unitY="deg/s" logX="true" logY="true" partialUpdate="false" aspectRatio="1.1" style="lines" lineWidth="2">
+        <input axis="x">utauPlot</input>
+        <input axis="y" color="ff8c42">uzAllan</input>
+        <input axis="x">ctauPlot</input>
+        <input axis="y" color="4da6ff">czAllan</input>
+      </graph>
+      <info label="Complete non-overlapping blocks only. Points appear after at least 5 blocks. Live curves refresh about every 10 s; press Finalise plots after recording stops." />
+      <value label="Raw at about 10 s" precision="6" size="1" unit="deg/s">
+        <input>u08z</input>
+      </value>
+      <value label="Calibrated at about 10 s" precision="6" size="1" unit="deg/s">
+        <input>c08z</input>
+      </value>
+      <value label="Raw at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>u09z</input>
+      </value>
+      <value label="Calibrated at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>c09z</input>
+      </value>
+      <value label="Raw at about 20 s" precision="6" size="1" unit="deg/s">
+        <input>u10z</input>
+      </value>
+      <value label="Calibrated at about 20 s" precision="6" size="1" unit="deg/s">
+        <input>c10z</input>
+      </value>
+      <button label="Finalise plots (after stop)">
+        <input type="value">1</input>
+        <output>refreshRequest</output>
+      </button>
+    </view>
+    <view label="5. Rate traces">
+      <info label="Approximately 1 s means for viewing only. ORANGE raw; BLUE calibrated. Both full-rate source streams are preserved in the export." />
+      <graph label="X rate" labelX="Time" unitX="s" labelY="Rotation rate" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">uplotTx</input>
+        <input axis="y" color="ff8c42">uplotx</input>
+        <input axis="x">cplotTx</input>
+        <input axis="y" color="4da6ff">cplotx</input>
+      </graph>
+      <graph label="Y rate" labelX="Time" unitX="s" labelY="Rotation rate" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">uplotTy</input>
+        <input axis="y" color="ff8c42">uploty</input>
+        <input axis="x">cplotTy</input>
+        <input axis="y" color="4da6ff">cploty</input>
+      </graph>
+      <graph label="Z rate" labelX="Time" unitX="s" labelY="Rotation rate" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">uplotTz</input>
+        <input axis="y" color="ff8c42">uplotz</input>
+        <input axis="x">cplotTz</input>
+        <input axis="y" color="4da6ff">cplotz</input>
+      </graph>
+    </view>
+    <view label="6. Method">
+      <info label="Each stream uses its own timestamps and measured sampling rate. For target tau, m = round(tau * sampling rate). The graph uses the resulting actual tau = m / sampling rate." />
+      <info label="With K complete blocks and block means b, Allan deviation = sqrt[sum((b_next - b)^2) / (2*(K-1))]. It is reported in deg/s. No detrending or subtraction of a fitted drift is applied." />
+      <info label="At tau near 120 s, a 20 min recording provides only about 10 blocks, so the right-hand end is less well determined. Block and difference counts are exported; these are not independent degrees of freedom." />
+      <info label="This sample-based estimate assumes approximately uniform sampling. A long gap or a paused run needs separate treatment. Both native timestamp columns and the largest observed sample gap are exported." />
+      <info label="A lower calibrated curve shows lower fluctuations in that stream. It does not demonstrate that the steady Earth-rotation signal survives calibration. Use the separate ABBA experiment for that comparison." />
+      <value label="Raw time span analysed" precision="2" size="1" unit="s">
+        <input>uspan</input>
+      </value>
+      <value label="Raw largest sample gap" precision="4" size="1" unit="s">
+        <input>umaxGap</input>
+      </value>
+      <value label="Raw sample-interval SD" precision="5" size="1" unit="s">
+        <input>udtSD</input>
+      </value>
+      <value label="Calibrated time span analysed" precision="2" size="1" unit="s">
+        <input>cspan</input>
+      </value>
+      <value label="Calibrated largest sample gap" precision="4" size="1" unit="s">
+        <input>cmaxGap</input>
+      </value>
+      <value label="Calibrated sample-interval SD" precision="5" size="1" unit="s">
+        <input>cdtSD</input>
+      </value>
+    </view>
+  </views>
+  <analysis sleep="10" timedRun="true" timedRunStartDelay="5" timedRunStopDelay="1200">
+    <timer>
+      <output>now</output>
+    </timer>
+    <formula formula="min([1],[2])/60">
+      <input clear="false">now</input>
+      <input clear="false">duration</input>
+      <output>elapsedMinutes</output>
+    </formula>
+    <formula formula="max(0,[1]-[2])">
+      <input clear="false">duration</input>
+      <input clear="false">now</input>
+      <output>remaining</output>
+    </formula>
+    <rangefilter>
+      <input clear="false">ut</input>
+      <input type="value" as="min">0</input>
+      <input clear="false" as="max">duration</input>
+      <input clear="false">ux</input>
+      <input clear="false">uy</input>
+      <input clear="false">uz</input>
+      <output>uwt</output>
+      <output>uwx</output>
+      <output>uwy</output>
+      <output>uwz</output>
+    </rangefilter>
+    <count>
+      <input clear="false" as="buffer">uwt</input>
+      <output as="count">un</output>
+    </count>
+    <first>
+      <input clear="false">uwt</input>
+      <output>ut0</output>
+    </first>
+    <formula formula="[1]">
+      <input clear="false">uwt</input>
+      <output>ut1</output>
+    </formula>
+    <formula formula="[1]-[2]">
+      <input clear="false">ut1</input>
+      <input clear="false">ut0</input>
+      <output>uspan</output>
+    </formula>
+    <formula formula="([1]-1)/[2]">
+      <input clear="false">un</input>
+      <input clear="false">uspan</input>
+      <output>ufs</output>
+    </formula>
+    <differentiate>
+      <input clear="false">uwt</input>
+      <output>udt</output>
+    </differentiate>
+    <average>
+      <input clear="false">udt</input>
+      <output as="average">udtMean</output>
+      <output as="stddev">udtSD</output>
+    </average>
+    <max>
+      <input clear="true" as="y">udt</input>
+      <output as="max">umaxGap</output>
+    </max>
+    <formula formula="max(1,round([1]*0.1))">
+      <input clear="false">ufs</input>
+      <output>u00m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u00m</input>
+      <input clear="false">ufs</input>
+      <output>u00tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u00m</input>
+      <output>u00blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u00blocks</input>
+      <output>u00pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u00m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u00blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u00blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u00x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u00m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u00blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u00blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u00y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u00m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u00blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u00blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u00z</output>
+    </if>
+    <formula formula="max(1,round([1]*0.2))">
+      <input clear="false">ufs</input>
+      <output>u01m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u01m</input>
+      <input clear="false">ufs</input>
+      <output>u01tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u01m</input>
+      <output>u01blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u01blocks</input>
+      <output>u01pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u01m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u01blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u01blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u01x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u01m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u01blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u01blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u01y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u01m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u01blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u01blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u01z</output>
+    </if>
+    <formula formula="max(1,round([1]*0.5))">
+      <input clear="false">ufs</input>
+      <output>u02m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u02m</input>
+      <input clear="false">ufs</input>
+      <output>u02tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u02m</input>
+      <output>u02blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u02blocks</input>
+      <output>u02pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u02m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u02blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u02blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u02x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u02m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u02blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u02blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u02y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u02m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u02blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u02blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u02z</output>
+    </if>
+    <formula formula="max(1,round([1]*1))">
+      <input clear="false">ufs</input>
+      <output>u03m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u03m</input>
+      <input clear="false">ufs</input>
+      <output>u03tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u03m</input>
+      <output>u03blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u03blocks</input>
+      <output>u03pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u03m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u03blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u03blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u03x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u03m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u03blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u03blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u03y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u03m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u03blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u03blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u03z</output>
+    </if>
+    <formula formula="max(1,round([1]*2))">
+      <input clear="false">ufs</input>
+      <output>u04m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u04m</input>
+      <input clear="false">ufs</input>
+      <output>u04tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u04m</input>
+      <output>u04blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u04blocks</input>
+      <output>u04pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u04m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u04blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u04blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u04x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u04m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u04blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u04blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u04y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u04m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u04blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u04blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u04z</output>
+    </if>
+    <formula formula="max(1,round([1]*3))">
+      <input clear="false">ufs</input>
+      <output>u05m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u05m</input>
+      <input clear="false">ufs</input>
+      <output>u05tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u05m</input>
+      <output>u05blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u05blocks</input>
+      <output>u05pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u05m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u05blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u05blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u05x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u05m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u05blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u05blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u05y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u05m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u05blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u05blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u05z</output>
+    </if>
+    <formula formula="max(1,round([1]*5))">
+      <input clear="false">ufs</input>
+      <output>u06m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u06m</input>
+      <input clear="false">ufs</input>
+      <output>u06tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u06m</input>
+      <output>u06blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u06blocks</input>
+      <output>u06pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u06m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u06blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u06blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u06x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u06m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u06blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u06blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u06y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u06m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u06blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u06blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u06z</output>
+    </if>
+    <formula formula="max(1,round([1]*7))">
+      <input clear="false">ufs</input>
+      <output>u07m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u07m</input>
+      <input clear="false">ufs</input>
+      <output>u07tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u07m</input>
+      <output>u07blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u07blocks</input>
+      <output>u07pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u07m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u07blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u07blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u07x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u07m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u07blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u07blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u07y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u07m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u07blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u07blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u07z</output>
+    </if>
+    <formula formula="max(1,round([1]*10))">
+      <input clear="false">ufs</input>
+      <output>u08m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u08m</input>
+      <input clear="false">ufs</input>
+      <output>u08tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u08m</input>
+      <output>u08blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u08blocks</input>
+      <output>u08pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u08m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u08blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u08blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u08x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u08m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u08blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u08blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u08y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u08m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u08blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u08blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u08z</output>
+    </if>
+    <formula formula="max(1,round([1]*15))">
+      <input clear="false">ufs</input>
+      <output>u09m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u09m</input>
+      <input clear="false">ufs</input>
+      <output>u09tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u09m</input>
+      <output>u09blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u09blocks</input>
+      <output>u09pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u09m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u09blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u09blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u09x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u09m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u09blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u09blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u09y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u09m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u09blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u09blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u09z</output>
+    </if>
+    <formula formula="max(1,round([1]*20))">
+      <input clear="false">ufs</input>
+      <output>u10m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u10m</input>
+      <input clear="false">ufs</input>
+      <output>u10tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u10m</input>
+      <output>u10blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u10blocks</input>
+      <output>u10pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u10m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u10blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u10blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u10x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u10m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u10blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u10blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u10y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u10m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u10blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u10blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u10z</output>
+    </if>
+    <formula formula="max(1,round([1]*30))">
+      <input clear="false">ufs</input>
+      <output>u11m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u11m</input>
+      <input clear="false">ufs</input>
+      <output>u11tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u11m</input>
+      <output>u11blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u11blocks</input>
+      <output>u11pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u11m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u11blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u11blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u11x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u11m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u11blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u11blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u11y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u11m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u11blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u11blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u11z</output>
+    </if>
+    <formula formula="max(1,round([1]*45))">
+      <input clear="false">ufs</input>
+      <output>u12m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u12m</input>
+      <input clear="false">ufs</input>
+      <output>u12tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u12m</input>
+      <output>u12blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u12blocks</input>
+      <output>u12pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u12m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u12blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u12blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u12x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u12m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u12blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u12blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u12y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u12m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u12blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u12blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u12z</output>
+    </if>
+    <formula formula="max(1,round([1]*60))">
+      <input clear="false">ufs</input>
+      <output>u13m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u13m</input>
+      <input clear="false">ufs</input>
+      <output>u13tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u13m</input>
+      <output>u13blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u13blocks</input>
+      <output>u13pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u13m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u13blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u13blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u13x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u13m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u13blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u13blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u13y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u13m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u13blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u13blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u13z</output>
+    </if>
+    <formula formula="max(1,round([1]*90))">
+      <input clear="false">ufs</input>
+      <output>u14m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u14m</input>
+      <input clear="false">ufs</input>
+      <output>u14tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u14m</input>
+      <output>u14blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u14blocks</input>
+      <output>u14pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u14m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u14blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u14blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u14x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u14m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u14blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u14blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u14y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u14m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u14blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u14blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u14z</output>
+    </if>
+    <formula formula="max(1,round([1]*120))">
+      <input clear="false">ufs</input>
+      <output>u15m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">u15m</input>
+      <input clear="false">ufs</input>
+      <output>u15tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">un</input>
+      <input clear="false">u15m</input>
+      <output>u15blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">u15blocks</input>
+      <output>u15pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u15m</input>
+      <input clear="false" as="x">uwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u15blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u15blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u15x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u15m</input>
+      <input clear="false" as="x">uwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u15blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u15blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u15y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">u15m</input>
+      <input clear="false" as="x">uwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">u15blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">u15blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">u15z</output>
+    </if>
+    <append>
+      <input clear="false">u00tau</input>
+      <input clear="false">u01tau</input>
+      <input clear="false">u02tau</input>
+      <input clear="false">u03tau</input>
+      <input clear="false">u04tau</input>
+      <input clear="false">u05tau</input>
+      <input clear="false">u06tau</input>
+      <input clear="false">u07tau</input>
+      <input clear="false">u08tau</input>
+      <input clear="false">u09tau</input>
+      <input clear="false">u10tau</input>
+      <input clear="false">u11tau</input>
+      <input clear="false">u12tau</input>
+      <input clear="false">u13tau</input>
+      <input clear="false">u14tau</input>
+      <input clear="false">u15tau</input>
+      <output>utauPlot</output>
+    </append>
+    <append>
+      <input clear="false">u00blocks</input>
+      <input clear="false">u01blocks</input>
+      <input clear="false">u02blocks</input>
+      <input clear="false">u03blocks</input>
+      <input clear="false">u04blocks</input>
+      <input clear="false">u05blocks</input>
+      <input clear="false">u06blocks</input>
+      <input clear="false">u07blocks</input>
+      <input clear="false">u08blocks</input>
+      <input clear="false">u09blocks</input>
+      <input clear="false">u10blocks</input>
+      <input clear="false">u11blocks</input>
+      <input clear="false">u12blocks</input>
+      <input clear="false">u13blocks</input>
+      <input clear="false">u14blocks</input>
+      <input clear="false">u15blocks</input>
+      <output>ublockPlot</output>
+    </append>
+    <append>
+      <input clear="false">u00pairs</input>
+      <input clear="false">u01pairs</input>
+      <input clear="false">u02pairs</input>
+      <input clear="false">u03pairs</input>
+      <input clear="false">u04pairs</input>
+      <input clear="false">u05pairs</input>
+      <input clear="false">u06pairs</input>
+      <input clear="false">u07pairs</input>
+      <input clear="false">u08pairs</input>
+      <input clear="false">u09pairs</input>
+      <input clear="false">u10pairs</input>
+      <input clear="false">u11pairs</input>
+      <input clear="false">u12pairs</input>
+      <input clear="false">u13pairs</input>
+      <input clear="false">u14pairs</input>
+      <input clear="false">u15pairs</input>
+      <output>upairPlot</output>
+    </append>
+    <append>
+      <input clear="false">u00x</input>
+      <input clear="false">u01x</input>
+      <input clear="false">u02x</input>
+      <input clear="false">u03x</input>
+      <input clear="false">u04x</input>
+      <input clear="false">u05x</input>
+      <input clear="false">u06x</input>
+      <input clear="false">u07x</input>
+      <input clear="false">u08x</input>
+      <input clear="false">u09x</input>
+      <input clear="false">u10x</input>
+      <input clear="false">u11x</input>
+      <input clear="false">u12x</input>
+      <input clear="false">u13x</input>
+      <input clear="false">u14x</input>
+      <input clear="false">u15x</input>
+      <output>uxAllan</output>
+    </append>
+    <append>
+      <input clear="false">u00y</input>
+      <input clear="false">u01y</input>
+      <input clear="false">u02y</input>
+      <input clear="false">u03y</input>
+      <input clear="false">u04y</input>
+      <input clear="false">u05y</input>
+      <input clear="false">u06y</input>
+      <input clear="false">u07y</input>
+      <input clear="false">u08y</input>
+      <input clear="false">u09y</input>
+      <input clear="false">u10y</input>
+      <input clear="false">u11y</input>
+      <input clear="false">u12y</input>
+      <input clear="false">u13y</input>
+      <input clear="false">u14y</input>
+      <input clear="false">u15y</input>
+      <output>uyAllan</output>
+    </append>
+    <append>
+      <input clear="false">u00z</input>
+      <input clear="false">u01z</input>
+      <input clear="false">u02z</input>
+      <input clear="false">u03z</input>
+      <input clear="false">u04z</input>
+      <input clear="false">u05z</input>
+      <input clear="false">u06z</input>
+      <input clear="false">u07z</input>
+      <input clear="false">u08z</input>
+      <input clear="false">u09z</input>
+      <input clear="false">u10z</input>
+      <input clear="false">u11z</input>
+      <input clear="false">u12z</input>
+      <input clear="false">u13z</input>
+      <input clear="false">u14z</input>
+      <input clear="false">u15z</input>
+      <output>uzAllan</output>
+    </append>
+    <formula formula="max(1,round([1]))">
+      <input clear="false">ufs</input>
+      <output>uplotFactor</output>
+    </formula>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">uplotFactor</input>
+      <input clear="false" as="x">uwt</input>
+      <input clear="false" as="y">uwx</input>
+      <output as="x">uplotTx</output>
+      <output as="y">workY</output>
+    </reduce>
+    <multiply>
+      <input clear="true">workY</input>
+      <input type="value">57.29577951308232</input>
+      <output>uplotx</output>
+    </multiply>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">uplotFactor</input>
+      <input clear="false" as="x">uwt</input>
+      <input clear="false" as="y">uwy</input>
+      <output as="x">uplotTy</output>
+      <output as="y">workY</output>
+    </reduce>
+    <multiply>
+      <input clear="true">workY</input>
+      <input type="value">57.29577951308232</input>
+      <output>uploty</output>
+    </multiply>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">uplotFactor</input>
+      <input clear="false" as="x">uwt</input>
+      <input clear="false" as="y">uwz</input>
+      <output as="x">uplotTz</output>
+      <output as="y">workY</output>
+    </reduce>
+    <multiply>
+      <input clear="true">workY</input>
+      <input type="value">57.29577951308232</input>
+      <output>uplotz</output>
+    </multiply>
+    <rangefilter>
+      <input clear="false">ct</input>
+      <input type="value" as="min">0</input>
+      <input clear="false" as="max">duration</input>
+      <input clear="false">cx</input>
+      <input clear="false">cy</input>
+      <input clear="false">cz</input>
+      <output>cwt</output>
+      <output>cwx</output>
+      <output>cwy</output>
+      <output>cwz</output>
+    </rangefilter>
+    <count>
+      <input clear="false" as="buffer">cwt</input>
+      <output as="count">cn</output>
+    </count>
+    <first>
+      <input clear="false">cwt</input>
+      <output>ct0</output>
+    </first>
+    <formula formula="[1]">
+      <input clear="false">cwt</input>
+      <output>ct1</output>
+    </formula>
+    <formula formula="[1]-[2]">
+      <input clear="false">ct1</input>
+      <input clear="false">ct0</input>
+      <output>cspan</output>
+    </formula>
+    <formula formula="([1]-1)/[2]">
+      <input clear="false">cn</input>
+      <input clear="false">cspan</input>
+      <output>cfs</output>
+    </formula>
+    <differentiate>
+      <input clear="false">cwt</input>
+      <output>cdt</output>
+    </differentiate>
+    <average>
+      <input clear="false">cdt</input>
+      <output as="average">cdtMean</output>
+      <output as="stddev">cdtSD</output>
+    </average>
+    <max>
+      <input clear="true" as="y">cdt</input>
+      <output as="max">cmaxGap</output>
+    </max>
+    <formula formula="max(1,round([1]*0.1))">
+      <input clear="false">cfs</input>
+      <output>c00m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c00m</input>
+      <input clear="false">cfs</input>
+      <output>c00tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c00m</input>
+      <output>c00blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c00blocks</input>
+      <output>c00pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c00m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c00blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c00blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c00x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c00m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c00blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c00blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c00y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c00m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c00blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c00blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c00z</output>
+    </if>
+    <formula formula="max(1,round([1]*0.2))">
+      <input clear="false">cfs</input>
+      <output>c01m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c01m</input>
+      <input clear="false">cfs</input>
+      <output>c01tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c01m</input>
+      <output>c01blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c01blocks</input>
+      <output>c01pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c01m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c01blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c01blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c01x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c01m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c01blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c01blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c01y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c01m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c01blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c01blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c01z</output>
+    </if>
+    <formula formula="max(1,round([1]*0.5))">
+      <input clear="false">cfs</input>
+      <output>c02m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c02m</input>
+      <input clear="false">cfs</input>
+      <output>c02tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c02m</input>
+      <output>c02blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c02blocks</input>
+      <output>c02pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c02m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c02blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c02blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c02x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c02m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c02blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c02blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c02y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c02m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c02blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c02blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c02z</output>
+    </if>
+    <formula formula="max(1,round([1]*1))">
+      <input clear="false">cfs</input>
+      <output>c03m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c03m</input>
+      <input clear="false">cfs</input>
+      <output>c03tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c03m</input>
+      <output>c03blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c03blocks</input>
+      <output>c03pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c03m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c03blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c03blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c03x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c03m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c03blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c03blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c03y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c03m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c03blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c03blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c03z</output>
+    </if>
+    <formula formula="max(1,round([1]*2))">
+      <input clear="false">cfs</input>
+      <output>c04m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c04m</input>
+      <input clear="false">cfs</input>
+      <output>c04tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c04m</input>
+      <output>c04blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c04blocks</input>
+      <output>c04pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c04m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c04blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c04blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c04x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c04m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c04blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c04blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c04y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c04m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c04blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c04blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c04z</output>
+    </if>
+    <formula formula="max(1,round([1]*3))">
+      <input clear="false">cfs</input>
+      <output>c05m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c05m</input>
+      <input clear="false">cfs</input>
+      <output>c05tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c05m</input>
+      <output>c05blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c05blocks</input>
+      <output>c05pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c05m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c05blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c05blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c05x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c05m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c05blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c05blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c05y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c05m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c05blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c05blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c05z</output>
+    </if>
+    <formula formula="max(1,round([1]*5))">
+      <input clear="false">cfs</input>
+      <output>c06m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c06m</input>
+      <input clear="false">cfs</input>
+      <output>c06tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c06m</input>
+      <output>c06blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c06blocks</input>
+      <output>c06pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c06m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c06blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c06blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c06x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c06m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c06blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c06blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c06y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c06m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c06blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c06blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c06z</output>
+    </if>
+    <formula formula="max(1,round([1]*7))">
+      <input clear="false">cfs</input>
+      <output>c07m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c07m</input>
+      <input clear="false">cfs</input>
+      <output>c07tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c07m</input>
+      <output>c07blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c07blocks</input>
+      <output>c07pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c07m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c07blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c07blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c07x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c07m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c07blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c07blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c07y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c07m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c07blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c07blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c07z</output>
+    </if>
+    <formula formula="max(1,round([1]*10))">
+      <input clear="false">cfs</input>
+      <output>c08m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c08m</input>
+      <input clear="false">cfs</input>
+      <output>c08tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c08m</input>
+      <output>c08blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c08blocks</input>
+      <output>c08pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c08m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c08blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c08blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c08x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c08m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c08blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c08blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c08y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c08m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c08blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c08blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c08z</output>
+    </if>
+    <formula formula="max(1,round([1]*15))">
+      <input clear="false">cfs</input>
+      <output>c09m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c09m</input>
+      <input clear="false">cfs</input>
+      <output>c09tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c09m</input>
+      <output>c09blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c09blocks</input>
+      <output>c09pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c09m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c09blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c09blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c09x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c09m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c09blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c09blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c09y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c09m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c09blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c09blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c09z</output>
+    </if>
+    <formula formula="max(1,round([1]*20))">
+      <input clear="false">cfs</input>
+      <output>c10m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c10m</input>
+      <input clear="false">cfs</input>
+      <output>c10tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c10m</input>
+      <output>c10blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c10blocks</input>
+      <output>c10pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c10m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c10blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c10blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c10x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c10m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c10blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c10blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c10y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c10m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c10blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c10blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c10z</output>
+    </if>
+    <formula formula="max(1,round([1]*30))">
+      <input clear="false">cfs</input>
+      <output>c11m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c11m</input>
+      <input clear="false">cfs</input>
+      <output>c11tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c11m</input>
+      <output>c11blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c11blocks</input>
+      <output>c11pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c11m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c11blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c11blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c11x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c11m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c11blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c11blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c11y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c11m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c11blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c11blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c11z</output>
+    </if>
+    <formula formula="max(1,round([1]*45))">
+      <input clear="false">cfs</input>
+      <output>c12m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c12m</input>
+      <input clear="false">cfs</input>
+      <output>c12tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c12m</input>
+      <output>c12blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c12blocks</input>
+      <output>c12pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c12m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c12blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c12blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c12x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c12m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c12blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c12blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c12y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c12m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c12blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c12blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c12z</output>
+    </if>
+    <formula formula="max(1,round([1]*60))">
+      <input clear="false">cfs</input>
+      <output>c13m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c13m</input>
+      <input clear="false">cfs</input>
+      <output>c13tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c13m</input>
+      <output>c13blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c13blocks</input>
+      <output>c13pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c13m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c13blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c13blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c13x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c13m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c13blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c13blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c13y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c13m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c13blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c13blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c13z</output>
+    </if>
+    <formula formula="max(1,round([1]*90))">
+      <input clear="false">cfs</input>
+      <output>c14m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c14m</input>
+      <input clear="false">cfs</input>
+      <output>c14tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c14m</input>
+      <output>c14blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c14blocks</input>
+      <output>c14pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c14m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c14blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c14blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c14x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c14m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c14blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c14blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c14y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c14m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c14blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c14blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c14z</output>
+    </if>
+    <formula formula="max(1,round([1]*120))">
+      <input clear="false">cfs</input>
+      <output>c15m</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">c15m</input>
+      <input clear="false">cfs</input>
+      <output>c15tau</output>
+    </formula>
+    <formula formula="floor([1]/[2])">
+      <input clear="false">cn</input>
+      <input clear="false">c15m</input>
+      <output>c15blocks</output>
+    </formula>
+    <formula formula="max(0,[1]-1)">
+      <input clear="false">c15blocks</input>
+      <output>c15pairs</output>
+    </formula>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c15m</input>
+      <input clear="false" as="x">cwx</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c15blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c15blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c15x</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c15m</input>
+      <input clear="false" as="x">cwy</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c15blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c15blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c15y</output>
+    </if>
+    <reduce averageX="true">
+      <input clear="false" as="factor">c15m</input>
+      <input clear="false" as="x">cwz</input>
+      <output as="x">workMeans</output>
+    </reduce>
+    <subrange>
+      <input type="value" as="from">0</input>
+      <input clear="false" as="length">c15blocks</input>
+      <input clear="true">workMeans</input>
+      <output>workComplete</output>
+    </subrange>
+    <differentiate>
+      <input clear="true">workComplete</input>
+      <output>workDiff</output>
+    </differentiate>
+    <power>
+      <input clear="true" as="base">workDiff</input>
+      <input type="value" as="exponent">2</input>
+      <output>workSquared</output>
+    </power>
+    <average>
+      <input clear="true">workSquared</input>
+      <output as="average">workMeanSquared</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">workMeanSquared</input>
+      <output>workAdev</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">c15blocks</input>
+      <input clear="false" as="b">minimumBlocks</input>
+      <input clear="false" as="true">workAdev</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c15z</output>
+    </if>
+    <append>
+      <input clear="false">c00tau</input>
+      <input clear="false">c01tau</input>
+      <input clear="false">c02tau</input>
+      <input clear="false">c03tau</input>
+      <input clear="false">c04tau</input>
+      <input clear="false">c05tau</input>
+      <input clear="false">c06tau</input>
+      <input clear="false">c07tau</input>
+      <input clear="false">c08tau</input>
+      <input clear="false">c09tau</input>
+      <input clear="false">c10tau</input>
+      <input clear="false">c11tau</input>
+      <input clear="false">c12tau</input>
+      <input clear="false">c13tau</input>
+      <input clear="false">c14tau</input>
+      <input clear="false">c15tau</input>
+      <output>ctauPlot</output>
+    </append>
+    <append>
+      <input clear="false">c00blocks</input>
+      <input clear="false">c01blocks</input>
+      <input clear="false">c02blocks</input>
+      <input clear="false">c03blocks</input>
+      <input clear="false">c04blocks</input>
+      <input clear="false">c05blocks</input>
+      <input clear="false">c06blocks</input>
+      <input clear="false">c07blocks</input>
+      <input clear="false">c08blocks</input>
+      <input clear="false">c09blocks</input>
+      <input clear="false">c10blocks</input>
+      <input clear="false">c11blocks</input>
+      <input clear="false">c12blocks</input>
+      <input clear="false">c13blocks</input>
+      <input clear="false">c14blocks</input>
+      <input clear="false">c15blocks</input>
+      <output>cblockPlot</output>
+    </append>
+    <append>
+      <input clear="false">c00pairs</input>
+      <input clear="false">c01pairs</input>
+      <input clear="false">c02pairs</input>
+      <input clear="false">c03pairs</input>
+      <input clear="false">c04pairs</input>
+      <input clear="false">c05pairs</input>
+      <input clear="false">c06pairs</input>
+      <input clear="false">c07pairs</input>
+      <input clear="false">c08pairs</input>
+      <input clear="false">c09pairs</input>
+      <input clear="false">c10pairs</input>
+      <input clear="false">c11pairs</input>
+      <input clear="false">c12pairs</input>
+      <input clear="false">c13pairs</input>
+      <input clear="false">c14pairs</input>
+      <input clear="false">c15pairs</input>
+      <output>cpairPlot</output>
+    </append>
+    <append>
+      <input clear="false">c00x</input>
+      <input clear="false">c01x</input>
+      <input clear="false">c02x</input>
+      <input clear="false">c03x</input>
+      <input clear="false">c04x</input>
+      <input clear="false">c05x</input>
+      <input clear="false">c06x</input>
+      <input clear="false">c07x</input>
+      <input clear="false">c08x</input>
+      <input clear="false">c09x</input>
+      <input clear="false">c10x</input>
+      <input clear="false">c11x</input>
+      <input clear="false">c12x</input>
+      <input clear="false">c13x</input>
+      <input clear="false">c14x</input>
+      <input clear="false">c15x</input>
+      <output>cxAllan</output>
+    </append>
+    <append>
+      <input clear="false">c00y</input>
+      <input clear="false">c01y</input>
+      <input clear="false">c02y</input>
+      <input clear="false">c03y</input>
+      <input clear="false">c04y</input>
+      <input clear="false">c05y</input>
+      <input clear="false">c06y</input>
+      <input clear="false">c07y</input>
+      <input clear="false">c08y</input>
+      <input clear="false">c09y</input>
+      <input clear="false">c10y</input>
+      <input clear="false">c11y</input>
+      <input clear="false">c12y</input>
+      <input clear="false">c13y</input>
+      <input clear="false">c14y</input>
+      <input clear="false">c15y</input>
+      <output>cyAllan</output>
+    </append>
+    <append>
+      <input clear="false">c00z</input>
+      <input clear="false">c01z</input>
+      <input clear="false">c02z</input>
+      <input clear="false">c03z</input>
+      <input clear="false">c04z</input>
+      <input clear="false">c05z</input>
+      <input clear="false">c06z</input>
+      <input clear="false">c07z</input>
+      <input clear="false">c08z</input>
+      <input clear="false">c09z</input>
+      <input clear="false">c10z</input>
+      <input clear="false">c11z</input>
+      <input clear="false">c12z</input>
+      <input clear="false">c13z</input>
+      <input clear="false">c14z</input>
+      <input clear="false">c15z</input>
+      <output>czAllan</output>
+    </append>
+    <formula formula="max(1,round([1]))">
+      <input clear="false">cfs</input>
+      <output>cplotFactor</output>
+    </formula>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">cplotFactor</input>
+      <input clear="false" as="x">cwt</input>
+      <input clear="false" as="y">cwx</input>
+      <output as="x">cplotTx</output>
+      <output as="y">workY</output>
+    </reduce>
+    <multiply>
+      <input clear="true">workY</input>
+      <input type="value">57.29577951308232</input>
+      <output>cplotx</output>
+    </multiply>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">cplotFactor</input>
+      <input clear="false" as="x">cwt</input>
+      <input clear="false" as="y">cwy</input>
+      <output as="x">cplotTy</output>
+      <output as="y">workY</output>
+    </reduce>
+    <multiply>
+      <input clear="true">workY</input>
+      <input type="value">57.29577951308232</input>
+      <output>cploty</output>
+    </multiply>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">cplotFactor</input>
+      <input clear="false" as="x">cwt</input>
+      <input clear="false" as="y">cwz</input>
+      <output as="x">cplotTz</output>
+      <output as="y">workY</output>
+    </reduce>
+    <multiply>
+      <input clear="true">workY</input>
+      <input type="value">57.29577951308232</input>
+      <output>cplotz</output>
+    </multiply>
+    <formula formula="[1]">
+      <input clear="false">refreshRequest</input>
+      <output>refreshDone</output>
+    </formula>
+  </analysis>
+  <export>
+    <set name="Allan comparison">
+      <data name="Target tau (s)">tauTargets</data>
+      <data name="Raw actual tau (s)">utauPlot</data>
+      <data name="Raw X Allan (deg/s)">uxAllan</data>
+      <data name="Raw Y Allan (deg/s)">uyAllan</data>
+      <data name="Raw Z Allan (deg/s)">uzAllan</data>
+      <data name="Raw complete blocks">ublockPlot</data>
+      <data name="Raw adjacent differences">upairPlot</data>
+      <data name="Calibrated actual tau (s)">ctauPlot</data>
+      <data name="Calibrated X Allan (deg/s)">cxAllan</data>
+      <data name="Calibrated Y Allan (deg/s)">cyAllan</data>
+      <data name="Calibrated Z Allan (deg/s)">czAllan</data>
+      <data name="Calibrated complete blocks">cblockPlot</data>
+      <data name="Calibrated adjacent differences">cpairPlot</data>
+    </set>
+    <set name="Raw gyro">
+      <data name="Time (s)">ut</data>
+      <data name="X (rad/s)">ux</data>
+      <data name="Y (rad/s)">uy</data>
+      <data name="Z (rad/s)">uz</data>
+    </set>
+    <set name="Calibrated gyro">
+      <data name="Time (s)">ct</data>
+      <data name="X (rad/s)">cx</data>
+      <data name="Y (rad/s)">cy</data>
+      <data name="Z (rad/s)">cz</data>
+    </set>
+    <set name="Run details">
+      <data name="Requested recording (s)">duration</data>
+      <data name="Latest analysis time (s)">now</data>
+      <data name="Finalise button used (0 or 1)">refreshDone</data>
+      <data name="Minimum complete blocks">minimumBlocks</data>
+      <data name="Raw analysed sample count">un</data>
+      <data name="Raw first sample time (s)">ut0</data>
+      <data name="Raw last sample time (s)">ut1</data>
+      <data name="Raw time span (s)">uspan</data>
+      <data name="Raw measured rate (Hz)">ufs</data>
+      <data name="Raw mean sample interval (s)">udtMean</data>
+      <data name="Raw sample interval SD (s)">udtSD</data>
+      <data name="Raw largest sample gap (s)">umaxGap</data>
+      <data name="Calibrated analysed sample count">cn</data>
+      <data name="Calibrated first sample time (s)">ct0</data>
+      <data name="Calibrated last sample time (s)">ct1</data>
+      <data name="Calibrated time span (s)">cspan</data>
+      <data name="Calibrated measured rate (Hz)">cfs</data>
+      <data name="Calibrated mean sample interval (s)">cdtMean</data>
+      <data name="Calibrated sample interval SD (s)">cdtSD</data>
+      <data name="Calibrated largest sample gap (s)">cmaxGap</data>
+    </set>
+  </export>
+</phyphox>
