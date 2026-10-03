@@ -1,404 +1,1734 @@
+<?xml version='1.0' encoding='utf-8'?>
 <phyphox version="1.19" locale="en">
-<title>Earth Rotation Challenge - iPhone</title>
-<category>Gyroscope</category>
-<description>Classroom Earth-rotation challenge for iPhone. First measure Earth's rotation with a 15 s ABBA reversal using the iOS gyroscope stream available to phyphox. Then, if desired, leave the iPhone untouched for a 3-minute Allan-deviation quality check of the iPhone plus its support surface.</description>
-
-<data-containers>
-  <container size="100000">ux</container>
-  <container size="100000">uy</container>
-  <container size="100000">uz</container>
-  <container size="100000">ut</container>
-
-  <container size="1" init="5">settleTime</container>
-  <container size="1" init="7">turnTime</container>
-  <container size="1" init="15">measureTime</container>
-  <container size="1" init="180">qualityTime</container>
-  <container size="1" init="52.84">latitude</container>
-
-  <container size="1">now</container>
-  <container size="1">expected</container>
-  <container size="1">A1s</container>
-  <container size="1">A1e</container>
-  <container size="1">rot1End</container>
-  <container size="1">B1s</container>
-  <container size="1">B1e</container>
-  <container size="1">B2s</container>
-  <container size="1">B2e</container>
-  <container size="1">rot2End</container>
-  <container size="1">A2s</container>
-  <container size="1">A2e</container>
-  <container size="1">abbaEnd</container>
-  <container size="1">qualityStart</container>
-  <container size="1">qualityEnd</container>
-  <container size="1">totalTime</container>
-  <container size="1">stage</container>
-
-  <container size="100000">ut_A1</container>
-  <container size="100000">ux_A1</container>
-  <container size="100000">uy_A1</container>
-  <container size="100000">uz_A1</container>
-  <container size="1">mux_A1</container>
-  <container size="1">muy_A1</container>
-  <container size="1">muz_A1</container>
-
-  <container size="100000">ut_B1</container>
-  <container size="100000">ux_B1</container>
-  <container size="100000">uy_B1</container>
-  <container size="100000">uz_B1</container>
-  <container size="1">mux_B1</container>
-  <container size="1">muy_B1</container>
-  <container size="1">muz_B1</container>
-
-  <container size="100000">ut_B2</container>
-  <container size="100000">ux_B2</container>
-  <container size="100000">uy_B2</container>
-  <container size="100000">uz_B2</container>
-  <container size="1">mux_B2</container>
-  <container size="1">muy_B2</container>
-  <container size="1">muz_B2</container>
-
-  <container size="100000">ut_A2</container>
-  <container size="100000">ux_A2</container>
-  <container size="100000">uy_A2</container>
-  <container size="100000">uz_A2</container>
-  <container size="1">mux_A2</container>
-  <container size="1">muy_A2</container>
-  <container size="1">muz_A2</container>
-
-  <container size="1">dX</container>
-  <container size="1">dY</container>
-  <container size="1">dZ</container>
-  <container size="1">percentError</container>
-  <container size="1">omegaEarth</container>
-  <container size="1">signStatus</container>
-
-  <container size="100000">qut</container>
-  <container size="100000">qx</container>
-  <container size="100000">qy</container>
-  <container size="1">nq</container>
-  <container size="1">tminq</container>
-  <container size="1">tmaxq</container>
-  <container size="1">fs</container>
-  <container size="1">f15</container>
-
-  <container size="100000">tx15</container>
-  <container size="100000">xavg15</container>
-  <container size="100000">xdiff15</container>
-  <container size="100000">xsq15</container>
-  <container size="1">xms15</container>
-  <container size="1">allanX15</container>
-  <container size="1">ratioX15</container>
-
-  <container size="100000">ty15</container>
-  <container size="100000">yavg15</container>
-  <container size="100000">ydiff15</container>
-  <container size="100000">ysq15</container>
-  <container size="1">yms15</container>
-  <container size="1">allanY15</container>
-  <container size="1">ratioY15</container>
-
-  <container size="1">qualityDone</container>
-  <container size="1">qualityRankRaw</container>
-  <container size="1">qualityStatus</container>
-  <container size="1">qualityElapsed</container>
-  <container size="1">bestAxisCode</container>
-</data-containers>
-
-<input>
-  <sensor type="gyroscope" rate="100" rateStrategy="request">
-    <output component="x">ux</output>
-    <output component="y">uy</output>
-    <output component="z">uz</output>
-    <output component="t">ut</output>
-  </sensor>
-</input>
-
-<views>
-
-  <view label="1. Earth Rotation ABBA">
-    <info label="EARTH ROTATION CHALLENGE"/>
-    <info label="BEFORE START: Place the iPhone FLAT, SCREEN UP, with the TOP EDGE (+Y) pointing NORTH. Press Start and keep the iPhone still until told to rotate it."/>
-
-    <edit label="Latitude" unit="deg" default="52.84" min="-89" max="89">
-      <output>latitude</output>
-    </edit>
-
-    <value label="CURRENT INSTRUCTION" size="3">
-      <input>stage</input>
-      <map min="0" max="0">SETTLE: +Y NORTH - HANDS OFF</map>
-      <map min="1" max="1">MEASURE A1: +Y NORTH - DO NOT TOUCH</map>
-      <map min="2" max="2">ROTATE IPHONE GENTLY THROUGH 180 DEGREES</map>
-      <map min="3" max="3">SETTLE: +Y NOW SOUTH - HANDS OFF</map>
-      <map min="4" max="4">MEASURE B1: STAY COMPLETELY STILL</map>
-      <map min="5" max="5">MEASURE B2: STAY COMPLETELY STILL</map>
-      <map min="6" max="6">ROTATE IPHONE GENTLY BACK 180 DEGREES</map>
-      <map min="7" max="7">SETTLE: +Y NORTH AGAIN - HANDS OFF</map>
-      <map min="8" max="8">MEASURE A2: +Y NORTH - DO NOT TOUCH</map>
-      <map min="9" max="9">ABBA COMPLETE - RESULT READY. LEAVE IPHONE UNTOUCHED FOR QUALITY CHECK</map>
-      <map min="10" max="10">ALL COMPLETE - TAKE A SCREENSHOT</map>
-    </value>
-
-    <value label="Elapsed time" size="1" precision="1" unit="s"><input>now</input></value>
-    <value label="ABBA result ready at" size="1" precision="0" unit="s"><input>abbaEnd</input></value>
-
-    <separator height="1"/>
-    <info label="EARTH ROTATION RESULT"/>
-    <value label="Measured reversal (+Y North vs +Y South)" size="3" precision="6" unit="deg/s"><input>dY</input></value>
-    <value label="Expected at this latitude" size="2" precision="6" unit="deg/s"><input>expected</input></value>
-    <value label="Difference from expected" size="2" precision="1" unit="%"><input>percentError</input></value>
-    <value label="Expected sign" size="2">
-      <input>signStatus</input>
-      <map min="0" max="0">WAIT FOR COMPLETE ABBA</map>
-      <map min="1" max="1">YES - POSITIVE AS EXPECTED</map>
-      <map min="-1" max="-1">NO - NEGATIVE RESULT</map>
-    </value>
-
-    <separator height="1"/>
-    <info label="CONTROL AXES - ideally much smaller than the Y result"/>
-    <value label="X-axis reversal" size="1" precision="6" unit="deg/s"><input>dX</input></value>
-    <value label="Z-axis reversal" size="1" precision="6" unit="deg/s"><input>dZ</input></value>
-
-    <separator height="1"/>
-    <info label="OPTIONAL QUALITY CHECK: After the ABBA result appears (about 89 s), DO NOT TOUCH the iPhone. Keep this experiment running for another 3 minutes. The next tab will assess the stability of the iPhone AND the surface it is sitting on. This quality check does not invalidate or block the ABBA result."/>
-    <value label="Quality check" size="2">
-      <input>qualityStatus</input>
-      <map min="9" max="9">NOT COMPLETE YET</map>
-      <map min="1" max="1">NOISY - REPEAT ON A QUIETER/RIGID SURFACE</map>
-      <map min="2" max="2">MARGINAL - INTERPRET WITH CAUTION</map>
-      <map min="3" max="3">GOOD - SUITABLE STABILITY</map>
-      <map min="4" max="4">VERY GOOD - STRONG STABILITY</map>
-    </value>
-    <info label="ABBA calculation: (A1 + A2)/2 - (B1 + B2)/2. The symmetric order suppresses constant and approximately linear gyro bias drift."/>
-  </view>
-
-  <view label="2. Quality Check">
-    <info label="OPTIONAL 3-MINUTE IPHONE + SURFACE QUALITY CHECK"/>
-    <info label="This starts automatically AFTER the ABBA measurement. Leave the iPhone completely untouched from the moment the ABBA result appears. Do not switch tabs until the 3 minutes have finished."/>
-
-    <value label="Quality data collected" size="2" precision="0" unit="s / 180 s"><input>qualityElapsed</input></value>
-
-    <value label="Y-AXIS QUALITY FOR THIS EARTH-ROTATION MEASUREMENT" size="3">
-      <input>qualityStatus</input>
-      <map min="9" max="9">WAIT - KEEP IPHONE COMPLETELY STILL</map>
-      <map min="1" max="1">NOISY - REPEAT ON A QUIETER/RIGID SURFACE</map>
-      <map min="2" max="2">MARGINAL - RESULT MAY BE NOISY</map>
-      <map min="3" max="3">GOOD - SUITABLE</map>
-      <map min="4" max="4">VERY GOOD - STRONG SUITABILITY</map>
-    </value>
-
-    <separator height="1"/>
-    <info label="15 s ALLAN-DEVIATION CHECK"/>
-    <value label="Y-axis Allan deviation" size="2" precision="6" unit="deg/s"><input>allanY15</input></value>
-    <value label="Y Earth/Allan ratio" size="2" precision="2"><input>ratioY15</input></value>
-    <value label="X-axis Allan deviation" size="1" precision="6" unit="deg/s"><input>allanX15</input></value>
-    <value label="X Earth/Allan ratio" size="1" precision="2"><input>ratioX15</input></value>
-
-    <value label="Quieter horizontal axis during quality test" size="2">
-      <input>bestAxisCode</input>
-      <map min="1" max="1">X AXIS</map>
-      <map min="2" max="2">Y AXIS</map>
-    </value>
-
-    <info label="Guide only: Earth/Allan ratio >= 5 = very good; 3 to 5 = good; 2 to 3 = marginal; below 2 = noisy. These are practical screening bands, not formal confidence levels."/>
-    <info label="IMPORTANT: A noisy result can be caused by the desk, floor, vibration or someone touching the iPhone. It does NOT automatically mean the iPhone itself is unsuitable."/>
-      <separator height="1"/>
-</view>
-
-</views>
-
-<analysis sleep="0.25">
-  <timer><output clear="false">now</output></timer>
-
-  <formula formula="2*0.0041780746*cos([1]*3.141592653589793/180)">
-    <input clear="false">latitude</input><output>expected</output>
-  </formula>
-
-  <!-- ABBA timeline: 5 s settle, 15 s A1, 7 s turn, 5 s settle, 15 s B1, 15 s B2, 7 s turn, 5 s settle, 15 s A2. -->
-  <formula formula="[1]"><input clear="false">settleTime</input><output>A1s</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">A1s</input><input clear="false">measureTime</input><output>A1e</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">A1e</input><input clear="false">turnTime</input><output>rot1End</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">rot1End</input><input clear="false">settleTime</input><output>B1s</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">B1s</input><input clear="false">measureTime</input><output>B1e</output></formula>
-  <formula formula="[1]"><input clear="false">B1e</input><output>B2s</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">B2s</input><input clear="false">measureTime</input><output>B2e</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">B2e</input><input clear="false">turnTime</input><output>rot2End</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">rot2End</input><input clear="false">settleTime</input><output>A2s</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">A2s</input><input clear="false">measureTime</input><output>A2e</output></formula>
-  <formula formula="[1]"><input clear="false">A2e</input><output>abbaEnd</output></formula>
-  <formula formula="[1]"><input clear="false">abbaEnd</input><output>qualityStart</output></formula>
-  <formula formula="[1]+[2]"><input clear="false">qualityStart</input><input clear="false">qualityTime</input><output>qualityEnd</output></formula>
-  <formula formula="[1]"><input clear="false">qualityEnd</input><output>totalTime</output></formula>
-  <formula formula="min(max([1]-[2],0),[3])"><input clear="false">now</input><input clear="false">qualityStart</input><input clear="false">qualityTime</input><output>qualityElapsed</output></formula>
-
-  <!-- Guided stage. -->
-  <formula formula="0"><output>stage</output></formula>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">A1s</input><input as="true" type="value">1</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">A1e</input><input as="true" type="value">2</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">rot1End</input><input as="true" type="value">3</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">B1s</input><input as="true" type="value">4</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">B1e</input><input as="true" type="value">5</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">B2e</input><input as="true" type="value">6</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">rot2End</input><input as="true" type="value">7</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">A2s</input><input as="true" type="value">8</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">abbaEnd</input><input as="true" type="value">9</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-  <if greater="true" equal="true"><input as="a" clear="false">now</input><input as="b" clear="false">qualityEnd</input><input as="true" type="value">10</input><input as="false" clear="false">stage</input><output as="result">stage</output></if>
-
-  <!-- ABBA measurement windows. -->
-  <rangefilter>
-    <input clear="false">ut</input><input as="min" clear="false">A1s</input><input as="max" clear="false">A1e</input>
-    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
-    <output>ut_A1</output><output>ux_A1</output><output>uy_A1</output><output>uz_A1</output>
-  </rangefilter>
-  <average><input clear="false">ux_A1</input><output as="average">mux_A1</output></average>
-  <average><input clear="false">uy_A1</input><output as="average">muy_A1</output></average>
-  <average><input clear="false">uz_A1</input><output as="average">muz_A1</output></average>
-
-  <rangefilter>
-    <input clear="false">ut</input><input as="min" clear="false">B1s</input><input as="max" clear="false">B1e</input>
-    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
-    <output>ut_B1</output><output>ux_B1</output><output>uy_B1</output><output>uz_B1</output>
-  </rangefilter>
-  <average><input clear="false">ux_B1</input><output as="average">mux_B1</output></average>
-  <average><input clear="false">uy_B1</input><output as="average">muy_B1</output></average>
-  <average><input clear="false">uz_B1</input><output as="average">muz_B1</output></average>
-
-  <rangefilter>
-    <input clear="false">ut</input><input as="min" clear="false">B2s</input><input as="max" clear="false">B2e</input>
-    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
-    <output>ut_B2</output><output>ux_B2</output><output>uy_B2</output><output>uz_B2</output>
-  </rangefilter>
-  <average><input clear="false">ux_B2</input><output as="average">mux_B2</output></average>
-  <average><input clear="false">uy_B2</input><output as="average">muy_B2</output></average>
-  <average><input clear="false">uz_B2</input><output as="average">muz_B2</output></average>
-
-  <rangefilter>
-    <input clear="false">ut</input><input as="min" clear="false">A2s</input><input as="max" clear="false">A2e</input>
-    <input clear="false">ux</input><input clear="false">uy</input><input clear="false">uz</input>
-    <output>ut_A2</output><output>ux_A2</output><output>uy_A2</output><output>uz_A2</output>
-  </rangefilter>
-  <average><input clear="false">ux_A2</input><output as="average">mux_A2</output></average>
-  <average><input clear="false">uy_A2</input><output as="average">muy_A2</output></average>
-  <average><input clear="false">uz_A2</input><output as="average">muz_A2</output></average>
-
-  <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
-    <input clear="false">mux_A1</input><input clear="false">mux_A2</input><input clear="false">mux_B1</input><input clear="false">mux_B2</input><output>dX</output>
-  </formula>
-  <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
-    <input clear="false">muy_A1</input><input clear="false">muy_A2</input><input clear="false">muy_B1</input><input clear="false">muy_B2</input><output>dY</output>
-  </formula>
-  <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
-    <input clear="false">muz_A1</input><input clear="false">muz_A2</input><input clear="false">muz_B1</input><input clear="false">muz_B2</input><output>dZ</output>
-  </formula>
-
-  <formula formula="100*([1]-[2])/[2]"><input clear="false">dY</input><input clear="false">expected</input><output>percentError</output></formula>
-  <formula formula="([1]*3.141592653589793/180)/(2*cos([2]*3.141592653589793/180))"><input clear="false">dY</input><input clear="false">latitude</input><output>omegaEarth</output></formula>
-
-  <formula formula="0"><output>signStatus</output></formula>
-  <if greater="true">
-    <input as="a" clear="false">dY</input><input as="b" type="value">0</input>
-    <input as="true" type="value">1</input><input as="false" type="value">-1</input>
-    <output as="result">signStatus</output>
-  </if>
-  <if greater="true" equal="true">
-    <input as="a" clear="false">now</input><input as="b" clear="false">abbaEnd</input>
-    <input as="true" clear="false">signStatus</input><input as="false" type="value">0</input>
-    <output as="result">signStatus</output>
-  </if>
-
-  <!-- Quality check uses ONLY the 180 s after the ABBA measurement. -->
-  <rangefilter>
-    <input clear="false">ut</input><input as="min" clear="false">qualityStart</input><input as="max" clear="false">qualityEnd</input>
-    <input clear="false">ux</input><input clear="false">uy</input>
-    <output>qut</output><output>qx</output><output>qy</output>
-  </rangefilter>
-  <count><input as="buffer" clear="false">qut</input><output as="count">nq</output></count>
-  <min><input as="y" clear="false">qut</input><output as="min">tminq</output></min>
-  <max><input as="y" clear="false">qut</input><output as="max">tmaxq</output></max>
-  <formula formula="([1]-1)/([3]-[2])">
-    <input clear="false">nq</input><input clear="false">tminq</input><input clear="false">tmaxq</input><output>fs</output>
-  </formula>
-  <formula formula="max(1,round([1]*15))"><input clear="false">fs</input><output>f15</output></formula>
-
-  <reduce averageX="true" averageY="true">
-    <input clear="false" as="factor">f15</input><input clear="false" as="x">qut</input><input clear="false" as="y">qx</input>
-    <output as="x">tx15</output><output as="y">xavg15</output>
-  </reduce>
-  <differentiate><input clear="false">xavg15</input><output>xdiff15</output></differentiate>
-  <power><input as="base" clear="false">xdiff15</input><input as="exponent" type="value">2</input><output>xsq15</output></power>
-  <average><input clear="false">xsq15</input><output as="average">xms15</output></average>
-  <formula formula="57.29577951308232*sqrt(0.5*[1])"><input clear="false">xms15</input><output>allanX15</output></formula>
-  <formula formula="[1]/[2]"><input clear="false">expected</input><input clear="false">allanX15</input><output>ratioX15</output></formula>
-
-  <reduce averageX="true" averageY="true">
-    <input clear="false" as="factor">f15</input><input clear="false" as="x">qut</input><input clear="false" as="y">qy</input>
-    <output as="x">ty15</output><output as="y">yavg15</output>
-  </reduce>
-  <differentiate><input clear="false">yavg15</input><output>ydiff15</output></differentiate>
-  <power><input as="base" clear="false">ydiff15</input><input as="exponent" type="value">2</input><output>ysq15</output></power>
-  <average><input clear="false">ysq15</input><output as="average">yms15</output></average>
-  <formula formula="57.29577951308232*sqrt(0.5*[1])"><input clear="false">yms15</input><output>allanY15</output></formula>
-  <formula formula="[1]/[2]"><input clear="false">expected</input><input clear="false">allanY15</input><output>ratioY15</output></formula>
-
-  <if greater="true">
-    <input as="a" clear="false">ratioX15</input><input as="b" clear="false">ratioY15</input>
-    <input as="true" type="value">1</input><input as="false" type="value">2</input>
-    <output as="result">bestAxisCode</output>
-  </if>
-
-  <if greater="true" equal="true">
-    <input as="a" clear="false">now</input><input as="b" clear="false">qualityEnd</input>
-    <input as="true" type="value">1</input><input as="false" type="value">0</input>
-    <output as="result">qualityDone</output>
-  </if>
-
-  <formula formula="1"><output>qualityRankRaw</output></formula>
-  <if greater="true" equal="true">
-    <input as="a" clear="false">ratioY15</input><input as="b" type="value">2</input>
-    <input as="true" type="value">2</input><input as="false" clear="false">qualityRankRaw</input>
-    <output as="result">qualityRankRaw</output>
-  </if>
-  <if greater="true" equal="true">
-    <input as="a" clear="false">ratioY15</input><input as="b" type="value">3</input>
-    <input as="true" type="value">3</input><input as="false" clear="false">qualityRankRaw</input>
-    <output as="result">qualityRankRaw</output>
-  </if>
-  <if greater="true" equal="true">
-    <input as="a" clear="false">ratioY15</input><input as="b" type="value">5</input>
-    <input as="true" type="value">4</input><input as="false" clear="false">qualityRankRaw</input>
-    <output as="result">qualityRankRaw</output>
-  </if>
-
-  <if equal="true">
-    <input as="a" clear="false">qualityDone</input><input as="b" type="value">1</input>
-    <input as="true" clear="false">qualityRankRaw</input><input as="false" type="value">9</input>
-    <output as="result">qualityStatus</output>
-  </if>
-
-</analysis>
-
-<export>
-  <set name="Class summary">
-    <data name="Latitude (deg)">latitude</data>
-    <data name="Expected reversal (deg/s)">expected</data>
-    <data name="Measured Y reversal (deg/s)">dY</data>
-    <data name="Percent error">percentError</data>
-    <data name="X control reversal (deg/s)">dX</data>
-    <data name="Z control reversal (deg/s)">dZ</data>
-    <data name="Measured Earth omega (rad/s)">omegaEarth</data>
-    <data name="Y Allan 15 s (deg/s)">allanY15</data>
-    <data name="Y Earth-Allan ratio">ratioY15</data>
-    <data name="X Allan 15 s (deg/s)">allanX15</data>
-    <data name="X Earth-Allan ratio">ratioX15</data>
-    <data name="Quality status (1 noisy, 2 marginal, 3 good, 4 very good, 9 incomplete)">qualityStatus</data>
-    <data name="Quieter horizontal axis (1 X, 2 Y)">bestAxisCode</data>
-    <data name="Actual quality-test sampling rate (Hz)">fs</data>
-  </set>
-  <set name="Raw iPhone gyroscope">
-    <data name="Time (s)">ut</data>
-    <data name="X (rad/s)">ux</data>
-    <data name="Y (rad/s)">uy</data>
-    <data name="Z (rad/s)">uz</data>
-  </set>
-</export>
-
+  <title>Earth Rotation Challenge - iPhone Beta</title>
+  <category>Gyroscope</category>
+  <description>Concurrent raw and calibrated iPhone gyroscope recording for an ABBA reversal. Requires the iOS beta supporting preferUncalibrated. The two streams keep their own timestamps and use identical measurement windows. Default: 15 s per block, 5 s settling, 7 s to turn; result at about 89 s. All displays use degrees per second. Full native rad/s data are also exported. Leave the experiment-menu gyroscope calibration switch unchanged: it can change both inputs together.</description>
+  <data-containers>
+    <container size="0">ux</container>
+    <container size="0">uy</container>
+    <container size="0">uz</container>
+    <container size="0">ut</container>
+    <container size="1" init="5">settleTime</container>
+    <container size="1" init="7">turnTime</container>
+    <container size="1" init="15">measureTime</container>
+    <container size="1" init="180">qualityTime</container>
+    <container size="1" init="53.4">latitude</container>
+    <container size="1">now</container>
+    <container size="1">expected</container>
+    <container size="1">A1s</container>
+    <container size="1">A1e</container>
+    <container size="1">rot1End</container>
+    <container size="1">B1s</container>
+    <container size="1">B1e</container>
+    <container size="1">B2s</container>
+    <container size="1">B2e</container>
+    <container size="1">rot2End</container>
+    <container size="1">A2s</container>
+    <container size="1">A2e</container>
+    <container size="1">abbaEnd</container>
+    <container size="1">qualityStart</container>
+    <container size="1">qualityEnd</container>
+    <container size="1">totalTime</container>
+    <container size="1">stage</container>
+    <container size="0">ut_A1</container>
+    <container size="0">ux_A1</container>
+    <container size="0">uy_A1</container>
+    <container size="0">uz_A1</container>
+    <container size="1">mux_A1</container>
+    <container size="1">muy_A1</container>
+    <container size="1">muz_A1</container>
+    <container size="0">ut_B1</container>
+    <container size="0">ux_B1</container>
+    <container size="0">uy_B1</container>
+    <container size="0">uz_B1</container>
+    <container size="1">mux_B1</container>
+    <container size="1">muy_B1</container>
+    <container size="1">muz_B1</container>
+    <container size="0">ut_B2</container>
+    <container size="0">ux_B2</container>
+    <container size="0">uy_B2</container>
+    <container size="0">uz_B2</container>
+    <container size="1">mux_B2</container>
+    <container size="1">muy_B2</container>
+    <container size="1">muz_B2</container>
+    <container size="0">ut_A2</container>
+    <container size="0">ux_A2</container>
+    <container size="0">uy_A2</container>
+    <container size="0">uz_A2</container>
+    <container size="1">mux_A2</container>
+    <container size="1">muy_A2</container>
+    <container size="1">muz_A2</container>
+    <container size="1">dX</container>
+    <container size="1">dY</container>
+    <container size="1">dZ</container>
+    <container size="1">percentError</container>
+    <container size="1">omegaEarth</container>
+    <container size="1">signStatus</container>
+    <container size="0">qut</container>
+    <container size="0">qx</container>
+    <container size="0">qy</container>
+    <container size="1">nq</container>
+    <container size="1">tminq</container>
+    <container size="1">tmaxq</container>
+    <container size="1">fs</container>
+    <container size="1">f15</container>
+    <container size="0">tx15</container>
+    <container size="0">xavg15</container>
+    <container size="0">xdiff15</container>
+    <container size="0">xsq15</container>
+    <container size="1">xms15</container>
+    <container size="1">allanX15</container>
+    <container size="1">ratioX15</container>
+    <container size="0">ty15</container>
+    <container size="0">yavg15</container>
+    <container size="0">ydiff15</container>
+    <container size="0">ysq15</container>
+    <container size="1">yms15</container>
+    <container size="1">allanY15</container>
+    <container size="1">ratioY15</container>
+    <container size="1">qualityDone</container>
+    <container size="1">qualityRankRaw</container>
+    <container size="1">qualityStatus</container>
+    <container size="1">qualityElapsed</container>
+    <container size="1">bestAxisCode</container>
+    <container size="1">sdux_A1</container>
+    <container size="1">sduy_A1</container>
+    <container size="1">sduz_A1</container>
+    <container size="1">sdux_B1</container>
+    <container size="1">sduy_B1</container>
+    <container size="1">sduz_B1</container>
+    <container size="1">sdux_B2</container>
+    <container size="1">sduy_B2</container>
+    <container size="1">sduz_B2</container>
+    <container size="1">sdux_A2</container>
+    <container size="1">sduy_A2</container>
+    <container size="1">sduz_A2</container>
+    <container size="1">n_A1</container>
+    <container size="1">tm_A1</container>
+    <container size="1">n_B1</container>
+    <container size="1">tm_B1</container>
+    <container size="1">n_B2</container>
+    <container size="1">tm_B2</container>
+    <container size="1">n_A2</container>
+    <container size="1">tm_A2</container>
+    <container size="1">dX_pending</container>
+    <container size="1">dY_pending</container>
+    <container size="1">dZ_pending</container>
+    <container size="1">omegaH</container>
+    <container size="0">ux_deg</container>
+    <container size="0">uy_deg</container>
+    <container size="0">uz_deg</container>
+    <container size="0">c_ux</container>
+    <container size="0">c_uy</container>
+    <container size="0">c_uz</container>
+    <container size="0">c_ut</container>
+    <container size="0">c_ut_A1</container>
+    <container size="0">c_ux_A1</container>
+    <container size="0">c_uy_A1</container>
+    <container size="0">c_uz_A1</container>
+    <container size="1">c_mux_A1</container>
+    <container size="1">c_muy_A1</container>
+    <container size="1">c_muz_A1</container>
+    <container size="0">c_ut_B1</container>
+    <container size="0">c_ux_B1</container>
+    <container size="0">c_uy_B1</container>
+    <container size="0">c_uz_B1</container>
+    <container size="1">c_mux_B1</container>
+    <container size="1">c_muy_B1</container>
+    <container size="1">c_muz_B1</container>
+    <container size="0">c_ut_B2</container>
+    <container size="0">c_ux_B2</container>
+    <container size="0">c_uy_B2</container>
+    <container size="0">c_uz_B2</container>
+    <container size="1">c_mux_B2</container>
+    <container size="1">c_muy_B2</container>
+    <container size="1">c_muz_B2</container>
+    <container size="0">c_ut_A2</container>
+    <container size="0">c_ux_A2</container>
+    <container size="0">c_uy_A2</container>
+    <container size="0">c_uz_A2</container>
+    <container size="1">c_mux_A2</container>
+    <container size="1">c_muy_A2</container>
+    <container size="1">c_muz_A2</container>
+    <container size="1">c_dX</container>
+    <container size="1">c_dY</container>
+    <container size="1">c_dZ</container>
+    <container size="1">c_percentError</container>
+    <container size="1">c_omegaEarth</container>
+    <container size="1">c_signStatus</container>
+    <container size="0">c_qut</container>
+    <container size="0">c_qx</container>
+    <container size="0">c_qy</container>
+    <container size="1">c_nq</container>
+    <container size="1">c_tminq</container>
+    <container size="1">c_tmaxq</container>
+    <container size="1">c_fs</container>
+    <container size="1">c_f15</container>
+    <container size="0">c_tx15</container>
+    <container size="0">c_xavg15</container>
+    <container size="0">c_xdiff15</container>
+    <container size="0">c_xsq15</container>
+    <container size="1">c_xms15</container>
+    <container size="1">c_allanX15</container>
+    <container size="1">c_ratioX15</container>
+    <container size="0">c_ty15</container>
+    <container size="0">c_yavg15</container>
+    <container size="0">c_ydiff15</container>
+    <container size="0">c_ysq15</container>
+    <container size="1">c_yms15</container>
+    <container size="1">c_allanY15</container>
+    <container size="1">c_ratioY15</container>
+    <container size="1">c_qualityDone</container>
+    <container size="1">c_qualityRankRaw</container>
+    <container size="1">c_qualityStatus</container>
+    <container size="1">c_bestAxisCode</container>
+    <container size="1">c_sdux_A1</container>
+    <container size="1">c_sduy_A1</container>
+    <container size="1">c_sduz_A1</container>
+    <container size="1">c_sdux_B1</container>
+    <container size="1">c_sduy_B1</container>
+    <container size="1">c_sduz_B1</container>
+    <container size="1">c_sdux_B2</container>
+    <container size="1">c_sduy_B2</container>
+    <container size="1">c_sduz_B2</container>
+    <container size="1">c_sdux_A2</container>
+    <container size="1">c_sduy_A2</container>
+    <container size="1">c_sduz_A2</container>
+    <container size="1">c_n_A1</container>
+    <container size="1">c_tm_A1</container>
+    <container size="1">c_n_B1</container>
+    <container size="1">c_tm_B1</container>
+    <container size="1">c_n_B2</container>
+    <container size="1">c_tm_B2</container>
+    <container size="1">c_n_A2</container>
+    <container size="1">c_tm_A2</container>
+    <container size="1">c_dX_pending</container>
+    <container size="1">c_dY_pending</container>
+    <container size="1">c_dZ_pending</container>
+    <container size="1">c_omegaH</container>
+    <container size="0">c_ux_deg</container>
+    <container size="0">c_uy_deg</container>
+    <container size="0">c_uz_deg</container>
+    <container size="1">deltaDifference</container>
+    <container size="1">expectedH</container>
+    <container size="1" init="0">complete</container>
+    <container size="1">mux_A1_deg</container>
+    <container size="1">sdux_A1_deg</container>
+    <container size="1">muy_A1_deg</container>
+    <container size="1">sduy_A1_deg</container>
+    <container size="1">muz_A1_deg</container>
+    <container size="1">sduz_A1_deg</container>
+    <container size="1">c_mux_A1_deg</container>
+    <container size="1">c_sdux_A1_deg</container>
+    <container size="1">c_muy_A1_deg</container>
+    <container size="1">c_sduy_A1_deg</container>
+    <container size="1">c_muz_A1_deg</container>
+    <container size="1">c_sduz_A1_deg</container>
+    <container size="1">mux_B1_deg</container>
+    <container size="1">sdux_B1_deg</container>
+    <container size="1">muy_B1_deg</container>
+    <container size="1">sduy_B1_deg</container>
+    <container size="1">muz_B1_deg</container>
+    <container size="1">sduz_B1_deg</container>
+    <container size="1">c_mux_B1_deg</container>
+    <container size="1">c_sdux_B1_deg</container>
+    <container size="1">c_muy_B1_deg</container>
+    <container size="1">c_sduy_B1_deg</container>
+    <container size="1">c_muz_B1_deg</container>
+    <container size="1">c_sduz_B1_deg</container>
+    <container size="1">mux_B2_deg</container>
+    <container size="1">sdux_B2_deg</container>
+    <container size="1">muy_B2_deg</container>
+    <container size="1">sduy_B2_deg</container>
+    <container size="1">muz_B2_deg</container>
+    <container size="1">sduz_B2_deg</container>
+    <container size="1">c_mux_B2_deg</container>
+    <container size="1">c_sdux_B2_deg</container>
+    <container size="1">c_muy_B2_deg</container>
+    <container size="1">c_sduy_B2_deg</container>
+    <container size="1">c_muz_B2_deg</container>
+    <container size="1">c_sduz_B2_deg</container>
+    <container size="1">mux_A2_deg</container>
+    <container size="1">sdux_A2_deg</container>
+    <container size="1">muy_A2_deg</container>
+    <container size="1">sduy_A2_deg</container>
+    <container size="1">muz_A2_deg</container>
+    <container size="1">sduz_A2_deg</container>
+    <container size="1">c_mux_A2_deg</container>
+    <container size="1">c_sdux_A2_deg</container>
+    <container size="1">c_muy_A2_deg</container>
+    <container size="1">c_sduy_A2_deg</container>
+    <container size="1">c_muz_A2_deg</container>
+    <container size="1">c_sduz_A2_deg</container>
+  </data-containers>
+  <input>
+    <sensor type="gyroscope" rate="100" rateStrategy="request" preferUncalibrated="true">
+      <output component="x">ux</output>
+      <output component="y">uy</output>
+      <output component="z">uz</output>
+      <output component="t">ut</output>
+    </sensor>
+    <sensor type="gyroscope" rate="100" rateStrategy="request" preferUncalibrated="false">
+      <output component="x">c_ux</output>
+      <output component="y">c_uy</output>
+      <output component="z">c_uz</output>
+      <output component="t">c_ut</output>
+    </sensor>
+  </input>
+  <views>
+    <view label="1. ABBA">
+      <info label="Place the iPhone flat, screen up, with its TOP (+Y) pointing TRUE NORTH. A is +Y north; B is +Y south. Rotate in the plane of the table." />
+      <info label="Set the values before Start. Keep the recording running through A1, B1, B2, A2. There is NO TURN between B1 and B2. Use a fresh cleared recording for each sequence." />
+      <edit label="Average each block" default="15" min="2" max="60" unit="s">
+        <output>measureTime</output>
+      </edit>
+      <edit label="Settling after placement/turn" default="5" min="1" max="30" unit="s">
+        <output>settleTime</output>
+      </edit>
+      <edit label="Time allowed to turn" default="7" min="2" max="30" unit="s">
+        <output>turnTime</output>
+      </edit>
+      <edit label="Latitude" default="53.4" min="-89" max="89" unit="deg">
+        <output>latitude</output>
+      </edit>
+      <value label="CURRENT INSTRUCTION" size="2">
+        <input>stage</input>
+        <map min="0" max="0">SETTLE: +Y NORTH - HANDS OFF</map>
+        <map min="1" max="1">MEASURE A1: +Y NORTH - DO NOT TOUCH</map>
+        <map min="2" max="2">ROTATE IPHONE GENTLY THROUGH 180 DEGREES</map>
+        <map min="3" max="3">SETTLE: +Y NOW SOUTH - HANDS OFF</map>
+        <map min="4" max="4">MEASURE B1: STAY COMPLETELY STILL</map>
+        <map min="5" max="5">MEASURE B2: STAY COMPLETELY STILL</map>
+        <map min="6" max="6">ROTATE IPHONE GENTLY BACK 180 DEGREES</map>
+        <map min="7" max="7">SETTLE: +Y NORTH AGAIN - HANDS OFF</map>
+        <map min="8" max="8">MEASURE A2: +Y NORTH - DO NOT TOUCH</map>
+        <map min="9" max="9">ABBA COMPLETE - PAUSE AND EXPORT, OR KEEP STILL FOR OPTIONAL QUALITY CHECK</map>
+        <map min="10" max="10">ABBA AND QUALITY CHECK COMPLETE - PAUSE AND EXPORT</map>
+      </value>
+      <value label="Elapsed" precision="1" size="1" unit="s">
+        <input>now</input>
+      </value>
+      <value label="ABBA finished at" precision="1" size="1" unit="s">
+        <input>abbaEnd</input>
+      </value>
+      <separator height="0.6" />
+      <value label="RAW Y reversal" precision="6" size="2" unit="deg/s">
+        <input>dY</input>
+      </value>
+      <value label="CALIBRATED Y reversal" precision="6" size="2" unit="deg/s">
+        <input>c_dY</input>
+      </value>
+      <value label="Expected reversal: 2 Omega cos(latitude)" precision="6" size="1" unit="deg/s">
+        <input>expected</input>
+      </value>
+      <info label="Both streams are recorded together at a requested 100 Hz. Their actual sampling times can differ; the ABBA windows are identical." />
+      <info label="Leave the gyroscope calibration switch in the experiment menu unchanged: it can switch BOTH inputs to the same mode. Reopen the experiment if you change it." />
+    </view>
+    <view label="2. Results">
+      <value label="Sequence" precision="0" size="2">
+        <input>complete</input>
+        <map min="0" max="0">WAIT FOR COMPLETE ABBA</map>
+        <map min="1" max="1">ABBA COMPLETE</map>
+      </value>
+      <info label="Reversal D = (A1 + A2 - B1 - B2)/2. The horizontal Earth-rate estimate is D/2. Positive Y is expected for the stated north-first orientation." />
+      <separator height="0.6" />
+      <info label="RAW" />
+      <value label="Y reversal D" precision="6" size="2" unit="deg/s">
+        <input>dY</input>
+      </value>
+      <value label="Horizontal rate D/2" precision="6" size="2" unit="deg/s">
+        <input>omegaH</input>
+      </value>
+      <value label="X control reversal" precision="6" size="1" unit="deg/s">
+        <input>dX</input>
+      </value>
+      <value label="Z control reversal" precision="6" size="1" unit="deg/s">
+        <input>dZ</input>
+      </value>
+      <value label="Difference from expected reversal" precision="1" size="1" unit="%">
+        <input>percentError</input>
+      </value>
+      <separator height="0.6" />
+      <info label="CALIBRATED" />
+      <value label="Y reversal D" precision="6" size="2" unit="deg/s">
+        <input>c_dY</input>
+      </value>
+      <value label="Horizontal rate D/2" precision="6" size="2" unit="deg/s">
+        <input>c_omegaH</input>
+      </value>
+      <value label="X control reversal" precision="6" size="1" unit="deg/s">
+        <input>c_dX</input>
+      </value>
+      <value label="Z control reversal" precision="6" size="1" unit="deg/s">
+        <input>c_dZ</input>
+      </value>
+      <value label="Difference from expected reversal" precision="1" size="1" unit="%">
+        <input>c_percentError</input>
+      </value>
+      <separator height="0.6" />
+      <value label="Expected horizontal rate" precision="6" size="1" unit="deg/s">
+        <input>expectedH</input>
+      </value>
+      <value label="Raw D minus calibrated D" precision="6" size="1" unit="deg/s">
+        <input>deltaDifference</input>
+      </value>
+      <info label="The last value compares the same four time windows. It is not a sample-by-sample hardware bias measurement. A small calibrated result alone does not show that the raw result is Earth rotation." />
+      <info label="Export All data after each run. Raw gyro and Calibrated gyro have independent time columns; match them by time, not row number. Summary includes both results; Block statistics includes means, SDs, counts and mean sample times." />
+    </view>
+    <view label="3. Raw graphs">
+      <info label="Full-rate X, Y and Z in deg/s. Large turn spikes are retained; zoom the stationary intervals to inspect small rates. The vertical range follows the recorded data." />
+      <graph label="X gyroscope" labelX="Time" labelY="Rate" unitX="s" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">ut</input>
+        <input axis="y">ux_deg</input>
+      </graph>
+      <graph label="Y gyroscope" labelX="Time" labelY="Rate" unitX="s" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">ut</input>
+        <input axis="y">uy_deg</input>
+      </graph>
+      <graph label="Z gyroscope" labelX="Time" labelY="Rate" unitX="s" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">ut</input>
+        <input axis="y">uz_deg</input>
+      </graph>
+    </view>
+    <view label="4. Calibrated graphs">
+      <info label="Full-rate X, Y and Z in deg/s. Large turn spikes are retained; zoom the stationary intervals to inspect small rates. The vertical range follows the recorded data." />
+      <graph label="X gyroscope" labelX="Time" labelY="Rate" unitX="s" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">c_ut</input>
+        <input axis="y">c_ux_deg</input>
+      </graph>
+      <graph label="Y gyroscope" labelX="Time" labelY="Rate" unitX="s" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">c_ut</input>
+        <input axis="y">c_uy_deg</input>
+      </graph>
+      <graph label="Z gyroscope" labelX="Time" labelY="Rate" unitX="s" unitY="deg/s" timeOnX="true" partialUpdate="false">
+        <input axis="x">c_ut</input>
+        <input axis="y">c_uz_deg</input>
+      </graph>
+    </view>
+    <view label="5. Block statistics">
+      <info label="Y-axis sample mean and sample SD for each retained measurement window. SD describes sample scatter; it is not an uncertainty on the ABBA result. All X/Y/Z statistics are included in the export." />
+      <separator height="0.6" />
+      <info label="A1" />
+      <value label="Raw Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>muy_A1</input>
+      </value>
+      <value label="Raw Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>sduy_A1</input>
+      </value>
+      <value label="Raw samples" precision="0" size="1">
+        <input>n_A1</input>
+      </value>
+      <value label="Calibrated Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_muy_A1</input>
+      </value>
+      <value label="Calibrated Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_sduy_A1</input>
+      </value>
+      <value label="Calibrated samples" precision="0" size="1">
+        <input>c_n_A1</input>
+      </value>
+      <separator height="0.6" />
+      <info label="B1" />
+      <value label="Raw Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>muy_B1</input>
+      </value>
+      <value label="Raw Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>sduy_B1</input>
+      </value>
+      <value label="Raw samples" precision="0" size="1">
+        <input>n_B1</input>
+      </value>
+      <value label="Calibrated Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_muy_B1</input>
+      </value>
+      <value label="Calibrated Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_sduy_B1</input>
+      </value>
+      <value label="Calibrated samples" precision="0" size="1">
+        <input>c_n_B1</input>
+      </value>
+      <separator height="0.6" />
+      <info label="B2" />
+      <value label="Raw Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>muy_B2</input>
+      </value>
+      <value label="Raw Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>sduy_B2</input>
+      </value>
+      <value label="Raw samples" precision="0" size="1">
+        <input>n_B2</input>
+      </value>
+      <value label="Calibrated Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_muy_B2</input>
+      </value>
+      <value label="Calibrated Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_sduy_B2</input>
+      </value>
+      <value label="Calibrated samples" precision="0" size="1">
+        <input>c_n_B2</input>
+      </value>
+      <separator height="0.6" />
+      <info label="A2" />
+      <value label="Raw Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>muy_A2</input>
+      </value>
+      <value label="Raw Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>sduy_A2</input>
+      </value>
+      <value label="Raw samples" precision="0" size="1">
+        <input>n_A2</input>
+      </value>
+      <value label="Calibrated Y mean" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_muy_A2</input>
+      </value>
+      <value label="Calibrated Y SD" precision="6" size="1" unit="deg/s" factor="57.29577951308232">
+        <input>c_sduy_A2</input>
+      </value>
+      <value label="Calibrated samples" precision="0" size="1">
+        <input>c_n_A2</input>
+      </value>
+    </view>
+    <view label="6. Optional stability">
+      <info label="After ABBA, keep the iPhone untouched for 180 s. This retains the original approximate 15 s, non-overlapping Allan-deviation check for both streams. Pause at ABBA completion if you only want the reversal measurement." />
+      <value label="Quality data collected" precision="0" size="1" unit="s / 180 s">
+        <input>qualityElapsed</input>
+      </value>
+      <separator height="0.6" />
+      <info label="RAW" />
+      <value label="Y Allan deviation at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>allanY15</input>
+      </value>
+      <value label="X Allan deviation at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>allanX15</input>
+      </value>
+      <value label="Observed sampling rate" precision="2" size="1" unit="Hz">
+        <input>fs</input>
+      </value>
+      <separator height="0.6" />
+      <info label="CALIBRATED" />
+      <value label="Y Allan deviation at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>c_allanY15</input>
+      </value>
+      <value label="X Allan deviation at about 15 s" precision="6" size="1" unit="deg/s">
+        <input>c_allanX15</input>
+      </value>
+      <value label="Observed sampling rate" precision="2" size="1" unit="Hz">
+        <input>c_fs</input>
+      </value>
+      <info label="A stability check screens noise and drift. It does not establish Earth rotation, and bias correction can suppress a steady signal. Use the repeated reversal results for the comparison." />
+    </view>
+  </views>
+  <analysis sleep="0.25">
+    <timer>
+      <output clear="false">now</output>
+    </timer>
+    <formula formula="2*0.0041780746*cos([1]*3.141592653589793/180)">
+      <input clear="false">latitude</input>
+      <output>expected</output>
+    </formula>
+    <formula formula="[1]">
+      <input clear="false">settleTime</input>
+      <output>A1s</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">A1s</input>
+      <input clear="false">measureTime</input>
+      <output>A1e</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">A1e</input>
+      <input clear="false">turnTime</input>
+      <output>rot1End</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">rot1End</input>
+      <input clear="false">settleTime</input>
+      <output>B1s</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">B1s</input>
+      <input clear="false">measureTime</input>
+      <output>B1e</output>
+    </formula>
+    <formula formula="[1]">
+      <input clear="false">B1e</input>
+      <output>B2s</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">B2s</input>
+      <input clear="false">measureTime</input>
+      <output>B2e</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">B2e</input>
+      <input clear="false">turnTime</input>
+      <output>rot2End</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">rot2End</input>
+      <input clear="false">settleTime</input>
+      <output>A2s</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">A2s</input>
+      <input clear="false">measureTime</input>
+      <output>A2e</output>
+    </formula>
+    <formula formula="[1]">
+      <input clear="false">A2e</input>
+      <output>abbaEnd</output>
+    </formula>
+    <formula formula="[1]">
+      <input clear="false">abbaEnd</input>
+      <output>qualityStart</output>
+    </formula>
+    <formula formula="[1]+[2]">
+      <input clear="false">qualityStart</input>
+      <input clear="false">qualityTime</input>
+      <output>qualityEnd</output>
+    </formula>
+    <formula formula="[1]">
+      <input clear="false">qualityEnd</input>
+      <output>totalTime</output>
+    </formula>
+    <formula formula="min(max([1]-[2],0),[3])">
+      <input clear="false">now</input>
+      <input clear="false">qualityStart</input>
+      <input clear="false">qualityTime</input>
+      <output>qualityElapsed</output>
+    </formula>
+    <formula formula="0">
+      <output>stage</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">A1s</input>
+      <input as="true" type="value">1</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">A1e</input>
+      <input as="true" type="value">2</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">rot1End</input>
+      <input as="true" type="value">3</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">B1s</input>
+      <input as="true" type="value">4</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">B1e</input>
+      <input as="true" type="value">5</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">B2e</input>
+      <input as="true" type="value">6</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">rot2End</input>
+      <input as="true" type="value">7</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">A2s</input>
+      <input as="true" type="value">8</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">abbaEnd</input>
+      <input as="true" type="value">9</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">qualityEnd</input>
+      <input as="true" type="value">10</input>
+      <input as="false" clear="false">stage</input>
+      <output as="result">stage</output>
+    </if>
+    <rangefilter>
+      <input clear="false">ut</input>
+      <input as="min" clear="false">A1s</input>
+      <input as="max" clear="false">A1e</input>
+      <input clear="false">ux</input>
+      <input clear="false">uy</input>
+      <input clear="false">uz</input>
+      <output>ut_A1</output>
+      <output>ux_A1</output>
+      <output>uy_A1</output>
+      <output>uz_A1</output>
+    </rangefilter>
+    <average>
+      <input clear="false">ux_A1</input>
+      <output as="average">mux_A1</output>
+      <output as="stddev">sdux_A1</output>
+    </average>
+    <average>
+      <input clear="false">uy_A1</input>
+      <output as="average">muy_A1</output>
+      <output as="stddev">sduy_A1</output>
+    </average>
+    <average>
+      <input clear="false">uz_A1</input>
+      <output as="average">muz_A1</output>
+      <output as="stddev">sduz_A1</output>
+    </average>
+    <rangefilter>
+      <input clear="false">ut</input>
+      <input as="min" clear="false">B1s</input>
+      <input as="max" clear="false">B1e</input>
+      <input clear="false">ux</input>
+      <input clear="false">uy</input>
+      <input clear="false">uz</input>
+      <output>ut_B1</output>
+      <output>ux_B1</output>
+      <output>uy_B1</output>
+      <output>uz_B1</output>
+    </rangefilter>
+    <average>
+      <input clear="false">ux_B1</input>
+      <output as="average">mux_B1</output>
+      <output as="stddev">sdux_B1</output>
+    </average>
+    <average>
+      <input clear="false">uy_B1</input>
+      <output as="average">muy_B1</output>
+      <output as="stddev">sduy_B1</output>
+    </average>
+    <average>
+      <input clear="false">uz_B1</input>
+      <output as="average">muz_B1</output>
+      <output as="stddev">sduz_B1</output>
+    </average>
+    <rangefilter>
+      <input clear="false">ut</input>
+      <input as="min" clear="false">B2s</input>
+      <input as="max" clear="false">B2e</input>
+      <input clear="false">ux</input>
+      <input clear="false">uy</input>
+      <input clear="false">uz</input>
+      <output>ut_B2</output>
+      <output>ux_B2</output>
+      <output>uy_B2</output>
+      <output>uz_B2</output>
+    </rangefilter>
+    <average>
+      <input clear="false">ux_B2</input>
+      <output as="average">mux_B2</output>
+      <output as="stddev">sdux_B2</output>
+    </average>
+    <average>
+      <input clear="false">uy_B2</input>
+      <output as="average">muy_B2</output>
+      <output as="stddev">sduy_B2</output>
+    </average>
+    <average>
+      <input clear="false">uz_B2</input>
+      <output as="average">muz_B2</output>
+      <output as="stddev">sduz_B2</output>
+    </average>
+    <rangefilter>
+      <input clear="false">ut</input>
+      <input as="min" clear="false">A2s</input>
+      <input as="max" clear="false">A2e</input>
+      <input clear="false">ux</input>
+      <input clear="false">uy</input>
+      <input clear="false">uz</input>
+      <output>ut_A2</output>
+      <output>ux_A2</output>
+      <output>uy_A2</output>
+      <output>uz_A2</output>
+    </rangefilter>
+    <average>
+      <input clear="false">ux_A2</input>
+      <output as="average">mux_A2</output>
+      <output as="stddev">sdux_A2</output>
+    </average>
+    <average>
+      <input clear="false">uy_A2</input>
+      <output as="average">muy_A2</output>
+      <output as="stddev">sduy_A2</output>
+    </average>
+    <average>
+      <input clear="false">uz_A2</input>
+      <output as="average">muz_A2</output>
+      <output as="stddev">sduz_A2</output>
+    </average>
+    <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+      <input clear="false">mux_A1</input>
+      <input clear="false">mux_A2</input>
+      <input clear="false">mux_B1</input>
+      <input clear="false">mux_B2</input>
+      <output>dX_pending</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input clear="false" as="true">dX_pending</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">dX</output>
+    </if>
+    <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+      <input clear="false">muy_A1</input>
+      <input clear="false">muy_A2</input>
+      <input clear="false">muy_B1</input>
+      <input clear="false">muy_B2</input>
+      <output>dY_pending</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input clear="false" as="true">dY_pending</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">dY</output>
+    </if>
+    <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+      <input clear="false">muz_A1</input>
+      <input clear="false">muz_A2</input>
+      <input clear="false">muz_B1</input>
+      <input clear="false">muz_B2</input>
+      <output>dZ_pending</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input clear="false" as="true">dZ_pending</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">dZ</output>
+    </if>
+    <formula formula="100*([1]-[2])/[2]">
+      <input clear="false">dY</input>
+      <input clear="false">expected</input>
+      <output>percentError</output>
+    </formula>
+    <formula formula="([1]*3.141592653589793/180)/(2*cos([2]*3.141592653589793/180))">
+      <input clear="false">dY</input>
+      <input clear="false">latitude</input>
+      <output>omegaEarth</output>
+    </formula>
+    <formula formula="0">
+      <output>signStatus</output>
+    </formula>
+    <if greater="true">
+      <input as="a" clear="false">dY</input>
+      <input as="b" type="value">0</input>
+      <input as="true" type="value">1</input>
+      <input as="false" type="value">-1</input>
+      <output as="result">signStatus</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">abbaEnd</input>
+      <input as="true" clear="false">signStatus</input>
+      <input as="false" type="value">0</input>
+      <output as="result">signStatus</output>
+    </if>
+    <rangefilter>
+      <input clear="false">ut</input>
+      <input as="min" clear="false">qualityStart</input>
+      <input as="max" clear="false">qualityEnd</input>
+      <input clear="false">ux</input>
+      <input clear="false">uy</input>
+      <output>qut</output>
+      <output>qx</output>
+      <output>qy</output>
+    </rangefilter>
+    <count>
+      <input as="buffer" clear="false">qut</input>
+      <output as="count">nq</output>
+    </count>
+    <min>
+      <input as="y" clear="false">qut</input>
+      <output as="min">tminq</output>
+    </min>
+    <max>
+      <input as="y" clear="false">qut</input>
+      <output as="max">tmaxq</output>
+    </max>
+    <formula formula="([1]-1)/([3]-[2])">
+      <input clear="false">nq</input>
+      <input clear="false">tminq</input>
+      <input clear="false">tmaxq</input>
+      <output>fs</output>
+    </formula>
+    <formula formula="max(1,round([1]*15))">
+      <input clear="false">fs</input>
+      <output>f15</output>
+    </formula>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f15</input>
+      <input clear="false" as="x">qut</input>
+      <input clear="false" as="y">qx</input>
+      <output as="x">tx15</output>
+      <output as="y">xavg15</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">xavg15</input>
+      <output>xdiff15</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">xdiff15</input>
+      <input as="exponent" type="value">2</input>
+      <output>xsq15</output>
+    </power>
+    <average>
+      <input clear="false">xsq15</input>
+      <output as="average">xms15</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">xms15</input>
+      <output>allanX15</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">expected</input>
+      <input clear="false">allanX15</input>
+      <output>ratioX15</output>
+    </formula>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">f15</input>
+      <input clear="false" as="x">qut</input>
+      <input clear="false" as="y">qy</input>
+      <output as="x">ty15</output>
+      <output as="y">yavg15</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">yavg15</input>
+      <output>ydiff15</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">ydiff15</input>
+      <input as="exponent" type="value">2</input>
+      <output>ysq15</output>
+    </power>
+    <average>
+      <input clear="false">ysq15</input>
+      <output as="average">yms15</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">yms15</input>
+      <output>allanY15</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">expected</input>
+      <input clear="false">allanY15</input>
+      <output>ratioY15</output>
+    </formula>
+    <if greater="true">
+      <input as="a" clear="false">ratioX15</input>
+      <input as="b" clear="false">ratioY15</input>
+      <input as="true" type="value">1</input>
+      <input as="false" type="value">2</input>
+      <output as="result">bestAxisCode</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">qualityEnd</input>
+      <input as="true" type="value">1</input>
+      <input as="false" type="value">0</input>
+      <output as="result">qualityDone</output>
+    </if>
+    <formula formula="1">
+      <output>qualityRankRaw</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">ratioY15</input>
+      <input as="b" type="value">2</input>
+      <input as="true" type="value">2</input>
+      <input as="false" clear="false">qualityRankRaw</input>
+      <output as="result">qualityRankRaw</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">ratioY15</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">3</input>
+      <input as="false" clear="false">qualityRankRaw</input>
+      <output as="result">qualityRankRaw</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">ratioY15</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">4</input>
+      <input as="false" clear="false">qualityRankRaw</input>
+      <output as="result">qualityRankRaw</output>
+    </if>
+    <if equal="true">
+      <input as="a" clear="false">qualityDone</input>
+      <input as="b" type="value">1</input>
+      <input as="true" clear="false">qualityRankRaw</input>
+      <input as="false" type="value">9</input>
+      <output as="result">qualityStatus</output>
+    </if>
+    <count>
+      <input clear="false" as="buffer">ut_A1</input>
+      <output as="count">n_A1</output>
+    </count>
+    <average>
+      <input clear="false">ut_A1</input>
+      <output as="average">tm_A1</output>
+    </average>
+    <count>
+      <input clear="false" as="buffer">ut_B1</input>
+      <output as="count">n_B1</output>
+    </count>
+    <average>
+      <input clear="false">ut_B1</input>
+      <output as="average">tm_B1</output>
+    </average>
+    <count>
+      <input clear="false" as="buffer">ut_B2</input>
+      <output as="count">n_B2</output>
+    </count>
+    <average>
+      <input clear="false">ut_B2</input>
+      <output as="average">tm_B2</output>
+    </average>
+    <count>
+      <input clear="false" as="buffer">ut_A2</input>
+      <output as="count">n_A2</output>
+    </count>
+    <average>
+      <input clear="false">ut_A2</input>
+      <output as="average">tm_A2</output>
+    </average>
+    <formula formula="[1]/2">
+      <input clear="false">dY</input>
+      <output>omegaH</output>
+    </formula>
+    <multiply>
+      <input clear="false">ux</input>
+      <input type="value">57.29577951308232</input>
+      <output>ux_deg</output>
+    </multiply>
+    <multiply>
+      <input clear="false">uy</input>
+      <input type="value">57.29577951308232</input>
+      <output>uy_deg</output>
+    </multiply>
+    <multiply>
+      <input clear="false">uz</input>
+      <input type="value">57.29577951308232</input>
+      <output>uz_deg</output>
+    </multiply>
+    <rangefilter>
+      <input clear="false">c_ut</input>
+      <input as="min" clear="false">A1s</input>
+      <input as="max" clear="false">A1e</input>
+      <input clear="false">c_ux</input>
+      <input clear="false">c_uy</input>
+      <input clear="false">c_uz</input>
+      <output>c_ut_A1</output>
+      <output>c_ux_A1</output>
+      <output>c_uy_A1</output>
+      <output>c_uz_A1</output>
+    </rangefilter>
+    <average>
+      <input clear="false">c_ux_A1</input>
+      <output as="average">c_mux_A1</output>
+      <output as="stddev">c_sdux_A1</output>
+    </average>
+    <average>
+      <input clear="false">c_uy_A1</input>
+      <output as="average">c_muy_A1</output>
+      <output as="stddev">c_sduy_A1</output>
+    </average>
+    <average>
+      <input clear="false">c_uz_A1</input>
+      <output as="average">c_muz_A1</output>
+      <output as="stddev">c_sduz_A1</output>
+    </average>
+    <rangefilter>
+      <input clear="false">c_ut</input>
+      <input as="min" clear="false">B1s</input>
+      <input as="max" clear="false">B1e</input>
+      <input clear="false">c_ux</input>
+      <input clear="false">c_uy</input>
+      <input clear="false">c_uz</input>
+      <output>c_ut_B1</output>
+      <output>c_ux_B1</output>
+      <output>c_uy_B1</output>
+      <output>c_uz_B1</output>
+    </rangefilter>
+    <average>
+      <input clear="false">c_ux_B1</input>
+      <output as="average">c_mux_B1</output>
+      <output as="stddev">c_sdux_B1</output>
+    </average>
+    <average>
+      <input clear="false">c_uy_B1</input>
+      <output as="average">c_muy_B1</output>
+      <output as="stddev">c_sduy_B1</output>
+    </average>
+    <average>
+      <input clear="false">c_uz_B1</input>
+      <output as="average">c_muz_B1</output>
+      <output as="stddev">c_sduz_B1</output>
+    </average>
+    <rangefilter>
+      <input clear="false">c_ut</input>
+      <input as="min" clear="false">B2s</input>
+      <input as="max" clear="false">B2e</input>
+      <input clear="false">c_ux</input>
+      <input clear="false">c_uy</input>
+      <input clear="false">c_uz</input>
+      <output>c_ut_B2</output>
+      <output>c_ux_B2</output>
+      <output>c_uy_B2</output>
+      <output>c_uz_B2</output>
+    </rangefilter>
+    <average>
+      <input clear="false">c_ux_B2</input>
+      <output as="average">c_mux_B2</output>
+      <output as="stddev">c_sdux_B2</output>
+    </average>
+    <average>
+      <input clear="false">c_uy_B2</input>
+      <output as="average">c_muy_B2</output>
+      <output as="stddev">c_sduy_B2</output>
+    </average>
+    <average>
+      <input clear="false">c_uz_B2</input>
+      <output as="average">c_muz_B2</output>
+      <output as="stddev">c_sduz_B2</output>
+    </average>
+    <rangefilter>
+      <input clear="false">c_ut</input>
+      <input as="min" clear="false">A2s</input>
+      <input as="max" clear="false">A2e</input>
+      <input clear="false">c_ux</input>
+      <input clear="false">c_uy</input>
+      <input clear="false">c_uz</input>
+      <output>c_ut_A2</output>
+      <output>c_ux_A2</output>
+      <output>c_uy_A2</output>
+      <output>c_uz_A2</output>
+    </rangefilter>
+    <average>
+      <input clear="false">c_ux_A2</input>
+      <output as="average">c_mux_A2</output>
+      <output as="stddev">c_sdux_A2</output>
+    </average>
+    <average>
+      <input clear="false">c_uy_A2</input>
+      <output as="average">c_muy_A2</output>
+      <output as="stddev">c_sduy_A2</output>
+    </average>
+    <average>
+      <input clear="false">c_uz_A2</input>
+      <output as="average">c_muz_A2</output>
+      <output as="stddev">c_sduz_A2</output>
+    </average>
+    <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+      <input clear="false">c_mux_A1</input>
+      <input clear="false">c_mux_A2</input>
+      <input clear="false">c_mux_B1</input>
+      <input clear="false">c_mux_B2</input>
+      <output>c_dX_pending</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input clear="false" as="true">c_dX_pending</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c_dX</output>
+    </if>
+    <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+      <input clear="false">c_muy_A1</input>
+      <input clear="false">c_muy_A2</input>
+      <input clear="false">c_muy_B1</input>
+      <input clear="false">c_muy_B2</input>
+      <output>c_dY_pending</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input clear="false" as="true">c_dY_pending</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c_dY</output>
+    </if>
+    <formula formula="57.29577951308232*((([1]+[2])/2)-(([3]+[4])/2))">
+      <input clear="false">c_muz_A1</input>
+      <input clear="false">c_muz_A2</input>
+      <input clear="false">c_muz_B1</input>
+      <input clear="false">c_muz_B2</input>
+      <output>c_dZ_pending</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input clear="false" as="true">c_dZ_pending</input>
+      <input type="value" as="false">NaN</input>
+      <output as="result">c_dZ</output>
+    </if>
+    <formula formula="100*([1]-[2])/[2]">
+      <input clear="false">c_dY</input>
+      <input clear="false">expected</input>
+      <output>c_percentError</output>
+    </formula>
+    <formula formula="([1]*3.141592653589793/180)/(2*cos([2]*3.141592653589793/180))">
+      <input clear="false">c_dY</input>
+      <input clear="false">latitude</input>
+      <output>c_omegaEarth</output>
+    </formula>
+    <formula formula="0">
+      <output>c_signStatus</output>
+    </formula>
+    <if greater="true">
+      <input as="a" clear="false">c_dY</input>
+      <input as="b" type="value">0</input>
+      <input as="true" type="value">1</input>
+      <input as="false" type="value">-1</input>
+      <output as="result">c_signStatus</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">abbaEnd</input>
+      <input as="true" clear="false">c_signStatus</input>
+      <input as="false" type="value">0</input>
+      <output as="result">c_signStatus</output>
+    </if>
+    <rangefilter>
+      <input clear="false">c_ut</input>
+      <input as="min" clear="false">qualityStart</input>
+      <input as="max" clear="false">qualityEnd</input>
+      <input clear="false">c_ux</input>
+      <input clear="false">c_uy</input>
+      <output>c_qut</output>
+      <output>c_qx</output>
+      <output>c_qy</output>
+    </rangefilter>
+    <count>
+      <input as="buffer" clear="false">c_qut</input>
+      <output as="count">c_nq</output>
+    </count>
+    <min>
+      <input as="y" clear="false">c_qut</input>
+      <output as="min">c_tminq</output>
+    </min>
+    <max>
+      <input as="y" clear="false">c_qut</input>
+      <output as="max">c_tmaxq</output>
+    </max>
+    <formula formula="([1]-1)/([3]-[2])">
+      <input clear="false">c_nq</input>
+      <input clear="false">c_tminq</input>
+      <input clear="false">c_tmaxq</input>
+      <output>c_fs</output>
+    </formula>
+    <formula formula="max(1,round([1]*15))">
+      <input clear="false">c_fs</input>
+      <output>c_f15</output>
+    </formula>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">c_f15</input>
+      <input clear="false" as="x">c_qut</input>
+      <input clear="false" as="y">c_qx</input>
+      <output as="x">c_tx15</output>
+      <output as="y">c_xavg15</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">c_xavg15</input>
+      <output>c_xdiff15</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">c_xdiff15</input>
+      <input as="exponent" type="value">2</input>
+      <output>c_xsq15</output>
+    </power>
+    <average>
+      <input clear="false">c_xsq15</input>
+      <output as="average">c_xms15</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">c_xms15</input>
+      <output>c_allanX15</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">expected</input>
+      <input clear="false">c_allanX15</input>
+      <output>c_ratioX15</output>
+    </formula>
+    <reduce averageX="true" averageY="true">
+      <input clear="false" as="factor">c_f15</input>
+      <input clear="false" as="x">c_qut</input>
+      <input clear="false" as="y">c_qy</input>
+      <output as="x">c_ty15</output>
+      <output as="y">c_yavg15</output>
+    </reduce>
+    <differentiate>
+      <input clear="false">c_yavg15</input>
+      <output>c_ydiff15</output>
+    </differentiate>
+    <power>
+      <input as="base" clear="false">c_ydiff15</input>
+      <input as="exponent" type="value">2</input>
+      <output>c_ysq15</output>
+    </power>
+    <average>
+      <input clear="false">c_ysq15</input>
+      <output as="average">c_yms15</output>
+    </average>
+    <formula formula="57.29577951308232*sqrt(0.5*[1])">
+      <input clear="false">c_yms15</input>
+      <output>c_allanY15</output>
+    </formula>
+    <formula formula="[1]/[2]">
+      <input clear="false">expected</input>
+      <input clear="false">c_allanY15</input>
+      <output>c_ratioY15</output>
+    </formula>
+    <if greater="true">
+      <input as="a" clear="false">c_ratioX15</input>
+      <input as="b" clear="false">c_ratioY15</input>
+      <input as="true" type="value">1</input>
+      <input as="false" type="value">2</input>
+      <output as="result">c_bestAxisCode</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">now</input>
+      <input as="b" clear="false">qualityEnd</input>
+      <input as="true" type="value">1</input>
+      <input as="false" type="value">0</input>
+      <output as="result">c_qualityDone</output>
+    </if>
+    <formula formula="1">
+      <output>c_qualityRankRaw</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">c_ratioY15</input>
+      <input as="b" type="value">2</input>
+      <input as="true" type="value">2</input>
+      <input as="false" clear="false">c_qualityRankRaw</input>
+      <output as="result">c_qualityRankRaw</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">c_ratioY15</input>
+      <input as="b" type="value">3</input>
+      <input as="true" type="value">3</input>
+      <input as="false" clear="false">c_qualityRankRaw</input>
+      <output as="result">c_qualityRankRaw</output>
+    </if>
+    <if greater="true" equal="true">
+      <input as="a" clear="false">c_ratioY15</input>
+      <input as="b" type="value">5</input>
+      <input as="true" type="value">4</input>
+      <input as="false" clear="false">c_qualityRankRaw</input>
+      <output as="result">c_qualityRankRaw</output>
+    </if>
+    <if equal="true">
+      <input as="a" clear="false">c_qualityDone</input>
+      <input as="b" type="value">1</input>
+      <input as="true" clear="false">c_qualityRankRaw</input>
+      <input as="false" type="value">9</input>
+      <output as="result">c_qualityStatus</output>
+    </if>
+    <count>
+      <input clear="false" as="buffer">c_ut_A1</input>
+      <output as="count">c_n_A1</output>
+    </count>
+    <average>
+      <input clear="false">c_ut_A1</input>
+      <output as="average">c_tm_A1</output>
+    </average>
+    <count>
+      <input clear="false" as="buffer">c_ut_B1</input>
+      <output as="count">c_n_B1</output>
+    </count>
+    <average>
+      <input clear="false">c_ut_B1</input>
+      <output as="average">c_tm_B1</output>
+    </average>
+    <count>
+      <input clear="false" as="buffer">c_ut_B2</input>
+      <output as="count">c_n_B2</output>
+    </count>
+    <average>
+      <input clear="false">c_ut_B2</input>
+      <output as="average">c_tm_B2</output>
+    </average>
+    <count>
+      <input clear="false" as="buffer">c_ut_A2</input>
+      <output as="count">c_n_A2</output>
+    </count>
+    <average>
+      <input clear="false">c_ut_A2</input>
+      <output as="average">c_tm_A2</output>
+    </average>
+    <formula formula="[1]/2">
+      <input clear="false">c_dY</input>
+      <output>c_omegaH</output>
+    </formula>
+    <multiply>
+      <input clear="false">c_ux</input>
+      <input type="value">57.29577951308232</input>
+      <output>c_ux_deg</output>
+    </multiply>
+    <multiply>
+      <input clear="false">c_uy</input>
+      <input type="value">57.29577951308232</input>
+      <output>c_uy_deg</output>
+    </multiply>
+    <multiply>
+      <input clear="false">c_uz</input>
+      <input type="value">57.29577951308232</input>
+      <output>c_uz_deg</output>
+    </multiply>
+    <formula formula="[1]-[2]">
+      <input clear="false">dY</input>
+      <input clear="false">c_dY</input>
+      <output>deltaDifference</output>
+    </formula>
+    <formula formula="[1]/2">
+      <input clear="false">expected</input>
+      <output>expectedH</output>
+    </formula>
+    <if greater="true" equal="true">
+      <input clear="false" as="a">now</input>
+      <input clear="false" as="b">abbaEnd</input>
+      <input type="value" as="true">1</input>
+      <input type="value" as="false">0</input>
+      <output as="result">complete</output>
+    </if>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">mux_A1</input>
+      <output>mux_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sdux_A1</input>
+      <output>sdux_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muy_A1</input>
+      <output>muy_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduy_A1</input>
+      <output>sduy_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muz_A1</input>
+      <output>muz_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduz_A1</input>
+      <output>sduz_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_mux_A1</input>
+      <output>c_mux_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sdux_A1</input>
+      <output>c_sdux_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muy_A1</input>
+      <output>c_muy_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduy_A1</input>
+      <output>c_sduy_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muz_A1</input>
+      <output>c_muz_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduz_A1</input>
+      <output>c_sduz_A1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">mux_B1</input>
+      <output>mux_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sdux_B1</input>
+      <output>sdux_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muy_B1</input>
+      <output>muy_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduy_B1</input>
+      <output>sduy_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muz_B1</input>
+      <output>muz_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduz_B1</input>
+      <output>sduz_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_mux_B1</input>
+      <output>c_mux_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sdux_B1</input>
+      <output>c_sdux_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muy_B1</input>
+      <output>c_muy_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduy_B1</input>
+      <output>c_sduy_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muz_B1</input>
+      <output>c_muz_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduz_B1</input>
+      <output>c_sduz_B1_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">mux_B2</input>
+      <output>mux_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sdux_B2</input>
+      <output>sdux_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muy_B2</input>
+      <output>muy_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduy_B2</input>
+      <output>sduy_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muz_B2</input>
+      <output>muz_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduz_B2</input>
+      <output>sduz_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_mux_B2</input>
+      <output>c_mux_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sdux_B2</input>
+      <output>c_sdux_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muy_B2</input>
+      <output>c_muy_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduy_B2</input>
+      <output>c_sduy_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muz_B2</input>
+      <output>c_muz_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduz_B2</input>
+      <output>c_sduz_B2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">mux_A2</input>
+      <output>mux_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sdux_A2</input>
+      <output>sdux_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muy_A2</input>
+      <output>muy_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduy_A2</input>
+      <output>sduy_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">muz_A2</input>
+      <output>muz_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">sduz_A2</input>
+      <output>sduz_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_mux_A2</input>
+      <output>c_mux_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sdux_A2</input>
+      <output>c_sdux_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muy_A2</input>
+      <output>c_muy_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduy_A2</input>
+      <output>c_sduy_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_muz_A2</input>
+      <output>c_muz_A2_deg</output>
+    </formula>
+    <formula formula="57.29577951308232*[1]">
+      <input clear="false">c_sduz_A2</input>
+      <output>c_sduz_A2_deg</output>
+    </formula>
+  </analysis>
+  <export>
+    <set name="Summary">
+      <data name="ABBA complete (0 or 1)">complete</data>
+      <data name="Elapsed time (s)">now</data>
+      <data name="Latitude (deg)">latitude</data>
+      <data name="Averaging time (s)">measureTime</data>
+      <data name="Settling time (s)">settleTime</data>
+      <data name="Turn time (s)">turnTime</data>
+      <data name="Expected reversal (deg/s)">expected</data>
+      <data name="Expected horizontal rate (deg/s)">expectedH</data>
+      <data name="Raw X reversal (deg/s)">dX</data>
+      <data name="Raw Y reversal (deg/s)">dY</data>
+      <data name="Raw Z reversal (deg/s)">dZ</data>
+      <data name="Raw horizontal rate (deg/s)">omegaH</data>
+      <data name="Raw error (%)">percentError</data>
+      <data name="Calibrated X reversal (deg/s)">c_dX</data>
+      <data name="Calibrated Y reversal (deg/s)">c_dY</data>
+      <data name="Calibrated Z reversal (deg/s)">c_dZ</data>
+      <data name="Calibrated horizontal rate (deg/s)">c_omegaH</data>
+      <data name="Calibrated error (%)">c_percentError</data>
+      <data name="Raw minus calibrated Y reversal (deg/s)">deltaDifference</data>
+    </set>
+    <set name="Raw gyro">
+      <data name="Time (s)">ut</data>
+      <data name="X (deg/s)">ux_deg</data>
+      <data name="Y (deg/s)">uy_deg</data>
+      <data name="Z (deg/s)">uz_deg</data>
+      <data name="X (rad/s)">ux</data>
+      <data name="Y (rad/s)">uy</data>
+      <data name="Z (rad/s)">uz</data>
+    </set>
+    <set name="Calibrated gyro">
+      <data name="Time (s)">c_ut</data>
+      <data name="X (deg/s)">c_ux_deg</data>
+      <data name="Y (deg/s)">c_uy_deg</data>
+      <data name="Z (deg/s)">c_uz_deg</data>
+      <data name="X (rad/s)">c_ux</data>
+      <data name="Y (rad/s)">c_uy</data>
+      <data name="Z (rad/s)">c_uz</data>
+    </set>
+    <set name="Block statistics">
+      <data name="A1 start (s)">A1s</data>
+      <data name="A1 end (s)">A1e</data>
+      <data name="A1 Raw count">n_A1</data>
+      <data name="A1 Raw mean time (s)">tm_A1</data>
+      <data name="A1 Raw X mean (deg/s)">mux_A1_deg</data>
+      <data name="A1 Raw X SD (deg/s)">sdux_A1_deg</data>
+      <data name="A1 Raw Y mean (deg/s)">muy_A1_deg</data>
+      <data name="A1 Raw Y SD (deg/s)">sduy_A1_deg</data>
+      <data name="A1 Raw Z mean (deg/s)">muz_A1_deg</data>
+      <data name="A1 Raw Z SD (deg/s)">sduz_A1_deg</data>
+      <data name="A1 Calibrated count">c_n_A1</data>
+      <data name="A1 Calibrated mean time (s)">c_tm_A1</data>
+      <data name="A1 Calibrated X mean (deg/s)">c_mux_A1_deg</data>
+      <data name="A1 Calibrated X SD (deg/s)">c_sdux_A1_deg</data>
+      <data name="A1 Calibrated Y mean (deg/s)">c_muy_A1_deg</data>
+      <data name="A1 Calibrated Y SD (deg/s)">c_sduy_A1_deg</data>
+      <data name="A1 Calibrated Z mean (deg/s)">c_muz_A1_deg</data>
+      <data name="A1 Calibrated Z SD (deg/s)">c_sduz_A1_deg</data>
+      <data name="B1 start (s)">B1s</data>
+      <data name="B1 end (s)">B1e</data>
+      <data name="B1 Raw count">n_B1</data>
+      <data name="B1 Raw mean time (s)">tm_B1</data>
+      <data name="B1 Raw X mean (deg/s)">mux_B1_deg</data>
+      <data name="B1 Raw X SD (deg/s)">sdux_B1_deg</data>
+      <data name="B1 Raw Y mean (deg/s)">muy_B1_deg</data>
+      <data name="B1 Raw Y SD (deg/s)">sduy_B1_deg</data>
+      <data name="B1 Raw Z mean (deg/s)">muz_B1_deg</data>
+      <data name="B1 Raw Z SD (deg/s)">sduz_B1_deg</data>
+      <data name="B1 Calibrated count">c_n_B1</data>
+      <data name="B1 Calibrated mean time (s)">c_tm_B1</data>
+      <data name="B1 Calibrated X mean (deg/s)">c_mux_B1_deg</data>
+      <data name="B1 Calibrated X SD (deg/s)">c_sdux_B1_deg</data>
+      <data name="B1 Calibrated Y mean (deg/s)">c_muy_B1_deg</data>
+      <data name="B1 Calibrated Y SD (deg/s)">c_sduy_B1_deg</data>
+      <data name="B1 Calibrated Z mean (deg/s)">c_muz_B1_deg</data>
+      <data name="B1 Calibrated Z SD (deg/s)">c_sduz_B1_deg</data>
+      <data name="B2 start (s)">B2s</data>
+      <data name="B2 end (s)">B2e</data>
+      <data name="B2 Raw count">n_B2</data>
+      <data name="B2 Raw mean time (s)">tm_B2</data>
+      <data name="B2 Raw X mean (deg/s)">mux_B2_deg</data>
+      <data name="B2 Raw X SD (deg/s)">sdux_B2_deg</data>
+      <data name="B2 Raw Y mean (deg/s)">muy_B2_deg</data>
+      <data name="B2 Raw Y SD (deg/s)">sduy_B2_deg</data>
+      <data name="B2 Raw Z mean (deg/s)">muz_B2_deg</data>
+      <data name="B2 Raw Z SD (deg/s)">sduz_B2_deg</data>
+      <data name="B2 Calibrated count">c_n_B2</data>
+      <data name="B2 Calibrated mean time (s)">c_tm_B2</data>
+      <data name="B2 Calibrated X mean (deg/s)">c_mux_B2_deg</data>
+      <data name="B2 Calibrated X SD (deg/s)">c_sdux_B2_deg</data>
+      <data name="B2 Calibrated Y mean (deg/s)">c_muy_B2_deg</data>
+      <data name="B2 Calibrated Y SD (deg/s)">c_sduy_B2_deg</data>
+      <data name="B2 Calibrated Z mean (deg/s)">c_muz_B2_deg</data>
+      <data name="B2 Calibrated Z SD (deg/s)">c_sduz_B2_deg</data>
+      <data name="A2 start (s)">A2s</data>
+      <data name="A2 end (s)">A2e</data>
+      <data name="A2 Raw count">n_A2</data>
+      <data name="A2 Raw mean time (s)">tm_A2</data>
+      <data name="A2 Raw X mean (deg/s)">mux_A2_deg</data>
+      <data name="A2 Raw X SD (deg/s)">sdux_A2_deg</data>
+      <data name="A2 Raw Y mean (deg/s)">muy_A2_deg</data>
+      <data name="A2 Raw Y SD (deg/s)">sduy_A2_deg</data>
+      <data name="A2 Raw Z mean (deg/s)">muz_A2_deg</data>
+      <data name="A2 Raw Z SD (deg/s)">sduz_A2_deg</data>
+      <data name="A2 Calibrated count">c_n_A2</data>
+      <data name="A2 Calibrated mean time (s)">c_tm_A2</data>
+      <data name="A2 Calibrated X mean (deg/s)">c_mux_A2_deg</data>
+      <data name="A2 Calibrated X SD (deg/s)">c_sdux_A2_deg</data>
+      <data name="A2 Calibrated Y mean (deg/s)">c_muy_A2_deg</data>
+      <data name="A2 Calibrated Y SD (deg/s)">c_sduy_A2_deg</data>
+      <data name="A2 Calibrated Z mean (deg/s)">c_muz_A2_deg</data>
+      <data name="A2 Calibrated Z SD (deg/s)">c_sduz_A2_deg</data>
+    </set>
+    <set name="Optional stability">
+      <data name="Quality start (s)">qualityStart</data>
+      <data name="Quality end (s)">qualityEnd</data>
+      <data name="Quality elapsed (s)">qualityElapsed</data>
+      <data name="Raw Y Allan 15 s (deg/s)">allanY15</data>
+      <data name="Raw X Allan 15 s (deg/s)">allanX15</data>
+      <data name="Raw observed rate (Hz)">fs</data>
+      <data name="Calibrated Y Allan 15 s (deg/s)">c_allanY15</data>
+      <data name="Calibrated X Allan 15 s (deg/s)">c_allanX15</data>
+      <data name="Calibrated observed rate (Hz)">c_fs</data>
+    </set>
+  </export>
 </phyphox>
