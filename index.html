@@ -1827,48 +1827,42 @@
         </p>
 
       </section>
-
-
-
       <!-- IPHONE -->
 
       <section class="card">
 
         <div class="badge">
-          IPHONE
+          IPHONE BETA
         </div>
-
 
         <h2>
           Earth Rotation Challenge
         </h2>
 
-
         <p>
-          iPhone version of the same guided
-          ABBA reversal experiment.
+          iPhone version of the guided ABBA reversal experiment using a
+          beta version of phyphox that provides simultaneous calibrated
+          and uncalibrated gyroscope streams.
         </p>
 
-
         <p>
-          Follow the 180° reversal sequence
-          and compare the measured signal
-          with the expected Earth rotation.
+          Follow the 180° reversal sequence and compare the measured
+          Earth-rotation signal in the two sensor streams.
         </p>
-
 
         <a
           class="button"
           href="Earth_Rotation_Challenge_iPhone.phyphox">
 
-          Open iPhone Experiment
+          Open iPhone Beta Experiment
 
         </a>
 
-
         <p class="note">
-          Uses the standard <strong>raw gyroscope stream</strong>
-          currently available to phyphox on iOS.
+          The <strong>uncalibrated iOS stream</strong> retained the
+          Earth-rotation reversal in the iPhone 13 tests, while the
+          simultaneously recorded calibrated stream gave a much smaller
+          mean reversal.
         </p>
 
       </section>
@@ -2057,9 +2051,6 @@
 
 
     </section>
-
-
-
     <!-- ==================================================
          MEASURED ABBA RESULTS
          ================================================== -->
@@ -2071,64 +2062,81 @@
       </h2>
 
       <p class="allan-intro">
-        The expected 180° Earth-rotation reversal at this latitude is
-        approximately <strong>0.00505°/s</strong>. The plot below compares
-        the measured ABBA reversal signal from the devices tested with the
-        Murata SCH16T-K01 shown as a reference measurement.
+        At the measurement latitude the expected 180° north–south
+        Earth-rotation reversal is approximately
+        <strong>0.004982°/s</strong>. The final comparison used ten
+        consecutive ABBA measurements for each smartphone and ten
+        repeated measurements with the Murata reference sensor.
       </p>
-
 
       <div class="allan-figure">
 
         <img
-          src="ABBA_selected_devices_consistent.png"
+          src="phones_murata_with_x_control_cleanlabels.png"
           loading="lazy"
-          alt="Measured Earth-rotation ABBA reversal results across tested phones and the Murata SCH16T-K01 reference gyroscope">
+          alt="Ten repeated Earth-rotation ABBA measurements for the Pixel 9a, Pixel 6 Pro, iPhone 13 and Murata SCH16T-K01, with orthogonal x-axis controls">
 
         <p class="figure-caption">
-          Selected ABBA reversal measurements across tested devices. The dashed line shows an expected Earth-rotation reversal of about <strong>0.0050°/s</strong> as a visual guide. Error bars show the <strong>between-run sample standard deviation</strong> where repeated same-protocol measurements were available. The <strong>Murata SCH16T-K01</strong> reference uses <strong>n = 9</strong> measurements.
-          <br><br>
-          <strong>Note:</strong> each smartphone result represents the individual device tested and should not be taken as representative of every unit of that phone model.
+          Ten repeated ABBA measurements for the Pixel 9a, Pixel 6 Pro,
+          iPhone 13 and Murata SCH16T-K01 reference sensor, together with
+          the orthogonal x-axis controls. Smartphone measurements use
+          <strong>15 s</strong> averages; the Murata reference uses
+          <strong>10 s</strong> averages. Points show individual measurements
+          and the larger markers with error bars show
+          <strong>mean ± sample standard deviation</strong>. The dashed line
+          marks the expected north–south reversal,
+          <strong>0.004982°/s</strong>, and the dotted line marks the expected
+          x-axis control of zero. The iPhone 13 data use the uncalibrated
+          stream provided by the phyphox beta.
         </p>
 
       </div>
 
-
       <div class="allan-result-summary">
 
-        <strong>What does the comparison show?</strong>
-
-        Several smartphone measurements are of the same order as the
-        expected Earth-rotation reversal, while device-to-device performance
-        varies substantially.
+        <strong>Final standardised comparison</strong>
 
         <br><br>
 
-        <strong>
-          Several Android phones using the uncalibrated gyroscope produced
-          reversal measurements close to the expected Earth-rotation signal,
-          while other devices did not resolve it.
-        </strong>
+        Pixel 9a:
+        <strong>0.004509 ± 0.001543°/s</strong>
+
+        <br>
+        Pixel 6 Pro:
+        <strong>0.004035 ± 0.001091°/s</strong>
+
+        <br>
+        iPhone 13 (phyphox beta, uncalibrated):
+        <strong>0.004639 ± 0.002387°/s</strong>
+
+        <br>
+        Murata SCH16T-K01:
+        <strong>0.004973 ± 0.000113°/s</strong>
 
         <br><br>
 
-        Performance varies strongly between <strong>phone models</strong>,
-        <strong>sensor streams</strong> and <strong>individual gyroscope axes</strong>.
+        Each result is <strong>n = 10</strong>. All
+        <strong>30 smartphone north–south measurements</strong> had the
+        expected positive sign. The orthogonal x-axis controls are much
+        closer to zero overall and provide a useful check on the directional
+        nature of the measurement.
 
         <br><br>
 
-        Across the nine Murata measurements included in
-        the repeated reference dataset, the mean reversal is
-        <strong>0.004993°/s</strong> with a between-run sample standard
-        deviation of <strong>0.000141°/s</strong>.
+        For the iPhone 13, the simultaneously recorded calibrated stream
+        gave <strong>0.001263 ± 0.002097°/s</strong>, substantially smaller
+        than the uncalibrated result.
+
+        <br><br>
+
+        <strong>Note:</strong> each smartphone result represents the individual
+        device tested and should not be taken as representative of every unit
+        of that phone model.
 
       </div>
 
     </section>
-
-
-
-    <!-- ==================================================
+<!-- ==================================================
          ALLAN DEVIATION
          ================================================== -->
 
@@ -2151,22 +2159,21 @@
       <div class="allan-figure">
 
         <img
-          src="Allan_poster_clean_labels_v4.png"
+          src="allan_deviation_with_pixel9a_uptick.png"
           loading="lazy"
           alt="Allan deviation comparison for Pixel 9a, Pixel 6 Pro, iPhone 13, iPad Air (1st generation, 2013) and Murata SCH16T-K01">
 
         <p class="figure-caption">
-          Allan deviation of the Pixel 9a, Pixel 6 Pro, iPhone 13,
-          an iPad Air (1st generation, 2013; iOS 12.5.8) and the Murata SCH16T-K01 reference sensor.
-          The Android phones use the uncalibrated gyroscope stream,
-          while the iPhone 13 and iPad Air use the standard <strong>raw</strong>
-          gyroscope stream available to phyphox on iOS.
-          Mobile-device streams were averaged to approximately 10 Hz
-          before analysis. The Murata Allan data use the approximately
-          10–11 Hz live BLE stream, which averages groups of five sensor reads.
-          The vertical markers show 5, 10, 15 and 20 s averaging times.
-          The dashed line marks the expected horizontal Earth-rotation component
-          near Ireland, approximately 0.0025° s⁻¹.
+          Allan deviation of the y-axis gyroscope output for the Pixel 9a,
+          Pixel 6 Pro, iPhone 13, iPad Air (1st generation, 2013) and
+          Murata SCH16T-K01. The Pixel 9a curve uses a longer
+          <strong>90 min uncalibrated</strong> stationary record. The iPhone 13
+          <strong>calibrated and uncalibrated beta streams</strong> are shown
+          separately, while the older iPad uses the standard iOS gyroscope
+          stream. Vertical markers indicate 5, 10, 15 and 20 s averaging
+          times. The horizontal reference is the expected horizontal
+          Earth-rate component at the measurement latitude,
+          approximately <strong>0.00249°/s</strong>.
         </p>
 
       </div>
@@ -2283,9 +2290,8 @@
         <p>
           By 15 s, much of the short-term random noise has already
           been reduced, while the complete ABBA sequence can still
-          be finished in about <strong>76 s</strong>.
-          This keeps the full reversal experiment below roughly
-          100 s, limiting the time available for slow drift and
+          be completed in approximately <strong>90 s</strong>.
+          This keeps the full reversal experiment short, limiting the time available for slow drift and
           thermal changes to build up.
         </p>
 
@@ -2752,15 +2758,16 @@
           The sensor stream also matters.
         </strong>
 
-        Comparing calibrated and uncalibrated gyroscope streams is important
-        because software bias compensation can alter very slow changes in the
-        signal — exactly the behaviour we are trying to measure.
+        In the iPhone 13 beta experiment, the calibrated and uncalibrated
+        gyroscope streams were recorded simultaneously. The uncalibrated
+        y-axis reversal was <strong>0.004639 ± 0.002387°/s</strong>, while
+        the calibrated stream gave <strong>0.001263 ± 0.002097°/s</strong>.
+        This illustrates why the sensor stream must be identified when
+        attempting to measure such a small, nearly constant angular velocity.
 
       </div>
 
     </section>
-
-
     <!-- ==================================================
          CONCLUSIONS
          ================================================== -->
@@ -2776,37 +2783,43 @@
         <ul>
           <li>
             Earth’s rotation can be detected with some smartphone gyroscopes
-            using the ABBA reversal method.
+            using the 180° ABBA reversal method.
           </li>
           <li>
-            Suitable Android phones using the uncalibrated gyroscope stream
-            give reversal signals of the expected order of magnitude,
-            approximately <strong>0.005°/s</strong> in Ireland.
+            In the final standardised comparison, the Pixel 9a, Pixel 6 Pro
+            and iPhone 13 gave mean north–south reversals between
+            <strong>0.00404 and 0.00464°/s</strong>, and all
+            <strong>30</strong> individual smartphone measurements had the
+            expected positive sign.
           </li>
           <li>
-            Allan deviation shows that gyroscope performance varies
-            substantially between devices, and some older devices are not
-            stable enough for this measurement.
+            The iPhone 13 beta comparison showed that the
+            <strong>uncalibrated stream retained the Earth-rotation reversal</strong>,
+            while the simultaneously recorded calibrated stream gave a much
+            smaller mean reversal.
           </li>
           <li>
-            The Murata SCH16T-K01 repeated reference measurement gives
-            <strong>0.004993 ± 0.000141°/s</strong>
-            (<strong>n = 9</strong>), close to the expected reversal in Kilcock.
+            Allan deviation is useful for screening sensor stability, but the
+            orientation-dependent ABBA reversal is the actual Earth-rotation
+            measurement.
           </li>
           <li>
-            The choice of averaging time is a practical compromise between
-            reducing short-term noise and keeping the full measurement short
-            enough to limit slow drift.
+            The Murata SCH16T-K01 reference measurement gives
+            <strong>0.004973 ± 0.000113°/s</strong>
+            (<strong>n = 10</strong>), close to the predicted
+            <strong>0.004982°/s</strong>.
+          </li>
+          <li>
+            A 15 s smartphone averaging interval provides a practical
+            compromise between reducing short-term noise and keeping the full
+            experiment short enough to limit slower drift.
           </li>
         </ul>
 
       </div>
 
     </section>
-
-
-
-    <!-- ==================================================
+<!-- ==================================================
          REFERENCES
          ================================================== -->
 
