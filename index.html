@@ -1840,25 +1840,40 @@
         </h2>
 
         <p>
-          iPhone version of the guided ABBA reversal experiment using a
-          beta version of phyphox that provides simultaneous calibrated
-          and uncalibrated gyroscope streams.
+          The iPhone version of the guided ABBA reversal experiment requires
+          the <strong>public beta version of phyphox for iOS</strong>.
+          At the time of this work, the uncalibrated gyroscope stream used
+          here is available through the beta, installed with
+          <strong>Apple TestFlight</strong><sup class="citation"><a href="#ref-5">[5]</a></sup>.
         </p>
 
         <p>
-          Follow the 180° reversal sequence and compare the measured
-          Earth-rotation signal in the two sensor streams.
+          The beta experiment records the calibrated and uncalibrated
+          gyroscope streams simultaneously. The Earth-rotation result reported
+          here uses the <strong>uncalibrated</strong> stream; the calibrated
+          stream is retained for comparison.
         </p>
+
+        <a
+          class="button secondary"
+          href="https://phyphox.org/download/"
+          target="_blank"
+          rel="noopener">
+
+          Install phyphox iOS Beta (TestFlight)
+
+        </a>
 
         <a
           class="button"
           href="Earth_Rotation_Challenge_iPhone.phyphox">
 
-          Open iPhone Beta Experiment
+          Open iPhone Earth Rotation Challenge
 
         </a>
 
         <p class="note">
+          Install the phyphox iOS public beta first, then open the experiment.
           The <strong>uncalibrated iOS stream</strong> retained the
           Earth-rotation reversal in the iPhone 13 tests, while the
           simultaneously recorded calibrated stream gave a much smaller
@@ -2087,7 +2102,8 @@
           marks the expected north–south reversal,
           <strong>0.004982°/s</strong>, and the dotted line marks the expected
           x-axis control of zero. The iPhone 13 data use the uncalibrated
-          stream provided by the phyphox beta.
+          stream provided by the phyphox iOS public beta, installed through
+          Apple TestFlight.
         </p>
 
       </div>
@@ -2106,7 +2122,7 @@
         <strong>0.004035 ± 0.001091°/s</strong>
 
         <br>
-        iPhone 13 (phyphox beta, uncalibrated):
+        iPhone 13 (phyphox iOS public beta / TestFlight, uncalibrated):
         <strong>0.004639 ± 0.002387°/s</strong>
 
         <br>
@@ -2174,16 +2190,27 @@
 
         <a
           class="button secondary"
+          href="https://phyphox.org/download/"
+          target="_blank"
+          rel="noopener">
+          Install phyphox iOS Beta (TestFlight)
+        </a>
+
+        <a
+          class="button secondary"
           href="iPhone_Allan_20min_Raw_Calibrated.phyphox">
           Download iPhone beta 20-min Allan test
         </a>
 
         <p class="note">
-          Android uses the uncalibrated gyroscope stream. The iPhone beta
-          version records calibrated and uncalibrated gyroscope streams
-          simultaneously. Allan deviation is a stability screen; use the
-          separate ABBA Earth Rotation Challenge to test for the
-          orientation-dependent Earth-rotation signal.
+          Android uses the uncalibrated gyroscope stream. On iPhone, both
+          this Allan test and the Earth Rotation Challenge require the
+          <strong>phyphox iOS public beta installed through Apple TestFlight</strong>
+          <sup class="citation"><a href="#ref-5">[5]</a></sup>. The beta records
+          calibrated and uncalibrated gyroscope streams simultaneously.
+          Allan deviation is a stability screen; use the separate ABBA Earth
+          Rotation Challenge to test for the orientation-dependent
+          Earth-rotation signal.
         </p>
 
       </div>
@@ -2202,8 +2229,9 @@
           Pixel 6 Pro, iPhone 13, iPad Air (1st generation, 2013) and
           Murata SCH16T-K01. The Pixel 9a curve uses a longer
           <strong>90 min uncalibrated</strong> stationary record. The iPhone 13
-          <strong>calibrated and uncalibrated beta streams</strong> are shown
-          separately, while the older iPad uses the standard iOS gyroscope
+          <strong>calibrated and uncalibrated streams from the phyphox iOS
+          public beta (TestFlight)</strong> are shown separately, while the
+          older iPad uses the standard iOS gyroscope
           stream. Vertical markers indicate 5, 10, 15 and 20 s averaging
           times. The horizontal reference is the expected horizontal
           Earth-rate component at the measurement latitude,
@@ -2792,12 +2820,14 @@
           The sensor stream also matters.
         </strong>
 
-        In the iPhone 13 beta experiment, the calibrated and uncalibrated
-        gyroscope streams were recorded simultaneously. The uncalibrated
+        In the iPhone 13 experiment, the <strong>phyphox iOS public beta,
+        installed through Apple TestFlight</strong>, provided simultaneous
+        calibrated and uncalibrated gyroscope streams. The uncalibrated
         y-axis reversal was <strong>0.004639 ± 0.002387°/s</strong>, while
         the calibrated stream gave <strong>0.001263 ± 0.002097°/s</strong>.
-        This illustrates why the sensor stream must be identified when
-        attempting to measure such a small, nearly constant angular velocity.
+        This illustrates why both the app version and the sensor stream must
+        be identified when attempting to measure such a small, nearly
+        constant angular velocity.
 
       </div>
 
@@ -2827,8 +2857,9 @@
             expected positive sign.
           </li>
           <li>
-            The iPhone 13 beta comparison showed that the
-            <strong>uncalibrated stream retained the Earth-rotation reversal</strong>,
+            The iPhone 13 comparison used the
+            <strong>phyphox iOS public beta installed through Apple TestFlight</strong>.
+            Its <strong>uncalibrated stream retained the Earth-rotation reversal</strong>,
             while the simultaneously recorded calibrated stream gave a much
             smaller mean reversal.
           </li>
@@ -2902,6 +2933,16 @@
           <a href="https://www.murata.com/products/sensor/gyro/overview/lineup/sch16t"
              target="_blank" rel="noopener">
             Product documentation
+          </a>
+        </li>
+
+        <li id="ref-5">
+          phyphox.
+          <em>Download — public beta instructions.</em>
+          The iOS public beta is installed through Apple TestFlight.
+          <a href="https://phyphox.org/download/"
+             target="_blank" rel="noopener">
+            phyphox beta / TestFlight instructions
           </a>
         </li>
 
